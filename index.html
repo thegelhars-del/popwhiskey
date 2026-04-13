@@ -954,6 +954,578 @@ section { padding: 7rem 0; position: relative; }
 }
 .modal-box .btn-primary { width: 100%; text-align: center; }
 
+/* ─── ORACLE / SLOT MACHINE ───────────────────────────────── */
+#oracle {
+  background: #f7e4b8;
+  position: relative;
+  text-align: center;
+}
+#oracle::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+}
+
+/* ── Slot Machine Frame ── */
+.slot-machine {
+  max-width: 700px;
+  margin: 2.5rem auto 0;
+  position: relative;
+}
+
+/* Crown / header */
+.slot-crown {
+  background: linear-gradient(180deg, #d4a530 0%, #9a6f1e 60%, #6b4c10 100%);
+  color: #fdf5ea;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.85rem 1.5rem 0.7rem;
+  border-radius: 12px 12px 0 0;
+  border: 2px solid #c48f2a;
+  border-bottom: none;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 -4px 12px rgba(154,111,30,0.2);
+}
+.slot-crown::before {
+  content: '♛';
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0 4px rgba(212,165,48,0.5));
+}
+.slot-crown::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(253,245,234,0.3), transparent);
+}
+
+/* Machine body */
+.slot-body {
+  background: linear-gradient(180deg, #3d1a00 0%, #2a0e00 40%, #1e0800 100%);
+  border: 2px solid #c48f2a;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  padding: 1.5rem 1.5rem 2rem;
+  position: relative;
+  box-shadow:
+    inset 0 2px 20px rgba(0,0,0,0.3),
+    0 8px 30px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+/* Reels area */
+.slot-reels-area {
+  flex: 1;
+}
+
+/* Reels frame (the viewing window) */
+.slot-reels-frame {
+  background: #1a0700;
+  border: 2px solid #6b4c10;
+  border-radius: 8px;
+  padding: 3px;
+  box-shadow:
+    inset 0 2px 8px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(212,165,48,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* The reels container */
+.slot-reels {
+  display: flex;
+  gap: 0;
+  position: relative;
+}
+
+/* Individual reel */
+.slot-reel {
+  flex: 1;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  background: #fdf5ea;
+}
+
+/* Reel dividers */
+.slot-reel-divider {
+  width: 3px;
+  background: linear-gradient(180deg, #6b4c10, #c48f2a, #6b4c10);
+  flex-shrink: 0;
+  box-shadow: 0 0 4px rgba(154,111,30,0.3);
+}
+
+/* Reel strip (scrolling content) */
+.reel-strip {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+/* Individual symbol on the reel */
+.reel-symbol {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.55rem, 1.4vw, 0.72rem);
+  font-weight: 600;
+  color: #2a0e00;
+  text-align: center;
+  padding: 0 6px;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  user-select: none;
+  border-bottom: 1px solid rgba(154,111,30,0.08);
+}
+
+/* Payline highlight across the middle row */
+.slot-payline {
+  position: absolute;
+  top: 50%;
+  left: 0; right: 0;
+  height: 60px;
+  transform: translateY(-50%);
+  border-top: 2px solid rgba(212,165,48,0.6);
+  border-bottom: 2px solid rgba(212,165,48,0.6);
+  background: rgba(212,165,48,0.08);
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 0 12px rgba(212,165,48,0.15);
+}
+.slot-payline::before,
+.slot-payline::after {
+  content: '▸';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d4a530;
+  font-size: 1rem;
+  line-height: 1;
+}
+.slot-payline::before { left: -14px; }
+.slot-payline::after { right: -14px; content: '◂'; }
+
+/* Fade masks on top and bottom of reel window */
+.slot-reel::before,
+.slot-reel::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 40px;
+  z-index: 4;
+  pointer-events: none;
+}
+.slot-reel::before {
+  top: 0;
+  background: linear-gradient(180deg, #fdf5ea 0%, rgba(253,245,234,0.8) 40%, transparent 100%);
+}
+.slot-reel::after {
+  bottom: 0;
+  background: linear-gradient(0deg, #fdf5ea 0%, rgba(253,245,234,0.8) 40%, transparent 100%);
+}
+
+/* Reel header labels */
+.slot-reel-labels {
+  display: flex;
+  gap: 0;
+  margin-bottom: 0.5rem;
+}
+.slot-reel-label {
+  flex: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(212,165,48,0.7);
+  text-align: center;
+}
+.slot-reel-label-spacer {
+  width: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Lever (desktop) ── */
+.slot-lever {
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0.75rem;
+  margin-top: 20px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.lever-base {
+  width: 30px;
+  height: 10px;
+  background: linear-gradient(180deg, #c48f2a, #6b4c10);
+  border-radius: 3px;
+  border: 1px solid #9a6f1e;
+  margin-top: auto;
+}
+.lever-shaft {
+  width: 8px;
+  height: 100px;
+  background: linear-gradient(90deg, #9a6f1e, #d4a530, #9a6f1e);
+  border-radius: 4px;
+  position: relative;
+  transform-origin: bottom center;
+  transition: transform 0.15s ease-out;
+  border: 1px solid #6b4c10;
+}
+.lever-knob {
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle at 40% 35%, #d4a530, #9a6f1e 60%, #6b4c10 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #c48f2a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+}
+.lever-knob::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 7px;
+  width: 8px; height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+}
+
+/* Lever pull animation */
+.slot-lever.pulling .lever-shaft {
+  transform: rotate(25deg);
+}
+.slot-lever.released .lever-shaft {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: rotate(0deg);
+}
+
+/* Lever hover */
+.slot-lever:hover .lever-knob {
+  box-shadow: 0 2px 12px rgba(212,165,48,0.5), inset 0 1px 2px rgba(255,255,255,0.2);
+}
+
+/* ── Spin Button (mobile) ── */
+.slot-spin-btn {
+  display: none;
+  background: linear-gradient(180deg, #d4a530, #9a6f1e);
+  border: 2px solid #c48f2a;
+  color: #1e0800;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 1rem auto 0;
+  transition: all 0.3s;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.15);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+.slot-spin-btn:hover {
+  background: linear-gradient(180deg, #e0b840, #c48f2a);
+  box-shadow: 0 3px 16px rgba(212,165,48,0.4);
+}
+.slot-spin-btn:active {
+  transform: scale(0.97);
+}
+.slot-spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Result Area ── */
+.slot-result {
+  min-height: 80px;
+  padding: 1.25rem 1rem 0;
+  text-align: center;
+  position: relative;
+}
+.slot-result-prompt {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(212,165,48,0.5);
+}
+.slot-result-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: #d4a530;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 20px rgba(212,165,48,0.3);
+  letter-spacing: 0.05em;
+}
+.slot-result-region {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: #d4b896;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.slot-result-notes {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #d4b896;
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Jackpot glow animation */
+@keyframes jackpotGlow {
+  0%   { box-shadow: 0 0 5px rgba(212,165,48,0.2); }
+  25%  { box-shadow: 0 0 20px rgba(212,165,48,0.5), 0 0 40px rgba(212,165,48,0.2); }
+  50%  { box-shadow: 0 0 30px rgba(212,165,48,0.6), 0 0 60px rgba(212,165,48,0.3); }
+  75%  { box-shadow: 0 0 20px rgba(212,165,48,0.5), 0 0 40px rgba(212,165,48,0.2); }
+  100% { box-shadow: 0 0 5px rgba(212,165,48,0.2); }
+}
+@keyframes jackpotFlash {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.slot-machine.jackpot .slot-reels-frame {
+  animation: jackpotGlow 1.5s ease-in-out 1;
+}
+.slot-result-name.reveal,
+.slot-result-region.reveal,
+.slot-result-notes.reveal {
+  animation: jackpotFlash 0.5s ease forwards;
+}
+.slot-result-region.reveal { animation-delay: 0.1s; opacity: 0; }
+.slot-result-notes.reveal { animation-delay: 0.25s; opacity: 0; }
+
+/* Oracle bottom ornament (preserved) */
+.oracle-bottom-ornament {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.oracle-bottom-ornament::before,
+.oracle-bottom-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(154,111,30,0.3), transparent);
+}
+.oracle-bottom-ornament span {
+  color: rgba(154,111,30,0.5);
+  font-size: 0.7rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .slot-lever {
+    display: none !important;
+  }
+  .slot-spin-btn {
+    display: block;
+  }
+  .slot-body {
+    padding: 1rem 1rem 1.5rem;
+  }
+  .slot-reel {
+    height: 150px;
+  }
+  .reel-symbol {
+    height: 50px;
+    font-size: 0.5rem;
+  }
+  .slot-payline {
+    height: 50px;
+  }
+  .slot-crown {
+    font-size: 0.55rem;
+    padding: 0.7rem 1rem 0.6rem;
+    letter-spacing: 0.15em;
+  }
+  .slot-crown::before {
+    font-size: 1.1rem;
+  }
+  .slot-result-name {
+    font-size: 1.1rem;
+  }
+  .slot-result-notes {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slot-machine {
+    margin: 1.5rem auto 0;
+  }
+  .slot-reel {
+    height: 120px;
+  }
+  .reel-symbol {
+    height: 40px;
+    font-size: 0.45rem;
+    padding: 0 4px;
+  }
+  .slot-payline {
+    height: 40px;
+  }
+  .slot-reel::before,
+  .slot-reel::after {
+    height: 25px;
+  }
+  .slot-body {
+    padding: 0.75rem 0.75rem 1.25rem;
+  }
+}
+
+/* ─── EVENTS ────────────────────────────────────────────── */
+#events { background: #fffbf4; position: relative; }
+#events::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+}
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.event-card {
+  border: 1px solid rgba(154,111,30,0.2);
+  background: #fff8f0;
+  overflow: hidden;
+  transition: all 0.3s;
+  position: relative;
+}
+.event-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+.event-header {
+  padding: 1.5rem;
+  background: #f0d9a0;
+  border-bottom: 1px solid rgba(154,111,30,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.event-type {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.event-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  color: #2a0e00;
+  line-height: 1.3;
+}
+.event-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.5rem;
+  color: var(--gold-dark);
+  opacity: 0.5;
+  line-height: 1;
+}
+.event-body { padding: 1.5rem; }
+.event-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: #2a0e00;
+}
+.event-detail svg { color: var(--gold); flex-shrink: 0; width: 14px; height: 14px; }
+.event-desc {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #2a0e00;
+  line-height: 1.6;
+  margin: 1.2rem 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(154,111,30,0.2);
+}
+.event-card .btn-outline {
+  width: 100%;
+  text-align: center;
+  font-size: 0.6rem;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+}
+/* RSVP Modal */
+#rsvp-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(42,26,8,0.85);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#rsvp-modal.active { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: #fdf0d5;
+  border: 1px solid rgba(154,111,30,0.3);
+  max-width: 500px;
+  width: 100%;
+  padding: 3rem;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(42,14,0,0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-close:hover { color: #9a6f1e; }
+.modal-box h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.2rem;
+  color: #9a6f1e;
+  margin-bottom: 0.5rem;
+}
+.modal-box p {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: #fffbf4;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.modal-box .btn-primary { width: 100%; text-align: center; }
+
 /* ─── ORACLE ────────────────────────────────────────────── */
 #oracle {
   background: #f7e4b8;
@@ -1666,161 +2238,6 @@ nav.scrolled .nav-brand { color: #9a6f1e; }
   color: #d4b896 !important;
 }
 
-
-/* ─── ORACLE PIZAZZ ──────────────────────────────────────── */
-.oracle-chamber {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Starfield background */
-.oracle-chamber::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 15% 20%, rgba(212,165,48,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 15%, rgba(212,165,48,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 45% 8%, rgba(212,165,48,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 88%, rgba(212,165,48,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 80%, rgba(212,165,48,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 92% 45%, rgba(212,165,48,0.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 8% 55%, rgba(212,165,48,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 92%, rgba(212,165,48,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 35% 35%, rgba(212,165,48,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 78% 60%, rgba(212,165,48,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 50% 50%, rgba(212,165,48,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 20% 45%, rgba(212,165,48,0.25) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 72%, rgba(212,165,48,0.3) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Radial glow behind glass */
-.oracle-chamber::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(ellipse, rgba(212,165,48,0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.8s;
-}
-.oracle-chamber:has(.consulting) .oracle-chamber::before {
-  opacity: 1;
-}
-
-/* Ornate corner decorations */
-.oracle-corner {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 1;
-  pointer-events: none;
-}
-.oracle-corner.tl { top: 12px; left: 12px; }
-.oracle-corner.tr { top: 12px; right: 12px; transform: scaleX(-1); }
-.oracle-corner.bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
-.oracle-corner.br { bottom: 12px; right: 12px; transform: scale(-1); }
-
-/* Oracle inner content sits above the bg effects */
-.oracle-chamber > *:not(.oracle-corner) {
-  position: relative;
-  z-index: 2;
-}
-
-/* Glow pulse on the glass when spinning */
-.oracle-bottle.spinning svg {
-  filter: drop-shadow(0 0 8px rgba(212,165,48,0.5));
-}
-
-/* Oracle result text glow on reveal */
-.oracle-whiskey-name {
-  text-shadow: 0 0 30px rgba(212,165,48,0.3);
-  letter-spacing: 0.05em;
-}
-
-/* Top decorative rule */
-.oracle-top-rule {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-.oracle-top-rule::before,
-.oracle-top-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212,165,48,0.4), transparent);
-}
-.oracle-top-rule span {
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  color: rgba(212,165,48,0.6);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* Bottom rule */
-.oracle-bottom-rule {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.oracle-bottom-rule::before,
-.oracle-bottom-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212,165,48,0.3), transparent);
-}
-.oracle-bottom-rule span {
-  color: rgba(212,165,48,0.4);
-  font-size: 0.7rem;
-}
-
-/* Animated shimmer on consult */
-@keyframes oracleReveal {
-  0% { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-#oracle-result .oracle-whiskey-name,
-#oracle-result .oracle-whiskey-region,
-#oracle-result .oracle-whiskey-notes {
-  animation: oracleReveal 0.6s ease forwards;
-}
-
-
-/* ─── ORACLE GLASS FIX ──────────────────── */
-/* Remove the ::before box that was intersecting the glass */
-.oracle-chamber::before { display: none; }
-
-/* Glow as proper element behind glass */
-.oracle-glow {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(ellipse, rgba(212,165,48,0.07) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 50%;
-}
-
-/* Corners must not overlap the glass area in center */
-.oracle-corner { z-index: 3; opacity: 0.9; }
-
-/* Ensure glass sits cleanly above background */
-#oracle-bottle { z-index: 2; position: relative; }
 
 
 /* ═══ PAGE FLOURISHES ════════════════════════════════════════ */
@@ -3073,72 +3490,66 @@ body::after { display: none !important; }
     <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
     <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
   </svg></div>
-    <p style="font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.15rem; color: #2a0e00; margin-bottom: 0.5rem; line-height: 1.8;">Cannot decide what to pour this evening? The Oracle of the Cask sees all, knows all, and has never once steered a member wrong. Seek its counsel.</p>
-    <div class="oracle-chamber">
-      <svg class="oracle-corner tl" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 46 L4 8 Q4 4 8 4 L46 4" stroke="rgba(212,165,48,0.35)" stroke-width="1" fill="none"/><path d="M4 38 L4 12 Q4 8 8 8 L38 8" stroke="rgba(212,165,48,0.18)" stroke-width="0.6" fill="none"/><circle cx="4" cy="4" r="2" fill="rgba(212,165,48,0.5)"/><line x1="4" y1="24" x2="12" y2="24" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/><line x1="24" y1="4" x2="24" y2="12" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/></svg>
-<svg class="oracle-corner tr" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 46 L4 8 Q4 4 8 4 L46 4" stroke="rgba(212,165,48,0.35)" stroke-width="1" fill="none"/><path d="M4 38 L4 12 Q4 8 8 8 L38 8" stroke="rgba(212,165,48,0.18)" stroke-width="0.6" fill="none"/><circle cx="4" cy="4" r="2" fill="rgba(212,165,48,0.5)"/><line x1="4" y1="24" x2="12" y2="24" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/><line x1="24" y1="4" x2="24" y2="12" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/></svg>
-<svg class="oracle-corner bl" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 46 L4 8 Q4 4 8 4 L46 4" stroke="rgba(212,165,48,0.35)" stroke-width="1" fill="none"/><path d="M4 38 L4 12 Q4 8 8 8 L38 8" stroke="rgba(212,165,48,0.18)" stroke-width="0.6" fill="none"/><circle cx="4" cy="4" r="2" fill="rgba(212,165,48,0.5)"/><line x1="4" y1="24" x2="12" y2="24" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/><line x1="24" y1="4" x2="24" y2="12" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/></svg>
-<svg class="oracle-corner br" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 46 L4 8 Q4 4 8 4 L46 4" stroke="rgba(212,165,48,0.35)" stroke-width="1" fill="none"/><path d="M4 38 L4 12 Q4 8 8 8 L38 8" stroke="rgba(212,165,48,0.18)" stroke-width="0.6" fill="none"/><circle cx="4" cy="4" r="2" fill="rgba(212,165,48,0.5)"/><line x1="4" y1="24" x2="12" y2="24" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/><line x1="24" y1="4" x2="24" y2="12" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/></svg>
-      <div class="oracle-glow"></div>
-      <div class="oracle-top-rule"><span>Seek the Truth in the Dram</span></div>
-      <div id="oracle-bottle" style="display:flex;justify-content:center;margin-bottom:1.5rem;"><svg id="oracle-glass-svg" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:72px;height:108px;display:block;margin:0 auto;">
-  <!-- Complete glass outline as single path -->
-  <!-- Starting from rim left, going clockwise -->
-  <path d="
-    M 27 16
-    Q 24 17 23 19
-    C 18 28 14 42 14 55
-    C 14 68 20 78 28 83
-    L 31 87
-    L 31 96
-    L 22 96
-    L 22 104
-    L 58 104
-    L 58 96
-    L 49 96
-    L 49 87
-    L 52 83
-    C 60 78 66 68 66 55
-    C 66 42 62 28 57 19
-    Q 56 17 53 16
-    Z
-  " stroke="#d4a530" stroke-width="1.2" stroke-linejoin="round" fill="rgba(212,165,48,0.05)"/>
+    <p style="font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.15rem; color: #2a0e00; margin-bottom: 0.5rem; line-height: 1.8;">Cannot decide what to pour this evening? The Oracle of the Cask sees all, knows all, and has never once steered a member wrong. Pull the lever and let fate decide.</p>
 
-  <!-- Whiskey fill - warm amber, sits in the belly -->
-  <path d="
-    M 27 16
-    Q 24 17 23 19
-    C 19 26 15.5 39 15 51
-    Q 40 46 65 51
-    C 64.5 39 61 26 57 19
-    Q 56 17 53 16
-    Z
-  " fill="rgba(160,80,10,0.0)"/>
+    <div class="slot-machine" id="slot-machine">
+      <!-- Crown -->
+      <div class="slot-crown">Fortune Favours the Bold</div>
 
-  <!-- Liquid in belly - below the waist -->
-  <path d="
-    M 17 63
-    C 18 72 22 79 28 83
-    L 31 87 L 49 87 L 52 83
-    C 58 79 62 72 63 63
-    Q 40 59 17 63 Z
-  " fill="rgba(180,100,15,0.25)" stroke="none"/>
+      <!-- Body -->
+      <div class="slot-body">
+        <!-- Reels area -->
+        <div class="slot-reels-area">
+          <!-- Reel labels -->
+          <div class="slot-reel-labels">
+            <div class="slot-reel-label">Origin</div>
+            <div class="slot-reel-label-spacer"></div>
+            <div class="slot-reel-label">Style</div>
+            <div class="slot-reel-label-spacer"></div>
+            <div class="slot-reel-label">Character</div>
+          </div>
 
-  <!-- Liquid surface line -->
-  <path d="M 17 63 Q 40 60 63 63" stroke="rgba(212,165,48,0.55)" stroke-width="0.9" fill="none"/>
+          <!-- Reels frame -->
+          <div class="slot-reels-frame">
+            <div class="slot-reels">
+              <div class="slot-reel" id="reel-1">
+                <div class="reel-strip" id="reel-strip-1"></div>
+              </div>
+              <div class="slot-reel-divider"></div>
+              <div class="slot-reel" id="reel-2">
+                <div class="reel-strip" id="reel-strip-2"></div>
+              </div>
+              <div class="slot-reel-divider"></div>
+              <div class="slot-reel" id="reel-3">
+                <div class="reel-strip" id="reel-strip-3"></div>
+              </div>
+            </div>
+            <div class="slot-payline"></div>
+          </div>
 
-  <!-- Glass reflection - subtle left highlight -->
-  <path d="M 20 36 C 18 44 16 52 16 58" stroke="rgba(255,220,120,0.2)" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M 23 24 C 21 28 20 32 19 36" stroke="rgba(255,220,120,0.12)" stroke-width="1.5" stroke-linecap="round"/>
-</svg></div>
-      <div class="oracle-result" id="oracle-result">
-        <p class="oracle-prompt">The Oracle awaits your query...</p>
+          <!-- Spin button (mobile) -->
+          <button class="slot-spin-btn" id="slot-spin-btn" onclick="pullLever()">Pull the Lever</button>
+        </div>
+
+        <!-- Lever (desktop) -->
+        <div class="slot-lever" id="slot-lever" onclick="pullLever()">
+          <div class="lever-shaft">
+            <div class="lever-knob"></div>
+          </div>
+          <div class="lever-base"></div>
+        </div>
       </div>
-      <button class="oracle-btn" onclick="consultOracle()">Consult the Oracle</button>
-      <div class="oracle-bottom-rule"><span>✦</span></div>
+
+      <!-- Result -->
+      <div class="slot-result" id="slot-result">
+        <p class="slot-result-prompt">The Oracle awaits your query...</p>
+      </div>
     </div>
+
+    <div class="oracle-bottom-ornament"><span>&#10022;</span></div>
   </div>
 </section>
+
 
 <!-- ═══ WHISKEY RECOMMENDATIONS ══════════════════════════════════════ -->
 <section id="recommendations">
@@ -3508,95 +3919,406 @@ document.getElementById('rsvp-modal').addEventListener('click', function(e) {
   if (e.target === this) closeRsvp();
 });
 
-// ─── ORACLE ───────────────────────────────────────────────────
-const whiskies = [
-  {
-    name: 'Glenfarclas 12yr',
-    region: 'Speyside, Scotland',
-    notes: 'The Oracle speaks: tonight, reach for something rich and familiar. The sherry-soaked warmth of Glenfarclas will illuminate whatever truth you seek.'
-  },
-  {
-    name: 'Lagavulin 16yr',
-    region: 'Islay, Scotland',
-    notes: 'The Oracle speaks: you need something that demands attention. Lagavulin\'s peat and smoke will cut through whatever weighs upon you this evening.'
-  },
-  {
-    name: 'Glenmorangie 10yr',
-    region: 'Highland, Scotland',
-    notes: 'The Oracle speaks: begin gently. The elegant fruit and honey of Glenmorangie is an invitation, not a challenge. Your evening will brighten accordingly.'
-  },
-  {
-    name: 'Buffalo Trace',
-    region: 'Frankfort, Kentucky',
-    notes: 'The Oracle speaks: honor the bourbon tradition this evening. Vanilla and caramel await, and with them, a certain straightforwardness the night may require.'
-  },
-  {
-    name: 'Highland Park 12yr',
-    region: 'Orkney, Scotland',
-    notes: 'The Oracle speaks: balance is required of you tonight. The gentle peat and heather honey of Highland Park will steady whatever seeks to unsteady you.'
-  },
-  {
-    name: 'Ardbeg 10yr',
-    region: 'Islay, Scotland',
-    notes: 'The Oracle speaks: abandon caution. The medicinal smoke and brine of Ardbeg is for those who meet the night without flinching. You were chosen for a reason.'
-  },
-  {
-    name: 'Macallan 18yr',
-    region: 'Speyside, Scotland',
-    notes: 'The Oracle speaks: tonight calls for indulgence. The Macallan 18 is not a casual pour. Treat the occasion as it deserves to be treated.'
-  },
-  {
-    name: 'Oban 14yr',
-    region: 'West Highland, Scotland',
-    notes: 'The Oracle speaks: seek the in-between. Oban lives where Highland meets Islay — honey and brine, together. So too must you find your middle ground tonight.'
-  },
-  {
-    name: 'Balvenie DoubleWood 12yr',
-    region: 'Speyside, Scotland',
-    notes: 'The Oracle speaks: embrace the dual nature. Two casks, one spirit — the Balvenie reminds us that complexity comes from patience and multiple influences.'
-  },
-  {
-    name: 'Woodford Reserve',
-    region: 'Versailles, Kentucky',
-    notes: 'The Oracle speaks: tonight is for conversation. The cherry and spice of Woodford invites dialogue, disagreement, and ultimately — accord.'
-  },
-  {
-    name: 'Glenfiddich 15yr',
-    region: 'Speyside, Scotland',
-    notes: 'The Oracle speaks: the solera cask has spoken. Layers of fruit and spice await. Some things improve through accumulation. Tonight, you will discover which.'
-  },
-  {
-    name: 'Maker\'s Mark',
-    region: 'Loretto, Kentucky',
-    notes: 'The Oracle speaks: do not overthink it. Maker\'s Mark is the Society\'s reminder that excellence need not be complicated. Pour. Enjoy. Repeat.'
-  }
+// ─── ORACLE SLOT MACHINE ─────────────────────────────────────
+const oracleWhiskeys = [
+  // ── SCOTCH: Speyside ──
+  { name: 'Glenfarclas 12yr', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Sherried', reelCharacter: 'Rich & Indulgent',
+    notes: 'The Oracle speaks: indulgence is not a sin tonight, it is a sacrament. The sherry cask has spoken. Let dried fruit and dark spice carry you where logic cannot follow.' },
+  { name: 'Balvenie DoubleWood 12yr', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Double Cask', reelCharacter: 'Honey & Fruit',
+    notes: 'The Oracle speaks: you stand at a crossroads. Two casks shaped this spirit, and two paths lie before you. Choose the sweeter one. You will not regret it.' },
+  { name: 'Glenfiddich 15yr', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Solera Vatted', reelCharacter: 'Honey & Fruit',
+    notes: 'The Oracle speaks: layers upon layers have brought you here. The solera vat rewards the patient. Tonight, let accumulated wisdom pour freely.' },
+  { name: 'Macallan 18yr', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Sherried', reelCharacter: 'Rich & Indulgent',
+    notes: 'The Oracle speaks: tonight calls for majesty. The Macallan 18 is not a casual pour. It is a coronation in a glass. Treat the occasion as royalty demands.' },
+  { name: 'Aberlour A\'bunadh', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Cask Strength', reelCharacter: 'Dark Chocolate & Cherry',
+    notes: 'The Oracle speaks: cast aside the training wheels. Full strength, full flavour, full commitment. The cask has given everything. You must do the same.' },
+  { name: 'Glenlivet 18yr', region: 'Speyside, Scotland', reelOrigin: 'Speyside', reelStyle: 'Sherried', reelCharacter: 'Tropical & Floral',
+    notes: 'The Oracle speaks: elegance requires no announcement. The Glenlivet 18 enters quietly and leaves a lasting impression. Be the whiskey tonight.' },
+
+  // ── SCOTCH: Islay ──
+  { name: 'Ardbeg 10yr', region: 'Islay, Scotland', reelOrigin: 'Islay', reelStyle: 'Peated', reelCharacter: 'Smoke & Brine',
+    notes: 'The Oracle speaks: abandon caution. The medicinal smoke and brine of Ardbeg is for those who meet the night without flinching. You were chosen for a reason.' },
+  { name: 'Laphroaig Quarter Cask', region: 'Islay, Scotland', reelOrigin: 'Islay', reelStyle: 'Peated', reelCharacter: 'Smoke & Brine',
+    notes: 'The Oracle speaks: there is a storm coming. Let the iodine and seaweed of Laphroaig be your anchor. This is whiskey for those who do not seek shelter.' },
+  { name: 'Lagavulin 16yr', region: 'Islay, Scotland', reelOrigin: 'Islay', reelStyle: 'Peated', reelCharacter: 'Smoke & Dried Fruit',
+    notes: 'The Oracle speaks: patience is its own reward. Sixteen years of waiting produced this majesty. Whatever you are waiting for, it too shall arrive. Sip slowly.' },
+  { name: 'Bruichladdich Classic Laddie', region: 'Islay, Scotland', reelOrigin: 'Islay', reelStyle: 'Unpeated', reelCharacter: 'Citrus & Malt',
+    notes: 'The Oracle speaks: defy expectations. An unpeated Islay? Heresy, they said. Genius, you will say. The maverick path was always yours.' },
+
+  // ── SCOTCH: Highland ──
+  { name: 'Oban 14yr', region: 'West Highland, Scotland', reelOrigin: 'Highland', reelStyle: 'Lightly Peated', reelCharacter: 'Sea Salt & Honey',
+    notes: 'The Oracle speaks: seek the in-between. Oban lives where Highland meets coast, honey and brine in harmony. Tonight, find your own middle ground.' },
+  { name: 'Glenmorangie 10yr', region: 'Highland, Scotland', reelOrigin: 'Highland', reelStyle: 'Bourbon Cask', reelCharacter: 'Vanilla & Citrus',
+    notes: 'The Oracle speaks: do not mistake gentleness for weakness. The tall stills of Glenmorangie create a spirit of rare delicacy. Be both gentle and mighty tonight.' },
+  { name: 'Dalmore 15yr', region: 'Highland, Scotland', reelOrigin: 'Highland', reelStyle: 'Sherried', reelCharacter: 'Orange & Dark Chocolate',
+    notes: 'The Oracle speaks: the stag stands proud upon the label and so shall you. Marmalade and cocoa await. This is a dram for declarations, not whispers.' },
+
+  // ── SCOTCH: Lowland & Campbeltown ──
+  { name: 'Auchentoshan Three Wood', region: 'Lowland, Scotland', reelOrigin: 'Lowland', reelStyle: 'Triple Cask', reelCharacter: 'Toffee & Plum',
+    notes: 'The Oracle speaks: triple distilled, triple casked, triple blessed. The Lowlands speak softly, but their words are honeyed. Listen closely tonight.' },
+  { name: 'Springbank 10yr', region: 'Campbeltown, Scotland', reelOrigin: 'Campbeltown', reelStyle: 'Lightly Peated', reelCharacter: 'Maritime & Nutty',
+    notes: 'The Oracle speaks: from the smallest whiskey town comes the biggest character. Salt air and barley malt conspire. Do not underestimate the underdog tonight.' },
+
+  // ── BOURBON ──
+  { name: 'Woodford Reserve', region: 'Versailles, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Cherry & Spice',
+    notes: 'The Oracle speaks: tonight is for conversation. The cherry and spice of Woodford invites dialogue, disagreement, and ultimately, accord.' },
+  { name: 'Maker\'s Mark', region: 'Loretto, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Wheated Bourbon', reelCharacter: 'Vanilla & Caramel',
+    notes: 'The Oracle speaks: do not overthink it. Maker\'s Mark reminds us that excellence need not be complicated. Pour. Enjoy. Repeat.' },
+  { name: 'Buffalo Trace', region: 'Frankfort, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Vanilla & Caramel',
+    notes: 'The Oracle speaks: the mighty buffalo carved trails through the wilderness. Tonight, you too shall forge a new path. This dram marks the beginning.' },
+  { name: 'Wild Turkey 101', region: 'Lawrenceburg, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'High Proof Bourbon', reelCharacter: 'Bold Spice & Oak',
+    notes: 'The Oracle speaks: 101 proof is not a suggestion, it is a declaration of intent. The bold are rewarded. The meek get water.' },
+  { name: 'Elijah Craig Small Batch', region: 'Bardstown, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Oak & Vanilla',
+    notes: 'The Oracle speaks: the reverend who charred the first barrel did so by accident. Happy accidents await you tonight. Keep your glass ready.' },
+  { name: 'Four Roses Single Barrel', region: 'Lawrenceburg, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Berry & Baking Spice',
+    notes: 'The Oracle speaks: a single barrel, a singular moment. Each bottle is unique, just as each night is unrepeatable. Savour this one.' },
+  { name: 'Knob Creek 9yr', region: 'Clermont, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Toasted Oak & Maple',
+    notes: 'The Oracle speaks: boldness has a flavour. It tastes of charred oak and sweet maple. Knob Creek does not whisper. Neither should you.' },
+  { name: 'Angel\'s Envy', region: 'Louisville, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Port Finished Bourbon', reelCharacter: 'Cherry & Vanilla',
+    notes: 'The Oracle speaks: even angels weep for what they cannot taste. The port finish adds a celestial sweetness. You are more fortunate than you know.' },
+  { name: 'Blanton\'s Single Barrel', region: 'Frankfort, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Caramel & Citrus',
+    notes: 'The Oracle speaks: the jockey atop the bottle rides toward glory. Follow where it leads. Tonight, you are the favourite to win.' },
+  { name: 'Evan Williams Single Barrel', region: 'Bardstown, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Honey & Leather',
+    notes: 'The Oracle speaks: some treasures hide behind modest labels. Evan Williams proves that substance need not shout. The quiet ones run deep.' },
+  { name: 'George Dickel Bottled in Bond', region: 'Tullahoma, Tennessee', reelOrigin: 'Tennessee', reelStyle: 'Tennessee Whiskey', reelCharacter: 'Butterscotch & Mineral',
+    notes: 'The Oracle speaks: the chill charcoal mellowing has smoothed the way. Cross the Tennessee line tonight and discover what Southern patience yields.' },
+  { name: 'Russell\'s Reserve 10yr', region: 'Lawrenceburg, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Bourbon', reelCharacter: 'Toffee & Dried Fruit',
+    notes: 'The Oracle speaks: the Russells have been at this for generations. Ten years in the barrel, a lifetime of craft. Respect the elders tonight.' },
+
+  // ── RYE ──
+  { name: 'Rittenhouse Rye BiB', region: 'Bardstown, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Rye', reelCharacter: 'Pepper & Cinnamon',
+    notes: 'The Oracle speaks: there is fire on the horizon. Rye pepper crackles on the palate like embers. Rittenhouse is the spark that lights the evening.' },
+  { name: 'Bulleit Rye', region: 'Lawrenceburg, Indiana', reelOrigin: 'Indiana', reelStyle: 'Rye', reelCharacter: 'Cherry & Spice',
+    notes: 'The Oracle speaks: the frontier spirit lives in every sip. Rye and spice, the original rebel grain. Raise a glass to the unconventional path.' },
+  { name: 'WhistlePig 10yr', region: 'Shoreham, Vermont', reelOrigin: 'Vermont', reelStyle: 'Rye', reelCharacter: 'Caramel & Dill',
+    notes: 'The Oracle speaks: from the Green Mountains comes liquid audacity. Ten years of Vermont winters forged this bold rye. Warmth comes to those who wait.' },
+  { name: 'Sazerac Rye', region: 'Frankfort, Kentucky', reelOrigin: 'Kentucky', reelStyle: 'Rye', reelCharacter: 'Anise & Pepper',
+    notes: 'The Oracle speaks: New Orleans pours this for a reason. The Sazerac cocktail demands it. But tonight, sip it neat and hear the jazz play itself.' },
+  { name: 'High West Double Rye', region: 'Park City, Utah', reelOrigin: 'Utah', reelStyle: 'Blended Rye', reelCharacter: 'Mint & Cinnamon',
+    notes: 'The Oracle speaks: two ryes blended on a mountaintop. The elevation changes everything. Let the alpine air of Park City fill your glass.' },
+  { name: 'Pikesville Rye', region: 'Baltimore, Maryland', reelOrigin: 'Maryland', reelStyle: 'Rye', reelCharacter: 'Rich Spice & Caramel',
+    notes: 'The Oracle speaks: Maryland once ruled the rye world. Pikesville carries that torch with grace and fire. Old traditions burn brightest tonight.' },
+
+  // ── IRISH ──
+  { name: 'Redbreast 12yr', region: 'Midleton, Ireland', reelOrigin: 'Ireland', reelStyle: 'Single Pot Still', reelCharacter: 'Honey & Fruit',
+    notes: 'The Oracle speaks: the pot still is Ireland\'s gift to the world. Creamy, fruity, impossibly smooth. Redbreast is the robin that sings at twilight.' },
+  { name: 'Green Spot', region: 'Midleton, Ireland', reelOrigin: 'Ireland', reelStyle: 'Single Pot Still', reelCharacter: 'Apple & Toasted Barley',
+    notes: 'The Oracle speaks: a green daub on the barrel marked this for greatness. Orchard fruit and toasted grain intertwine. Ireland at its most charming.' },
+  { name: 'Teeling Single Grain', region: 'Dublin, Ireland', reelOrigin: 'Ireland', reelStyle: 'Wine Finished', reelCharacter: 'Tropical & Vanilla',
+    notes: 'The Oracle speaks: Dublin\'s newest distillery honors the old ways with new tricks. Wine cask magic transforms grain into gold. The Emerald Isle surprises.' },
+  { name: 'Writers\' Tears Copper Pot', region: 'Carlow, Ireland', reelOrigin: 'Ireland', reelStyle: 'Blended', reelCharacter: 'Honey & Green Apple',
+    notes: 'The Oracle speaks: Irish poets wept not from sorrow but from beauty. This blend weeps honey and apple. Let prose, not logic, guide you tonight.' },
+  { name: 'Tyrconnell 10yr Madeira', region: 'Cooley, Ireland', reelOrigin: 'Ireland', reelStyle: 'Madeira Finished', reelCharacter: 'Raisin & Spice',
+    notes: 'The Oracle speaks: from the cool Cooley Peninsula, a malt kissed by Madeira wine. The underdog of Irish whiskey punches with quiet elegance tonight.' },
+
+  // ── JAPANESE ──
+  { name: 'Nikka From the Barrel', region: 'Yoichi/Miyagikyo, Japan', reelOrigin: 'Japan', reelStyle: 'Blended', reelCharacter: 'Oak & Marmalade',
+    notes: 'The Oracle speaks: East meets West in a flask of perfection. Nikka\'s barrel-proof blend cuts through pretension like a katana. Precision is your mantra tonight.' },
+  { name: 'Hakushu 12yr', region: 'Hakushu, Japan', reelOrigin: 'Japan', reelStyle: 'Lightly Peated', reelCharacter: 'Herbal & Green',
+    notes: 'The Oracle speaks: from the Japanese Alps, a forest in a glass. Bamboo, mint, and gentle smoke. The mountain hermit whispers wisdom. Be still and listen.' },
+  { name: 'Suntory Toki', region: 'Osaka, Japan', reelOrigin: 'Japan', reelStyle: 'Blended', reelCharacter: 'Citrus & Floral',
+    notes: 'The Oracle speaks: toki means time, and time has revealed this blend\'s gentle nature. Light, bright, and effortless. Not every evening demands heaviness.' },
+  { name: 'Hibiki Harmony', region: 'Osaka, Japan', reelOrigin: 'Japan', reelStyle: 'Blended Harmony', reelCharacter: 'Rose & Honey',
+    notes: 'The Oracle speaks: harmony is not the absence of conflict but its resolution. Every sip reconciles malt and grain, youth and age. Peace awaits.' },
+  { name: 'Yamazaki 12yr', region: 'Shimamoto, Japan', reelOrigin: 'Japan', reelStyle: 'Single Malt', reelCharacter: 'Peach & Cinnamon',
+    notes: 'The Oracle speaks: the first Japanese single malt distillery still reigns supreme. Peach and gentle spice bow to craftsmanship. Tonight, honour the pioneer.' },
+
+  // ── OTHER WORLD ──
+  { name: 'Crown Royal Northern Harvest', region: 'Gimli, Canada', reelOrigin: 'Canada', reelStyle: 'Rye', reelCharacter: 'Spice & Ripe Pear',
+    notes: 'The Oracle speaks: the frozen prairies of Manitoba yielded a rye that stunned the world. Northern grit, southern charm. The underestimated shall inherit the evening.' },
+  { name: 'Kavalan Solist Vinho Barrique', region: 'Yilan, Taiwan', reelOrigin: 'Taiwan', reelStyle: 'Wine Cask', reelCharacter: 'Tropical & Chocolate',
+    notes: 'The Oracle speaks: from the subtropical isle of Taiwan, a malt that defies geography. Mango, dark chocolate, and sheer audacity. The new world has arrived.' },
+  { name: 'Amrut Fusion', region: 'Bangalore, India', reelOrigin: 'India', reelStyle: 'Single Malt', reelCharacter: 'Barley & Tropical Fruit',
+    notes: 'The Oracle speaks: fusion is not compromise, it is alchemy. Indian and Scottish barley unite in Bangalore\'s heat. Boundaries are meant to be crossed.' },
+  { name: 'Penderyn Madeira', region: 'Brecon Beacons, Wales', reelOrigin: 'Wales', reelStyle: 'Madeira Finished', reelCharacter: 'Honey & Dried Fruit',
+    notes: 'The Oracle speaks: from the green valleys of Wales, a golden spirit kissed by Madeira. The dragon on the label guards a treasure. Claim it tonight.' },
+  { name: 'Starward Nova', region: 'Melbourne, Australia', reelOrigin: 'Australia', reelStyle: 'Wine Cask', reelCharacter: 'Red Berry & Caramel',
+    notes: 'The Oracle speaks: red wine barrels under the Melbourne sun created this antipodean marvel. The Southern Cross points to bold new horizons. Follow the stars.' }
 ];
 
 let oracleUsed = [];
+let slotSpinning = false;
 
-function consultOracle() {
-  const bottle = document.getElementById('oracle-bottle');
-  const result = document.getElementById('oracle-result');
+// ── Web Audio API Sounds ──
+let audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  return audioCtx;
+}
 
-  if (oracleUsed.length === whiskies.length) oracleUsed = [];
+function generateTick() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.03);
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.05);
+  } catch(e) {}
+}
 
-  bottle.classList.add('spinning');
-  result.innerHTML = '<p class="oracle-prompt" style="opacity:0.4;">The Oracle deliberates...</p>';
+function generateClunk() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(200, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.1);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.15);
+    // Add a click layer
+    const noise = ctx.createOscillator();
+    const ng = ctx.createGain();
+    noise.connect(ng);
+    ng.connect(ctx.destination);
+    noise.type = 'sawtooth';
+    noise.frequency.setValueAtTime(600, ctx.currentTime);
+    noise.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.04);
+    ng.gain.setValueAtTime(0.1, ctx.currentTime);
+    ng.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+    noise.start(ctx.currentTime);
+    noise.stop(ctx.currentTime + 0.06);
+  } catch(e) {}
+}
+
+function generateChime() {
+  try {
+    const ctx = getAudioCtx();
+    const freqs = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+    freqs.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.12);
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + i * 0.12);
+      gain.gain.setValueAtTime(0.1, ctx.currentTime + i * 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.8);
+      osc.start(ctx.currentTime + i * 0.12);
+      osc.stop(ctx.currentTime + i * 0.12 + 0.8);
+    });
+  } catch(e) {}
+}
+
+// ── Reel Population ──
+function getReelValues(key) {
+  const vals = [...new Set(oracleWhiskeys.map(w => w[key]))];
+  // Shuffle
+  for (let i = vals.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [vals[i], vals[j]] = [vals[j], vals[i]];
+  }
+  return vals;
+}
+
+function populateReel(stripId, values) {
+  const strip = document.getElementById(stripId);
+  strip.innerHTML = '';
+  // Create enough symbols for seamless looping (repeat 4x)
+  const allVals = [];
+  for (let r = 0; r < 4; r++) {
+    values.forEach(v => allVals.push(v));
+  }
+  allVals.forEach(val => {
+    const div = document.createElement('div');
+    div.className = 'reel-symbol';
+    div.textContent = val;
+    strip.appendChild(div);
+  });
+  return allVals;
+}
+
+// ── Main Pull Lever Function ──
+function pullLever() {
+  if (slotSpinning) return;
+  slotSpinning = true;
+
+  const machine = document.getElementById('slot-machine');
+  const lever = document.getElementById('slot-lever');
+  const btn = document.getElementById('slot-spin-btn');
+  const resultEl = document.getElementById('slot-result');
+
+  machine.classList.remove('jackpot');
+  btn.disabled = true;
+
+  // Lever animation
+  if (lever) {
+    lever.classList.remove('released');
+    lever.classList.add('pulling');
+    setTimeout(() => {
+      lever.classList.remove('pulling');
+      lever.classList.add('released');
+    }, 300);
+  }
+
+  // Pick a whiskey
+  if (oracleUsed.length === oracleWhiskeys.length) oracleUsed = [];
+  const available = oracleWhiskeys.filter((_, i) => !oracleUsed.includes(i));
+  const pick = available[Math.floor(Math.random() * available.length)];
+  const idx = oracleWhiskeys.indexOf(pick);
+  oracleUsed.push(idx);
+
+  // Clear result
+  resultEl.innerHTML = '<p class="slot-result-prompt" style="opacity:0.4;">The Oracle deliberates...</p>';
+
+  // Get symbol height based on current reel
+  const reelEl = document.getElementById('reel-1');
+  const symbolH = reelEl.querySelector('.reel-symbol').offsetHeight;
+  const reelH = reelEl.offsetHeight;
+  const visibleSymbols = Math.round(reelH / symbolH);
+  const centerOffset = Math.floor(visibleSymbols / 2);
+
+  // Populate reels with target values in position
+  const reelConfigs = [
+    { stripId: 'reel-strip-1', key: 'reelOrigin', target: pick.reelOrigin },
+    { stripId: 'reel-strip-2', key: 'reelStyle', target: pick.reelStyle },
+    { stripId: 'reel-strip-3', key: 'reelCharacter', target: pick.reelCharacter }
+  ];
+
+  reelConfigs.forEach(cfg => {
+    const values = getReelValues(cfg.key);
+    // Ensure target is at a good landing position
+    const targetIdx = values.indexOf(cfg.target);
+    if (targetIdx > 0) {
+      values.splice(targetIdx, 1);
+      values.unshift(cfg.target);
+    }
+    const allVals = populateReel(cfg.stripId, values);
+    // Store landing info
+    const strip = document.getElementById(cfg.stripId);
+    // Find the target in the third repetition for nice spin distance
+    const valsPerSet = values.length;
+    const landIdx = valsPerSet * 2; // Target is at index 0 of each set, so third set start
+    cfg.landPosition = (landIdx - centerOffset) * symbolH;
+    cfg.totalSymbols = allVals.length;
+    cfg.symbolHeight = symbolH;
+  });
+
+  // Start spinning all reels
+  const spinDuration = 1800;
+  const staggerDelay = 500;
+
+  reelConfigs.forEach((cfg, reelIdx) => {
+    const strip = document.getElementById(cfg.stripId);
+    const totalH = cfg.totalSymbols * cfg.symbolHeight;
+
+    // Reset position
+    strip.style.transition = 'none';
+    strip.style.transform = 'translateY(0)';
+
+    // Start fast spin animation
+    let startTime = null;
+    let tickTimer = 0;
+    const spinSpeed = totalH / 0.5; // pixels per second for fast spin
+    let currentY = 0;
+    let spinning = true;
+
+    const stopTime = spinDuration + (reelIdx * staggerDelay);
+
+    function spinFrame(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const dt = elapsed - tickTimer;
+
+      if (spinning) {
+        // Fast continuous scroll
+        currentY = (elapsed / 1000) * spinSpeed;
+        currentY = currentY % totalH;
+        strip.style.transform = `translateY(-${currentY}px)`;
+
+        // Tick sound every ~150ms
+        if (dt > 150) {
+          generateTick();
+          tickTimer = elapsed;
+        }
+
+        if (elapsed >= stopTime) {
+          spinning = false;
+          // Transition to final position
+          strip.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+          strip.style.transform = `translateY(-${cfg.landPosition}px)`;
+          generateClunk();
+
+          // If last reel, reveal result
+          if (reelIdx === 2) {
+            setTimeout(() => {
+              revealResult(pick);
+            }, 700);
+          }
+          return;
+        }
+      }
+
+      if (spinning) {
+        requestAnimationFrame(spinFrame);
+      }
+    }
+
+    requestAnimationFrame(spinFrame);
+  });
+}
+
+// ── Reveal Result ──
+function revealResult(pick) {
+  const machine = document.getElementById('slot-machine');
+  const resultEl = document.getElementById('slot-result');
+  const btn = document.getElementById('slot-spin-btn');
+
+  machine.classList.add('jackpot');
+  generateChime();
+
+  resultEl.innerHTML = `
+    <div class="slot-result-name reveal">${pick.name}</div>
+    <div class="slot-result-region reveal">${pick.region}</div>
+    <p class="slot-result-notes reveal">${pick.notes}</p>
+  `;
 
   setTimeout(() => {
-    bottle.classList.remove('spinning');
+    slotSpinning = false;
+    btn.disabled = false;
+  }, 800);
+}
 
-    const available = whiskies.filter((_, i) => !oracleUsed.includes(i));
-    const pick = available[Math.floor(Math.random() * available.length)];
-    const idx = whiskies.indexOf(pick);
-    oracleUsed.push(idx);
+// ── Initialize Reels on Page Load ──
+function initSlotReels() {
+  const configs = [
+    { stripId: 'reel-strip-1', key: 'reelOrigin' },
+    { stripId: 'reel-strip-2', key: 'reelStyle' },
+    { stripId: 'reel-strip-3', key: 'reelCharacter' }
+  ];
+  configs.forEach(cfg => {
+    const values = getReelValues(cfg.key);
+    populateReel(cfg.stripId, values);
+    // Position strip so middle symbol is centered
+    const strip = document.getElementById(cfg.stripId);
+    const symbolH = strip.querySelector('.reel-symbol')?.offsetHeight || 60;
+    const reelH = strip.parentElement.offsetHeight || 180;
+    const centerOffset = Math.floor((reelH / symbolH) / 2);
+    const startIdx = Math.floor(Math.random() * values.length) + values.length;
+    strip.style.transform = `translateY(-${(startIdx - centerOffset) * symbolH}px)`;
+  });
+}
 
-    result.innerHTML = `
-      <div class="oracle-whiskey-name">${pick.name}</div>
-      <div class="oracle-whiskey-region">${pick.region}</div>
-      <p class="oracle-whiskey-notes">${pick.notes}</p>
-    `;
-  }, 1200);
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSlotReels);
+} else {
+  initSlotReels();
 }
 
 // ─── RECOMMENDATIONS ──────────────────────────────────────────
