@@ -3557,7 +3557,10 @@ body::after { display: none !important; }
     <h3 class="members-gate-title">Members Only</h3>
     <p class="members-gate-subtitle">This section is restricted to active members of the Pop Whiskey Society.</p>
     <div class="members-gate-form">
+      <div style="position:relative;width:100%;">
       <input type="password" id="members-gate-input" placeholder="Enter members passphrase" autocomplete="off">
+      <button type="button" onclick="toggleMembersPassword()" id="members-pw-toggle" style="position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(212,165,48,0.5);font-size:0.7rem;cursor:pointer;font-family:Cinzel,serif;letter-spacing:0.1em;padding:0.3rem 0.5rem;">SHOW</button>
+    </div>
       <button id="members-gate-btn" onclick="checkMembersGate()">Enter the Inner Sanctum</button>
       <span id="members-gate-error"></span>
     </div>
@@ -5945,6 +5948,19 @@ document.addEventListener('keydown', function(e) {
     closeMembersGate();
   }
 });
+
+
+function toggleMembersPassword() {
+  var input = document.getElementById('members-gate-input');
+  var btn = document.getElementById('members-pw-toggle');
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = 'HIDE';
+  } else {
+    input.type = 'password';
+    btn.textContent = 'SHOW';
+  }
+}
 
 </script>
 </body>
