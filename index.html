@@ -1080,18 +1080,31 @@ section { padding: 7rem 0; position: relative; }
 .reel-symbol {
   height: 60px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1px;
   font-family: 'Cinzel', serif;
-  font-size: clamp(0.55rem, 1.4vw, 0.72rem);
   font-weight: 600;
   color: #2a0e00;
   text-align: center;
-  padding: 0 6px;
-  line-height: 1.3;
+  padding: 0 4px;
+  line-height: 1.2;
   letter-spacing: 0.03em;
   user-select: none;
-  border-bottom: 1px solid rgba(154,111,30,0.08);
+  border-bottom: 1px solid rgba(154,111,30,0.12);
+  background: linear-gradient(180deg, #fdf5ea 0%, #f5e6c8 50%, #fdf5ea 100%);
+}
+.reel-symbol .sym-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: saturate(0.7);
+}
+.reel-symbol .sym-text {
+  font-size: clamp(0.45rem, 1.1vw, 0.6rem);
+  color: #4a2800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* Payline highlight across the middle row */
@@ -4115,10 +4128,44 @@ function generateChime() {
   } catch(e) {}
 }
 
+// ── Reel Icons ──
+const reelIcons = {
+  // Origins
+  'Speyside': '\u{1F3F0}', 'Islay': '\u{1F32A}', 'Highland': '\u{26F0}', 'Lowland': '\u{1F33F}',
+  'Campbeltown': '\u{2693}', 'Kentucky': '\u{1F434}', 'Tennessee': '\u{1F3B5}', 'Indiana': '\u{1F33E}',
+  'Ireland': '\u{2618}', 'Japan': '\u{26E9}', 'Canada': '\u{1F341}', 'Taiwan': '\u{1F30A}',
+  'India': '\u{2728}', 'Wales': '\u{1F409}', 'Australia': '\u{2B50}', 'Vermont': '\u{1F332}',
+  'Utah': '\u{1F3D4}', 'Maryland': '\u{1F980}',
+  // Styles
+  'Sherried': '\u{1F377}', 'Peated': '\u{1F525}', 'Bourbon': '\u{1F943}', 'Double Cask': '\u{1F6E2}',
+  'Solera Vatted': '\u{1F3FA}', 'Cask Strength': '\u{1F4A5}', 'Bourbon Cask': '\u{1FAD7}',
+  'Lightly Peated': '\u{1F4A8}', 'Triple Cask': '\u{2728}', 'Unpeated': '\u{1F343}',
+  'Single Malt': '\u{1F451}', 'High Proof Bourbon': '\u{26A1}', 'Port Finished Bourbon': '\u{1F347}',
+  'Wheated Bourbon': '\u{1F33E}', 'Rye': '\u{1F336}', 'Blended Rye': '\u{1F500}',
+  'Single Pot Still': '\u{2697}', 'Wine Finished': '\u{1F377}', 'Blended': '\u{1F91D}',
+  'Madeira Finished': '\u{1F347}', 'Blended Harmony': '\u{1F3B6}', 'Wine Cask': '\u{1F377}',
+  'Tennessee Whiskey': '\u{1F3B8}',
+  // Characters
+  'Rich & Indulgent': '\u{1F36B}', 'Honey & Fruit': '\u{1F36F}', 'Smoke & Brine': '\u{1F32B}',
+  'Dark Chocolate & Cherry': '\u{1F352}', 'Tropical & Floral': '\u{1F33A}', 'Smoke & Dried Fruit': '\u{1F525}',
+  'Citrus & Malt': '\u{1F34B}', 'Sea Salt & Honey': '\u{1F30A}', 'Vanilla & Citrus': '\u{1F33C}',
+  'Orange & Dark Chocolate': '\u{1F34A}', 'Toffee & Plum': '\u{1F36C}', 'Maritime & Nutty': '\u{2693}',
+  'Cherry & Spice': '\u{1F352}', 'Vanilla & Caramel': '\u{1F36E}', 'Bold Spice & Oak': '\u{1F332}',
+  'Oak & Vanilla': '\u{1FAB5}', 'Berry & Baking Spice': '\u{1FAD0}', 'Toasted Oak & Maple': '\u{1F341}',
+  'Cherry & Vanilla': '\u{1F338}', 'Caramel & Citrus': '\u{2728}', 'Honey & Leather': '\u{1F36F}',
+  'Butterscotch & Mineral': '\u{1F48E}', 'Toffee & Dried Fruit': '\u{1F36C}',
+  'Pepper & Cinnamon': '\u{1F336}', 'Caramel & Dill': '\u{1F33F}', 'Anise & Pepper': '\u{2B50}',
+  'Mint & Cinnamon': '\u{1F343}', 'Rich Spice & Caramel': '\u{1F525}',
+  'Apple & Toasted Barley': '\u{1F34E}', 'Tropical & Vanilla': '\u{1F334}', 'Honey & Green Apple': '\u{1F34F}',
+  'Raisin & Spice': '\u{1F347}', 'Oak & Marmalade': '\u{1F34A}', 'Herbal & Green': '\u{1F33F}',
+  'Citrus & Floral': '\u{1F338}', 'Rose & Honey': '\u{1F339}', 'Peach & Cinnamon': '\u{1F351}',
+  'Spice & Ripe Pear': '\u{1F350}', 'Tropical & Chocolate': '\u{1F36B}', 'Barley & Tropical Fruit': '\u{1F334}',
+  'Honey & Dried Fruit': '\u{1F36F}', 'Red Berry & Caramel': '\u{1F353}'
+};
+
 // ── Reel Population ──
 function getReelValues(key) {
   const vals = [...new Set(oracleWhiskeys.map(w => w[key]))];
-  // Shuffle
   for (let i = vals.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [vals[i], vals[j]] = [vals[j], vals[i]];
@@ -4129,7 +4176,6 @@ function getReelValues(key) {
 function populateReel(stripId, values) {
   const strip = document.getElementById(stripId);
   strip.innerHTML = '';
-  // Create enough symbols for seamless looping (repeat 4x)
   const allVals = [];
   for (let r = 0; r < 4; r++) {
     values.forEach(v => allVals.push(v));
@@ -4137,7 +4183,8 @@ function populateReel(stripId, values) {
   allVals.forEach(val => {
     const div = document.createElement('div');
     div.className = 'reel-symbol';
-    div.textContent = val;
+    const icon = reelIcons[val] || '\u{1F943}';
+    div.innerHTML = '<span class="sym-icon">' + icon + '</span><span class="sym-text">' + val + '</span>';
     strip.appendChild(div);
   });
   return allVals;
