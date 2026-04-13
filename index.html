@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pop Whiskey Society of Wisconsin</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root {
   --black: #080604;
@@ -2836,6 +2838,381 @@ body::after { display: none !important; }
   margin-top: 0.5rem;
 }
 
+
+/* ═══ CHAPTER MAP SECTION ════════════════════════════════════════════ */
+
+#chapter-map {
+  background: #fdf0d5;
+  position: relative;
+}
+#chapter-map::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+}
+.map-intro {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #2a0e00;
+  max-width: 600px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+#map-container {
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgba(212,165,48,0.35);
+  position: relative;
+  z-index: 1;
+  background: #1a0700;
+}
+
+/* Custom gold marker */
+.gold-marker-icon {
+  background: none !important;
+  border: none !important;
+}
+.gold-marker-pin {
+  display: block;
+  width: 24px;
+  height: 36px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Leaflet popup overrides */
+.leaflet-popup-content-wrapper {
+  background: #2a0e00 !important;
+  border: 1px solid rgba(212,165,48,0.4) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 1rem 1.25rem !important;
+  font-family: 'Cinzel', serif !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.08em !important;
+  color: #f0d9a0 !important;
+  line-height: 1.5 !important;
+}
+.leaflet-popup-content .popup-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  color: #fffbf4;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.leaflet-popup-content .popup-detail {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #d4a530;
+  display: block;
+}
+.leaflet-popup-tip {
+  background: #2a0e00 !important;
+  border: 1px solid rgba(212,165,48,0.4) !important;
+  box-shadow: none !important;
+}
+.leaflet-popup-close-button {
+  color: rgba(212,165,48,0.6) !important;
+  font-size: 18px !important;
+  top: 4px !important;
+  right: 6px !important;
+}
+.leaflet-popup-close-button:hover {
+  color: #d4a530 !important;
+}
+
+/* Leaflet zoom controls */
+.leaflet-control-zoom a {
+  background: #2a0e00 !important;
+  color: #d4a530 !important;
+  border-color: rgba(212,165,48,0.3) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: #3d1a00 !important;
+  color: #fffbf4 !important;
+}
+
+/* Leaflet attribution */
+.leaflet-control-attribution {
+  background: rgba(42,14,0,0.85) !important;
+  color: rgba(212,165,48,0.5) !important;
+  font-size: 0.6rem !important;
+}
+.leaflet-control-attribution a {
+  color: rgba(212,165,48,0.7) !important;
+}
+
+@media (max-width: 768px) {
+  #map-container {
+    height: 350px;
+  }
+}
+
+
+/* ═══ MEMBERS-ONLY SECTION ═══════════════════════════════════════════ */
+
+#members-area {
+  background: #2a0e00;
+  position: relative;
+}
+#members-area::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.2), transparent);
+}
+#members-area .section-title { color: #fffbf4; }
+#members-area .section-label { color: #d4a530; }
+#members-area .section-divider::before,
+#members-area .section-divider::after {
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.3)) !important;
+}
+
+/* Subsection headers */
+.members-subsection {
+  margin-top: 4rem;
+}
+.members-subsection-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: #d4a530;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.members-subsection-line {
+  height: 1px;
+  background: linear-gradient(to right, rgba(212,165,48,0.4), transparent);
+  margin-bottom: 2rem;
+}
+
+/* ── Photo Gallery Grid ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.gallery-item {
+  border: 1px solid rgba(212,165,48,0.25);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s;
+  position: relative;
+  background: #3d1a00;
+}
+.gallery-item:hover {
+  border-color: #d4a530;
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+.gallery-placeholder {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #5c2d00 0%, #3d1a00 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.gallery-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.2;
+}
+.gallery-placeholder span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: rgba(212,165,48,0.4);
+  text-transform: uppercase;
+}
+.gallery-caption {
+  padding: 0.6rem 0.8rem;
+  background: #2a0e00;
+  border-top: 1px solid rgba(212,165,48,0.15);
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #d4b896;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Gallery Lightbox ── */
+#gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(14,6,0,0.92);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#gallery-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: rgba(212,165,48,0.6);
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s;
+  z-index: 5001;
+}
+.lightbox-close:hover { color: #d4a530; }
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 80vh;
+  border: 1px solid rgba(212,165,48,0.3);
+  background: #3d1a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  min-height: 200px;
+}
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+}
+.lightbox-caption {
+  margin-top: 1rem;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #d4a530;
+  text-align: center;
+}
+
+/* ── Society Documents Accordion ── */
+.member-docs-accordion {
+  margin-top: 0;
+}
+.member-doc-item {
+  border-bottom: 1px solid rgba(212,165,48,0.15);
+}
+.member-doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: #f0d9a0;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+.member-doc-header:hover { color: #d4a530; }
+.member-doc-header .chevron {
+  color: #d4a530;
+  transition: transform 0.3s;
+  font-size: 1rem;
+}
+.member-doc-header.open .chevron { transform: rotate(180deg); }
+.member-doc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.member-doc-body.open { max-height: 500px; }
+.member-doc-body p {
+  color: #d4b896;
+  font-size: 1rem;
+  padding: 0 0 1.2rem;
+  line-height: 1.7;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+}
+
+/* ── Member Directory Grid ── */
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.directory-card {
+  border: 1px solid rgba(212,165,48,0.2);
+  background: #3d1a00;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+}
+.directory-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: #d4a530;
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+.directory-card:hover {
+  border-color: #d4a530;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.directory-card:hover::before { opacity: 1; }
+.directory-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: #fffbf4;
+  margin-bottom: 0.6rem;
+}
+.directory-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(212,165,48,0.1);
+}
+.directory-detail:last-child { border-bottom: none; }
+.directory-detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: rgba(212,165,48,0.7);
+  text-transform: uppercase;
+}
+.directory-detail-value {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #d4b896;
+}
+
 </style>
 </head>
 <body>
@@ -2916,6 +3293,7 @@ body::after { display: none !important; }
     <li><a href="#oracle" onclick="closeNav()">Oracle</a></li>
     <li><a href="#recommendations" onclick="closeNav()">Cellar</a></li>
     <li><a href="#audience" onclick="closeNav()">Join</a></li>
+    <li><a href="#members-area" onclick="closeNav()">Members</a></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -3055,6 +3433,22 @@ body::after { display: none !important; }
     </div>
   </div>
 </section>
+
+<!-- ═══ CHAPTER MAP ══════════════════════════════════════════════════ -->
+<section id="chapter-map">
+  <div class="container">
+    <span class="section-label">Our Reach</span>
+    <h2 class="section-title">Chapters <span>Across America</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+    </svg></div>
+    <p class="map-intro">From the founding halls of Wausau to the far corners of the Republic, our chapters stand as outposts of taste, tradition, and the unyielding pursuit of the perfect dram.</p>
+    <div id="map-container"></div>
+  </div>
+</section>
+
+
+<!-- ═══ MEMBERS ONLY ═════════════════════════════════════════════════ -->
 
 <!-- ═══ WALL OF FAME ══════════════════════════════════════════════════ -->
 <section id="wall-of-fame">
@@ -3872,6 +4266,264 @@ body::after { display: none !important; }
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ MEMBERS ONLY ═════════════════════════════════════════════════ -->
+<section id="members-area">
+  <div class="container">
+    <span class="section-label">For Members Only</span>
+    <h2 class="section-title">The <span>Inner Sanctum</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+    </svg></div>
+
+    <!-- Photo Gallery -->
+    <div class="members-subsection">
+      <div class="members-subsection-title">Photo Gallery</div>
+      <div class="members-subsection-line"></div>
+      <div class="gallery-grid">
+
+        <div class="gallery-item" onclick="openGallery(this, 'GNO 2024 &mdash; Wausau, WI')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">GNO 2024 &mdash; Wausau, WI</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'Annapolis Gathering 2022')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">Annapolis Gathering 2022</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'Curling Classic 2023')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">Curling Classic 2023</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'Texas Chapter Inaugural 2021')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">Texas Chapter Inaugural 2021</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'GNO 2023 &mdash; The Bourbon Edition')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">GNO 2023 &mdash; The Bourbon Edition</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'Seattle Chapter Meetup 2024')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">Seattle Chapter Meetup 2024</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'New York Tasting 2023')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">New York Tasting 2023</div>
+        </div>
+
+        <div class="gallery-item" onclick="openGallery(this, 'The Founding &mdash; Wausau 2019')">
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Event Photo</span>
+          </div>
+          <div class="gallery-caption">The Founding &mdash; Wausau 2019</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Society Documents -->
+    <div class="members-subsection">
+      <div class="members-subsection-title">Society Documents</div>
+      <div class="members-subsection-line"></div>
+      <div class="member-docs-accordion">
+
+        <div class="member-doc-item">
+          <button class="member-doc-header" onclick="toggleMemberDoc(this)">
+            Meeting Minutes
+            <span class="chevron">&#9662;</span>
+          </button>
+          <div class="member-doc-body">
+            <p>Document content will be added here. Meeting minutes from past council sessions, GNO deliberations, and chapter reports will be archived in this section for members to review at their leisure.</p>
+          </div>
+        </div>
+
+        <div class="member-doc-item">
+          <button class="member-doc-header" onclick="toggleMemberDoc(this)">
+            Treasury Report
+            <span class="chevron">&#9662;</span>
+          </button>
+          <div class="member-doc-body">
+            <p>Document content will be added here. The Society&rsquo;s financial standing, dues collected, expenditures on fine spirits, and the annual audit of the whiskey reserves shall be recorded herein.</p>
+          </div>
+        </div>
+
+        <div class="member-doc-item">
+          <button class="member-doc-header" onclick="toggleMemberDoc(this)">
+            Bylaws (Full)
+            <span class="chevron">&#9662;</span>
+          </button>
+          <div class="member-doc-body">
+            <p>Document content will be added here. The complete, unabridged bylaws of the Pop Whiskey Society of Wisconsin &mdash; including all amendments, addenda, and the rarely invoked Article IX regarding trial by dram.</p>
+          </div>
+        </div>
+
+        <div class="member-doc-item">
+          <button class="member-doc-header" onclick="toggleMemberDoc(this)">
+            Member Handbook
+            <span class="chevron">&#9662;</span>
+          </button>
+          <div class="member-doc-body">
+            <p>Document content will be added here. A gentleman&rsquo;s guide to conduct, tasting etiquette, chapter formation procedures, and the sacred protocols governing the selection of the evening&rsquo;s first pour.</p>
+          </div>
+        </div>
+
+        <div class="member-doc-item">
+          <button class="member-doc-header" onclick="toggleMemberDoc(this)">
+            Event Calendar
+            <span class="chevron">&#9662;</span>
+          </button>
+          <div class="member-doc-body">
+            <p>Document content will be added here. Upcoming gatherings, tasting events, chapter meetings, and the annual GNO dates will be posted here so that every member may plan his pilgrimage accordingly.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Member Directory -->
+    <div class="members-subsection">
+      <div class="members-subsection-title">Member Directory</div>
+      <div class="members-subsection-line"></div>
+      <div class="directory-grid">
+
+        <div class="directory-card">
+          <div class="directory-name">Peter Gelhar</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">Wausau, WI</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">Commodore</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2019</span>
+          </div>
+        </div>
+
+        <div class="directory-card">
+          <div class="directory-name">Matthew Gelhar</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">Wausau, WI</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">Vice Commodore</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2019</span>
+          </div>
+        </div>
+
+        <div class="directory-card">
+          <div class="directory-name">Neil Doherty</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">New York, NY</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">Chapter President</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2020</span>
+          </div>
+        </div>
+
+        <div class="directory-card">
+          <div class="directory-name">Jeff Deviney</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">Dallas, TX</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">THE Captain</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2021</span>
+          </div>
+        </div>
+
+        <div class="directory-card">
+          <div class="directory-name">Rodney Handly</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">Seattle, WA</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">Captain</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2019</span>
+          </div>
+        </div>
+
+        <div class="directory-card">
+          <div class="directory-name">Brad Ellingson</div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Chapter</span>
+            <span class="directory-detail-value">Twin Cities, MN</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Role</span>
+            <span class="directory-detail-value">Member</span>
+          </div>
+          <div class="directory-detail">
+            <span class="directory-detail-label">Inducted</span>
+            <span class="directory-detail-value">2020</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gallery Lightbox Modal -->
+  <div id="gallery-lightbox">
+    <button class="lightbox-close" onclick="closeGallery()">&times;</button>
+    <div class="lightbox-content" id="lightbox-image-area">
+      <span style="font-family:'Cinzel',serif; font-size:0.7rem; letter-spacing:0.2em; color:rgba(212,165,48,0.4); text-transform:uppercase;">Photo Coming Soon</span>
+    </div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
 </section>
 
@@ -5014,5 +5666,133 @@ document.addEventListener('click', function(e) {
     </div>
   </div>
 </div>
+<script>
+<!-- Paste this <script> block before the closing </body> tag -->
+<script>
+/* ═══ CHAPTER MAP INITIALIZATION ═════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ── Initialize Leaflet Map ── */
+  if (document.getElementById('map-container')) {
+    var map = L.map('map-container', {
+      center: [40, -95],
+      zoom: 4,
+      scrollWheelZoom: false,
+      zoomControl: true
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    /* Custom gold SVG marker icon */
+    var goldIcon = L.divIcon({
+      className: 'gold-marker-icon',
+      html: '<svg class="gold-marker-pin" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">'
+        + '<path d="M12 0 C5.373 0 0 5.373 0 12 c0 9 12 24 12 24 s12-15 12-24 C24 5.373 18.627 0 12 0z" fill="#d4a530" stroke="#9a6f1e" stroke-width="1"/>'
+        + '<circle cx="12" cy="11" r="4.5" fill="#2a0e00" opacity="0.5"/>'
+        + '<circle cx="12" cy="11" r="2.5" fill="#fdf5ea" opacity="0.9"/>'
+        + '</svg>',
+      iconSize: [24, 36],
+      iconAnchor: [12, 36],
+      popupAnchor: [0, -34]
+    });
+
+    /* Chapter data */
+    var chapters = [
+      { lat: 44.9591, lng: -89.6301, name: 'Wausau, WI', detail: 'Founding Chapter &middot; Headquarters' },
+      { lat: 44.0247, lng: -88.5426, name: 'Oshkosh, WI', detail: 'Oshkosh Chapter &middot; Home of the Stooges' },
+      { lat: 44.5236, lng: -89.5746, name: 'Stevens Point, WI', detail: 'Stevens Point Chapter' },
+      { lat: 44.9778, lng: -93.2650, name: 'Minneapolis, MN', detail: 'Twin Cities Chapter' },
+      { lat: 47.6062, lng: -122.3321, name: 'Seattle, WA', detail: 'West Coast Chapter &middot; Captain: Hot Rod' },
+      { lat: 40.7128, lng: -74.0060, name: 'New York, NY', detail: 'New York Area Chapter &middot; President: Neil Doherty' },
+      { lat: 32.7767, lng: -96.7970, name: 'Dallas, TX', detail: 'Texas Chapter &middot; THE Captain: Jeff Deviney' },
+      { lat: 38.9784, lng: -76.4922, name: 'Annapolis, MD', detail: 'Historical &middot; The Birthplace Gathering, 2018' }
+    ];
+
+    chapters.forEach(function(ch) {
+      L.marker([ch.lat, ch.lng], { icon: goldIcon })
+        .addTo(map)
+        .bindPopup(
+          '<span class="popup-title">' + ch.name + '</span>'
+          + '<span class="popup-detail">' + ch.detail + '</span>'
+        );
+    });
+  }
+
+
+  /* ═══ MEMBERS-ONLY SECTION INTERACTIONS ═════════════════════════════ */
+
+  /* Gallery lightbox - click outside to close */
+  var lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox) {
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        closeGallery();
+      }
+    });
+  }
+
+  /* Close lightbox on Escape key */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeGallery();
+    }
+  });
+
+});
+
+/* ── Gallery Lightbox Functions ── */
+function openGallery(el, caption) {
+  var lightbox = document.getElementById('gallery-lightbox');
+  var captionEl = document.getElementById('lightbox-caption');
+  var imageArea = document.getElementById('lightbox-image-area');
+
+  /* Check if the gallery item has an actual image */
+  var img = el.querySelector('img');
+  if (img) {
+    imageArea.innerHTML = '<img src="' + img.src + '" alt="' + caption + '">';
+  } else {
+    imageArea.innerHTML = '<span style="font-family:\'Cinzel\',serif; font-size:0.7rem; letter-spacing:0.2em; color:rgba(212,165,48,0.4); text-transform:uppercase; padding:3rem;">Photo Coming Soon</span>';
+  }
+
+  captionEl.textContent = caption;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+  var lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ── Document Accordion Toggle ── */
+function toggleMemberDoc(el) {
+  var body = el.nextElementSibling;
+  var isOpen = el.classList.contains('open');
+
+  /* Close all other open items in this accordion */
+  var accordion = el.closest('.member-docs-accordion');
+  if (accordion) {
+    var allHeaders = accordion.querySelectorAll('.member-doc-header');
+    allHeaders.forEach(function(h) {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+  }
+
+  /* Toggle the clicked item */
+  if (!isOpen) {
+    el.classList.add('open');
+    body.classList.add('open');
+  }
+}
+</script>
+</script>
 </body>
 </html>
