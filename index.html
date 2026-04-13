@@ -3213,6 +3213,100 @@ body::after { display: none !important; }
   color: #d4b896;
 }
 
+
+/* ═══ MEMBERS GATE ═══════════════════════════════════════════════════ */
+.members-gate {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 14, 0, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 8000;
+  align-items: center;
+  justify-content: center;
+}
+.members-gate.active {
+  display: flex;
+}
+.members-gate-box {
+  background: #2a0e00;
+  border: 1px solid rgba(212,165,48,0.3);
+  padding: 3rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+.members-gate-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: rgba(212,165,48,0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.members-gate-close:hover { color: #d4a530; }
+.members-gate-crest {
+  margin-bottom: 1.5rem;
+}
+.members-gate-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.3rem;
+  color: #d4a530;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+.members-gate-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: rgba(212,165,48,0.6);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+.members-gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+#members-gate-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212,165,48,0.3);
+  color: #fffbf4;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-align: center;
+  padding: 0.5rem;
+  outline: none;
+}
+#members-gate-input:focus { border-bottom-color: #d4a530; }
+#members-gate-input::placeholder { color: rgba(255,251,244,0.25); }
+#members-gate-btn {
+  background: transparent;
+  border: 1px solid #d4a530;
+  color: #d4a530;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#members-gate-btn:hover { background: #d4a530; color: #2a0e00; }
+#members-gate-error {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: #c0392b;
+  font-size: 0.85rem;
+  min-height: 1.2rem;
+}
+
 </style>
 </head>
 <body>
@@ -3293,7 +3387,7 @@ body::after { display: none !important; }
     <li><a href="#oracle" onclick="closeNav()">Oracle</a></li>
     <li><a href="#recommendations" onclick="closeNav()">Cellar</a></li>
     <li><a href="#audience" onclick="closeNav()">Join</a></li>
-    <li><a href="#members-area" onclick="closeNav()">Members</a></li>
+    <li><a href="#" onclick="closeNav(); openMembersGate(); return false;">Members</a></li>
   </ul>
   <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -3447,6 +3541,28 @@ body::after { display: none !important; }
   </div>
 </section>
 
+
+
+<!-- ═══ MEMBERS GATE ═════════════════════════════════════════════════ -->
+<div id="members-gate" class="members-gate">
+  <div class="members-gate-box">
+    <button class="members-gate-close" onclick="closeMembersGate()">&times;</button>
+    <div class="members-gate-crest">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:50px;">
+        <circle cx="40" cy="40" r="35" stroke="#d4a530" stroke-width="1.2"/>
+        <circle cx="40" cy="40" r="28" stroke="rgba(212,165,48,0.3)" stroke-width="0.8"/>
+        <path d="M40 18 L43 30 L55 28 L47 36 L52 48 L40 40 L28 48 L33 36 L25 28 L37 30 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+      </svg>
+    </div>
+    <h3 class="members-gate-title">Members Only</h3>
+    <p class="members-gate-subtitle">This section is restricted to active members of the Pop Whiskey Society.</p>
+    <div class="members-gate-form">
+      <input type="password" id="members-gate-input" placeholder="Enter members passphrase" autocomplete="off">
+      <button id="members-gate-btn" onclick="checkMembersGate()">Enter the Inner Sanctum</button>
+      <span id="members-gate-error"></span>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ MEMBERS ONLY ═════════════════════════════════════════════════ -->
 
@@ -4270,7 +4386,7 @@ body::after { display: none !important; }
 </section>
 
 <!-- ═══ MEMBERS ONLY ═════════════════════════════════════════════════ -->
-<section id="members-area">
+<section id="members-area" style="display:none;">
   <div class="container">
     <span class="section-label">For Members Only</span>
     <h2 class="section-title">The <span>Inner Sanctum</span></h2>
@@ -5790,6 +5906,54 @@ function toggleMemberDoc(el) {
     body.classList.add('open');
   }
 }
+
+// ═══ MEMBERS GATE ═══════════════════════════════════════════════════
+function openMembersGate() {
+  // Check if already unlocked this session
+  if (sessionStorage.getItem('membersUnlocked') === 'true') {
+    document.getElementById('members-area').style.display = '';
+    setTimeout(function() {
+      document.getElementById('members-area').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+    return;
+  }
+  document.getElementById('members-gate').classList.add('active');
+  document.getElementById('members-gate-input').focus();
+}
+
+function closeMembersGate() {
+  document.getElementById('members-gate').classList.remove('active');
+  document.getElementById('members-gate-input').value = '';
+  document.getElementById('members-gate-error').textContent = '';
+}
+
+function checkMembersGate() {
+  var input = document.getElementById('members-gate-input').value.toLowerCase().trim();
+  var error = document.getElementById('members-gate-error');
+  if (input === 'innersanctum') {
+    sessionStorage.setItem('membersUnlocked', 'true');
+    closeMembersGate();
+    document.getElementById('members-area').style.display = '';
+    setTimeout(function() {
+      document.getElementById('members-area').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  } else {
+    error.textContent = 'The Inner Sanctum does not recognize that passphrase.';
+    document.getElementById('members-gate-input').value = '';
+    setTimeout(function() { error.textContent = ''; }, 3000);
+  }
+}
+
+// Enter key support for members gate
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('members-gate').classList.contains('active')) {
+    checkMembersGate();
+  }
+  if (e.key === 'Escape' && document.getElementById('members-gate').classList.contains('active')) {
+    closeMembersGate();
+  }
+});
+
 </script>
 </body>
 </html>
