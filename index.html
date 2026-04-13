@@ -2257,6 +2257,63 @@ body::after { display: none !important; }
 }
 
 
+/* ─── VIDEO EMBEDS ─────────────────────────────────────────── */
+.video-showcase {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(154,111,30,0.2);
+}
+.video-showcase-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.video-grid.single {
+  grid-template-columns: 1fr;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.video-card {
+  border: 1px solid rgba(154,111,30,0.2);
+  background: rgba(154,111,30,0.05);
+  overflow: hidden;
+}
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.video-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.8rem;
+}
+@media (max-width: 768px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── MEMBER BIO MODAL ───────────────────────────────────── */
 .member-bio-btn {
   display: block;
@@ -2546,6 +2603,23 @@ body::after { display: none !important; }
               <div style="font-family: 'IM Fell English', serif; font-style: italic; color: #d4b896; font-size: 0.95rem; margin-top: 0.25rem;">Manages all record-keeping and correspondence</div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="video-showcase">
+      <p class="video-showcase-title">— From the Society Archives —</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/DBpy-xYoq2E" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Society Promo I</div>
+        </div>
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/IZzjkEt7puk" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Society Promo II</div>
         </div>
       </div>
     </div>
@@ -2970,6 +3044,26 @@ body::after { display: none !important; }
     <a href="#audience" class="btn-primary" onclick="closeRsvp()">Request an Audience</a>
   </div>
 </div>
+
+    <div class="video-showcase">
+      <p class="video-showcase-title">— Great Northern Open Films —</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/40oYTSWeZ7E" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Great Northern Open 2022</div>
+        </div>
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/wjHar_cU_ks" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Great Northern Open 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══ ORACLE OF THE CASK ════════════════════════════════════════════ -->
 <section id="oracle">
