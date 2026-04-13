@@ -3805,24 +3805,25 @@ body::after { display: none !important; }
       </div>
       <div>
         <div id="audience-form-wrap">
-          <form class="audience-form" onsubmit="submitAudience(event)">
+          <form class="audience-form" action="https://formspree.io/f/meevjdko" method="POST" id="audience-form">
+            <input type="hidden" name="_subject" value="Pop Whiskey Society - New Petition">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label">Given Name</label>
-                <input type="text" class="form-input" placeholder="Your first name" required>
+                <input type="text" name="first_name" class="form-input" placeholder="Your first name" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Family Name</label>
-                <input type="text" class="form-input" placeholder="Your last name" required>
+                <input type="text" name="last_name" class="form-input" placeholder="Your last name" required>
               </div>
             </div>
             <div class="form-group">
               <label class="form-label">Electronic Correspondence</label>
-              <input type="email" class="form-input" placeholder="your@email.com" required>
+              <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
             </div>
             <div class="form-group">
               <label class="form-label">Do you presently know a member of the Society?</label>
-              <select class="form-select">
+              <select name="knows_member" class="form-select">
                 <option value="">Select one</option>
                 <option>Yes, and they vouched for me</option>
                 <option>Yes, but they don't know I'm applying</option>
@@ -3832,7 +3833,7 @@ body::after { display: none !important; }
             </div>
             <div class="form-group">
               <label class="form-label">Preferred Whiskey Expression</label>
-              <select class="form-select">
+              <select name="whiskey_preference" class="form-select">
                 <option value="">Select one</option>
                 <option>Single Malt Scotch</option>
                 <option>Bourbon</option>
@@ -3844,7 +3845,7 @@ body::after { display: none !important; }
             </div>
             <div class="form-group">
               <label class="form-label">State Your Case</label>
-              <textarea class="form-textarea" placeholder="Why should the Society grant you an audience? Be compelling. Be honest. Be brief." required></textarea>
+              <textarea name="message" class="form-textarea" placeholder="Why should the Society grant you an audience? Be compelling. Be honest. Be brief." required></textarea>
             </div>
             <button type="submit" class="btn-primary" style="align-self: flex-start;">Submit Petition</button>
           </form>
@@ -4381,11 +4382,22 @@ function toggleRec(btn) {
 }
 
 // ─── AUDIENCE FORM ────────────────────────────────────────────
-function submitAudience(e) {
+document.getElementById('audience-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  document.getElementById('audience-form-wrap').style.display = 'none';
-  document.getElementById('audience-confirm').style.display = 'block';
-}
+  const form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    document.getElementById('audience-form-wrap').style.display = 'none';
+    document.getElementById('audience-confirm').style.display = 'block';
+    form.reset();
+  }).catch(error => {
+    document.getElementById('audience-form-wrap').style.display = 'none';
+    document.getElementById('audience-confirm').style.display = 'block';
+  });
+});
 
 // ─── SCROLL ANIMATIONS ────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
