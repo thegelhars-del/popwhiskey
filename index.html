@@ -6190,11 +6190,26 @@ function toggleMembersPassword() {
   .decree-footnote { font-size: 0.7rem; }
   .event-card--featured {
     grid-template-columns: 1fr !important;
+    display: block !important;
   }
   .event-card--featured > div:first-child {
-    min-height: 200px !important;
+    min-height: 180px !important;
+    max-height: 220px !important;
     border-right: none !important;
     border-bottom: 1px solid rgba(154,111,30,0.25);
+  }
+  .event-card--featured > div:first-child img {
+    height: 220px !important;
+    object-fit: cover !important;
+  }
+  .event-card--featured > div:nth-child(3) {
+    padding: 1.25rem !important;
+  }
+  .event-card--featured > div[style*="position:absolute"] {
+    font-size: 0.4rem !important;
+    letter-spacing: 0.2em !important;
+    padding: 0.25rem 0.8rem !important;
+    top: -8px !important;
   }
 }
 </style>
