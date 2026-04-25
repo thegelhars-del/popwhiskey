@@ -50,7 +50,8 @@ body::before {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
+  -webkit-pointer-events: none;
+  z-index: -1;
   opacity: 0.15;
 }
 
@@ -3307,6 +3308,34 @@ body::after { display: none !important; }
   min-height: 1.2rem;
 }
 
+
+/* ═══ iOS SAFARI FIXES ═══════════════════════════════════════════════ */
+/* Fix 100vh including address bar */
+@supports (-webkit-touch-callout: none) {
+  #hero { min-height: -webkit-fill-available; }
+}
+/* Smooth momentum scrolling for overflow containers */
+.decree-scroll,
+.bio-modal-box,
+.members-gate-box {
+  -webkit-overflow-scrolling: touch;
+}
+/* Prevent hover states from sticking on touch */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .champion-frame:hover,
+  .offender-card:hover,
+  .event-card:hover,
+  .member-card:hover,
+  .rec-card:hover {
+    transform: none !important;
+  }
+}
+/* Fix backdrop-filter on iOS */
+nav.scrolled {
+  -webkit-backdrop-filter: blur(12px);
+}
 </style>
 </head>
 <body>
