@@ -165,7 +165,7 @@ nav {
 }
 nav.scrolled {
   background: rgba(253,240,213,0.97);
-  backdrop-filter: blur(12px);
+  /* backdrop-filter: blur(12px); -- disabled for iOS stability */
   border-bottom: 1px solid rgba(154,111,30,0.25);
   padding: 0.8rem 3rem;
 }
@@ -1077,7 +1077,7 @@ section { padding: 7rem 0; position: relative; }
   width: 100%;
   left: 0;
   top: 0;
-  will-change: transform;
+  /* will-change: transform; -- disabled for iOS */
 }
 
 /* Individual symbol on the reel */
@@ -3222,7 +3222,7 @@ body::after { display: none !important; }
   position: fixed;
   inset: 0;
   background: rgba(30, 14, 0, 0.92);
-  backdrop-filter: blur(8px);
+  /* backdrop-filter: blur(8px); -- disabled for iOS stability */
   z-index: 8000;
   align-items: center;
   justify-content: center;
@@ -3335,7 +3335,7 @@ body::after { display: none !important; }
 }
 /* Fix backdrop-filter on iOS */
 nav.scrolled {
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-/* backdrop-filter: blur(12px); -- disabled for iOS stability */
 }
 </style>
 </head>
@@ -5283,21 +5283,24 @@ document.getElementById('audience-form').addEventListener('submit', function(e) 
 });
 
 // ─── SCROLL ANIMATIONS ────────────────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
+// Scroll animations - desktop only (causes iOS crashes)
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
 
-document.querySelectorAll('.champion-frame, .event-card, .rec-card, .offender-card, .stat-box').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
+  document.querySelectorAll('.champion-frame, .event-card, .rec-card, .offender-card, .stat-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+}
 
 function openBio(id) {
   document.getElementById('bio-modal-' + id).classList.add('active');
