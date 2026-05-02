@@ -3598,14 +3598,13 @@ nav.scrolled {
   white-space: nowrap;
   text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
 }
-.pledge-stamp--secret-probationary { color: #5b21a8 !important; }
-.pledge-stamp--double-secret-probationary { color: #1a1a1a !important; }
+/* Secret/Double Secret keep the default red — purple/black tested poorly for legibility on B&W portraits.
+   Shrink font + tighten padding so longer standings fit within the photo wrap. */
 .pledge-stamp--secret-probationary,
 .pledge-stamp--double-secret-probationary {
   font-size: clamp(0.45rem, 1.1vw, 0.6rem);
   letter-spacing: 0.1em;
   padding: 0.28rem 0.6rem 0.22rem;
-  opacity: 0.78;
 }
 .pledge-info {
   padding: 1.4rem 1.4rem 1.6rem;
