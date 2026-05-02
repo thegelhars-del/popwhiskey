@@ -3600,6 +3600,13 @@ nav.scrolled {
 }
 .pledge-stamp--secret-probationary { color: #5b21a8 !important; }
 .pledge-stamp--double-secret-probationary { color: #1a1a1a !important; }
+.pledge-stamp--secret-probationary,
+.pledge-stamp--double-secret-probationary {
+  font-size: clamp(0.45rem, 1.1vw, 0.6rem);
+  letter-spacing: 0.1em;
+  padding: 0.28rem 0.6rem 0.22rem;
+  opacity: 0.78;
+}
 .pledge-info {
   padding: 1.4rem 1.4rem 1.6rem;
   position: relative;
@@ -6631,6 +6638,15 @@ const probationaryRoster = [
     recognizedDate: '1 May 2026',
     standing: 'Probationary',
     commodoreObserves: 'Mr. Steltenpohl presents himself capably, save for those particulars upon which the Society shall not, at this juncture, elaborate.'
+  },
+  {
+    image: 'bwpayton.jpg',
+    name: 'Mr. Payton Marki',
+    region: 'Originally of Missouri, presently of Milwaukee',
+    sponsor: 'Mr. Matt Lange',
+    recognizedDate: '2023',
+    standing: 'Secret Probationary',
+    commodoreObserves: 'Mr. Marki has been a pledge of this Society since 2023. The membership had begun to grow accustomed to his presence. His decision to absent himself from the forthcoming golf outing has reminded the membership why his candidacy remains, at present, exactly that.'
   }
 ];
 
