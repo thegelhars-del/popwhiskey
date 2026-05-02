@@ -737,6 +737,62 @@ section { padding: 7rem 0; position: relative; }
   color: #2a0e00;
   line-height: 1.6;
 }
+.offender-charges-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  background: transparent;
+  border: 1px solid rgba(192,57,43,0.45);
+  color: #c0392b;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.offender-charges-btn:hover {
+  background: rgba(192,57,43,0.08);
+  border-color: #c0392b;
+  color: #8b1d12;
+}
+.bio-modal-body strong {
+  color: #fffbf4;
+  font-weight: 600;
+}
+.bio-modal-body em {
+  font-style: italic;
+}
+.bio-modal-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.2rem 0 1.6rem;
+  border-left: 1px solid rgba(212,165,48,0.25);
+  padding-left: 1.4rem;
+}
+.bio-modal-body ul li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.02rem;
+  color: #f0d9a0;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+.bio-modal-body ul li::before {
+  content: '— ';
+  color: #c0392b;
+  margin-left: -0.4rem;
+}
+.bio-modal-body .charge-aside {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c0392b !important;
+  text-align: center;
+  margin: 1.6rem 0 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(192,57,43,0.25);
+}
 
 /* ─── MEMBER SPOTLIGHT ──────────────────────────────────── */
 #spotlight {
@@ -3507,6 +3563,9 @@ nav.scrolled {
   background: #100500;
   position: relative;
   z-index: 0;
+  width: 55%;
+  max-width: 220px;
+  margin: 1.6rem auto 0.4rem;
 }
 .pledge-photo {
   width: 100%;
@@ -3525,14 +3584,14 @@ nav.scrolled {
   pointer-events: none;
   font-family: 'Cinzel', serif;
   font-weight: 700;
-  font-size: clamp(0.7rem, 2.2vw, 1.05rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(0.5rem, 1.4vw, 0.7rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #c0392b !important;
-  padding: 0.4rem 0.95rem 0.35rem;
-  border: 3px solid currentColor;
+  padding: 0.28rem 0.65rem 0.24rem;
+  border: 2px solid currentColor;
   outline: 1px solid currentColor;
-  outline-offset: 3px;
+  outline-offset: 2px;
   background: transparent;
   mix-blend-mode: hard-light;
   opacity: 0.92;
@@ -4055,6 +4114,17 @@ nav.scrolled {
         <div class="offender-name">Maisie Gelhar</div>
         <div class="offender-charge">Exploitation of the Curling Loophole · Infiltration by Competence · Pending Investigation</div>
         <div class="offender-desc">The charges against Maisie Gelhar are as follows: that she did, with deliberate and suspicious proficiency, insert herself into a Society curling event under the guise of instruction; that she did captain said team to victory using skills that nobody knew she had; and that she did exploit the resulting championship with calculated precision to gain entry into an organization that has admitted exactly two women in its entire history. The smile, the happy-go-lucky demeanor, the impeccable bookkeeping — the membership now views all of it through the lens of a woman who had a plan. The books are balanced, yes. But at what cost? It should be noted that Maisie is the founder's daughter, which raises serious questions about whether this entire operation was orchestrated from the very top. The founder has declined to comment. Charges are pending. The investigation continues. The jacket, regrettably, has already been issued and cannot be recalled. Well played, Maisie. The Society is watching.</div>
+      </div>
+      <!-- ─── To add a new shame entry: duplicate this block + the matching modal below ─── -->
+      <div class="offender-card featured">
+        <div class="offender-stamp">Charges Pending</div>
+        <div class="offender-avatar" style="padding:0;overflow:hidden;border-radius:0;background:none;">
+          <img src="connor.jpg" alt="Connor [Surname]" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;">
+        </div>
+        <div class="offender-name">Mr. Connor [Surname]</div>
+        <div class="offender-charge">The Pink Whitney Incident · The Aberlour Affair · Charges Pending</div>
+        <div class="offender-desc">The accused did, on a golf course and in plain view, transport upon his person and by his own arrangement one (1) bottle of Pink Whitney — a flavored vodka of suspect provenance — discovered in the course of a pour of Aberlour A'bunadh among gentlemen of standing. The matter is rendered the graver still by the silent, unspoken, and unanimously felt disappointment of Mr. Scott Lange, the Society's resident authority on vodka, who was present at the scene. Charges have been formally entered. The membership awaits the proceedings.</div>
+        <button class="offender-charges-btn" onclick="openBio('shame-connor')">Read the Charges in Full</button>
       </div>
 
 
@@ -5685,6 +5755,46 @@ document.addEventListener('click', function(e) {
 
 
 
+
+<!-- ═══ WALL OF SHAME · CONNOR CHARGE SHEET ══════════════════ -->
+<!-- ── To add another shame entry: duplicate this block, change the id and content. ── -->
+<div id="bio-modal-shame-connor" class="bio-modal">
+  <div class="bio-modal-box">
+    <button class="bio-modal-close" onclick="closeBio('shame-connor')">&times;</button>
+    <div class="bio-modal-header">
+      <h3>Mr. Connor [Surname]</h3>
+      <p>Charges Pending · The Pink Whitney Incident</p>
+    </div>
+    <div class="bio-modal-body">
+      <p><em>Charges pending. The Society proceeds with neither haste nor hesitation.</em></p>
+      <p>Let the record show.</p>
+      <p>Upon a golf course &mdash; a setting which has long served as a cradle of decorum and a proving ground of taste &mdash; Mr. Connor was extended that most civilised of courtesies: a pour. A pour of <strong>Aberlour A'bunadh</strong>, cask strength, sherry-matured, a Speyside of evident pedigree, drawn from a bottle that has cost a man money and earned a man peace.</p>
+      <p>Witnessed by several members in good standing.</p>
+      <p>What followed is a matter the Society approaches with appropriate candour. The hour was advanced. The day had been generous. The membership cannot, in honest conscience, swear whether Mr. Connor refused the pour outright, accepted it and offered his own alternative alongside, or some combination thereof which the historical record can no longer reconstruct.</p>
+      <p><strong>It does not matter.</strong></p>
+      <p>The Society pauses here, in the prose, that the foregoing sentence might be permitted to settle upon the reader as it has settled upon the membership.</p>
+      <p>It does not matter, because the offense is not located in what was poured, refused, or exchanged. The offense is located in the simple, irrefutable, and witnessed fact that <strong>Mr. Connor's golf bag contained, on his person and by his choosing, a bottle of Pink Whitney.</strong></p>
+      <p>The Society shall now address Pink Whitney, as the matter cannot be properly tried without it.</p>
+      <p>Pink Whitney is a vodka. The Society uses the word <em>vodka</em> generously, and under protest. It is flavored with pink lemonade. It is bottled in a hue not occurring in nature, not present in the visible spectrum as understood by serious men. It is packaged in a manner that suggests, strongly, that the manufacturer was uncertain whether it ought to be sold beside the spirits or beside the juice boxes &mdash; and split, in the end, the difference. It is the official beverage of bachelorette parties, of poolside afternoons in jurisdictions the Society does not recognise, and of birthday celebrations for children whose ages are denoted, on the cake, by a single candle. It tastes, by all credible accounts, the way a scented candle smells. It is not consumed. It is <em>survived.</em></p>
+      <p>That such a bottle existed within the same golf bag as gentlemen had gathered to drink Aberlour is, the Society submits, the charge.</p>
+      <p class="charge-aside">A Word on the Aggravating Presence of Mr. Scott Lange</p>
+      <p>The Society would be remiss were it not to enter into these proceedings the further and grievous fact that <strong>Mr. Scott Lange, member in good standing and the Society's resident authority on vodka</strong>, was present at the scene.</p>
+      <p>Mr. Lange did not, at the time of the offense, speak. He did not raise objection. He did not, by any account the Society has been able to gather, alter the position of his head, the set of his jaw, or the cadence of his breath.</p>
+      <p>And yet the membership felt it.</p>
+      <p>Each gentleman present has since confirmed, independently, that he registered &mdash; at the moment of the bottle's revelation &mdash; the unmistakable and silent shaking of Mr. Lange's head in the direction of disappointment. The shake was not visible. The shake was not audible. The shake was <em>felt</em>, in the manner that gentlemen of standing feel such things.</p>
+      <p>Mr. Lange said nothing because Mr. Lange did not need to. The bottle had said everything.</p>
+      <p class="charge-aside">The Charges, Formally Entered</p>
+      <ul>
+        <li><strong>Possession of a Disqualifying Article</strong>, the said article being one (1) bottle of Pink Whitney, transported by Mr. Connor's own arrangement to a setting where gentlemen had gathered.</li>
+        <li><strong>Conduct Tending to Diminish the Pour of Standing</strong>, whether by refusal, substitution, parallel offering, or some confluence thereof which the witnesses can no longer disentangle and which the Society no longer requires disentangled.</li>
+        <li><strong>Provocation of Silent Disappointment in a Member of Specialised Authority</strong>, the said member being Mr. Scott Lange, the said disappointment entered into the record by the unanimous and independent recollection of the membership present.</li>
+        <li><strong>Aggravating Circumstance: Open Air, Golf Course, Plain View.</strong></li>
+      </ul>
+      <p>Mr. Connor's name is hereby affixed to this Wall, where it shall remain pending such time as the Society, in its sole and unhurried judgement, deems the matter resolved. The Society does not anticipate resolution.</p>
+      <p class="bio-modal-closer">In closing: the Aberlour did not go to waste. The Society saw to that. As to the Pink Whitney &mdash; the bottle has not been seen since, and the Society considers this, on balance, the only act of grace performed that afternoon. Mr. Lange has declined to comment. Mr. Lange does not need to.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ SCOTT L BIO MODAL ══════════════════════════════════ -->
 <div id="bio-modal-scottl" class="bio-modal">
