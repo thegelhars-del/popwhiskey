@@ -3752,6 +3752,7 @@ nav.scrolled {
   <a href="#hero" class="nav-brand">PWSOW</a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#march" onclick="closeNav()">The March</a></li>
     <li><a href="#wall-of-fame" onclick="closeNav()">Hall of Champions</a></li>
     <li><a href="#wall-of-shame" onclick="closeNav()">Wall of Shame</a></li>
     <li><a href="#aspirancy" onclick="closeNav()">Aspirancy</a></li>
@@ -3895,6 +3896,237 @@ nav.scrolled {
           </div>
           <div class="video-label">Society Promo II</div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE WHISKEY MARCH ═════════════════════════════════════════════ -->
+<style>
+#march {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 0%, #1c1006 0%, #0d0805 72%);
+  padding: 6rem 0;
+  overflow: hidden;
+}
+#march::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.55), transparent);
+}
+#march .container { position: relative; z-index: 1; text-align: center; }
+#march .section-label { color: #d4a530; }
+#march .section-title { color: #fffbf4; }
+#march .section-title span { color: #d4a530; }
+#march .section-divider { justify-content: center; }
+#march .section-divider::before,
+#march .section-divider::after {
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.35), transparent);
+}
+
+/* Provenance placard */
+.pwm-provenance { max-width: 760px; margin: 0 auto 3.5rem; }
+.pwm-credits {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c9a44a;
+  line-height: 2.1;
+  margin-bottom: 2.2rem;
+}
+.pwm-story p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  line-height: 1.85;
+  color: rgba(255,251,244,0.82);
+  margin-bottom: 1.15rem;
+  text-align: left;
+}
+.pwm-story em { color: #e3c987; font-style: italic; }
+.pwm-kicker {
+  font-family: 'IM Fell English', serif !important;
+  font-style: italic;
+  color: #d4a530 !important;
+  text-align: center !important;
+  font-size: 1.32rem !important;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Player */
+.pwm-player {
+  max-width: 520px;
+  margin: 0 auto 4rem;
+  background: linear-gradient(180deg, rgba(212,165,48,0.09), rgba(0,0,0,0.22));
+  border: 1px solid rgba(212,165,48,0.35);
+  border-radius: 4px;
+  padding: 1.6rem 1.6rem 1.3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+.pwm-player audio { width: 100%; display: block; }
+.pwm-download {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d4a530;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,165,48,0.4);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.pwm-download:hover { color: #f0cf7a; border-color: #f0cf7a; }
+
+/* Song sheet */
+.pwm-songsheet {
+  max-width: 940px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fbf1dc 0%, #f3e4c6 100%);
+  border: 1px solid rgba(154,111,30,0.4);
+  border-radius: 3px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.5), inset 0 0 70px rgba(154,111,30,0.06);
+}
+.pwm-songsheet-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  color: #2a0e00;
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+}
+.pwm-songsheet-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: #6b4c10;
+  text-align: center;
+  margin-bottom: 2.6rem;
+  font-size: 1rem;
+}
+.pwm-verses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.3rem 3rem;
+  text-align: left;
+}
+.pwm-verse { position: relative; padding-left: 2.5rem; break-inside: avoid; }
+.pwm-num {
+  position: absolute;
+  left: 0; top: -0.05rem;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.pwm-verse p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2a1606;
+  margin: 0;
+}
+.pwm-verse i { color: #6b4c10; font-style: italic; }
+.pwm-refrain {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  #march { padding: 4rem 0; }
+  .pwm-songsheet { padding: 2rem 1.4rem; }
+  .pwm-verses { gap: 2rem; }
+}
+</style>
+<section id="march">
+  <div class="container">
+    <span class="section-label">The Society's Anthem</span>
+    <h2 class="section-title">The Whiskey <span>March</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+    </svg></div>
+
+    <div class="pwm-provenance">
+      <p class="pwm-credits">Music: &ldquo;Mademoiselle from Armenti&egrave;res&rdquo; (trad., WWI) &nbsp;&middot;&nbsp; Lyrics: the Commodore &nbsp;&middot;&nbsp; Performed &amp; produced by Anthony J. Milan &nbsp;&middot;&nbsp; Commissioned March 2026</p>
+      <div class="pwm-story">
+        <p>Like most great undertakings of the Society, the Whiskey March was born of a late-night session at the clubhouse &mdash; the Commodore and Vice Commodore, minds suitably lubricated and ambitions suitably inflated &mdash; and then promptly languished for years beneath a fog of procrastination and honest forgetfulness. That it exists at all is something of a miracle.</p>
+        <p>The mandate was simple and faintly absurd: the Society required an anthem, and that anthem ought to be a sing-along &mdash; or at the very least <em>theoretically capable</em> of being sung, should the membership ever find itself sober enough to attempt it. The Commodore at last put nose to grindstone and found a producer, Anthony J. Milan, who grasped both the assignment and its ridiculousness with admirable speed. For the tune we turned to &ldquo;Mademoiselle from Armenti&egrave;res,&rdquo; the ribald march bawled across the trenches of the Great War by British and American troops alike &mdash; its <em>Hinky-Dinky, parlez-vous</em> refrain all but begging for new and less printable words.</p>
+        <p>Those words fell to the Commodore, who labored to ensure not a single line was idle: every lyric is bound to the Society, its lore, and its members &mdash; for this is no ordinary march, and the words must <em>mean</em> something. Anthony then went to town, performing and producing the whole affair into the rousing article you hear below, henceforth the backdrop to all our festivities.</p>
+        <p class="pwm-kicker">Will this pack of animals ever truly be cajoled into singing it? Realistically, it would take all the whiskey in the world. But hey &mdash; at least we have something.</p>
+      </div>
+    </div>
+
+    <div class="pwm-player">
+      <audio controls preload="metadata" src="whiskey-march.mp3">Your browser does not support the audio element &mdash; <a href="whiskey-march.mp3">download the march</a> instead.</audio>
+      <a class="pwm-download" href="whiskey-march.mp3" download>&darr;&nbsp; Download the march</a>
+    </div>
+
+    <div class="pwm-songsheet">
+      <h3 class="pwm-songsheet-title">The Pop Whiskey Marching Song</h3>
+      <p class="pwm-songsheet-sub">to the tune of &ldquo;Mademoiselle from Armenti&egrave;res&rdquo;</p>
+      <div class="pwm-verses">
+        <div class="pwm-verse"><span class="pwm-num">I</span><p>Our Commodore did chart the course, <i>parlez-vous?</i><br>
+          Our Commodore did chart the course, <i>parlez-vous?</i><br>
+          Our Commodore did chart the course,<br>
+          Convened the club with cordial force,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">II</span><p>Olympia to Floral Park, <i>parlez-vous?</i><br>
+          Olympia to Floral Park, <i>parlez-vous?</i><br>
+          Olympia to Floral Park,<br>
+          A banker, farmer, patriarch,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">III</span><p>Our pours are plenty, never small, <i>parlez-vous?</i><br>
+          Our pours are plenty, never small, <i>parlez-vous?</i><br>
+          Our pours are plenty, never small,<br>
+          The printed measure? Lies to all,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">IV</span><p>The tweed is tightly tailored thread, <i>parlez-vous?</i><br>
+          The tweed is tightly tailored thread, <i>parlez-vous?</i><br>
+          The tweed is tightly tailored thread,<br>
+          No fleece, no flannel, none instead,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">V</span><p>Decorum dies when Schuster's near, <i>parlez-vous?</i><br>
+          Decorum dies when Schuster's near, <i>parlez-vous?</i><br>
+          Decorum dies when Schuster's near,<br>
+          The first defendant to appear,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VI</span><p>The modern world we've long declined, <i>parlez-vous?</i><br>
+          The modern world we've long declined, <i>parlez-vous?</i><br>
+          The modern world we've long declined,<br>
+          And thereby most of womankind,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VII</span><p>We sip, we boast, we lie, we toast, <i>parlez-vous?</i><br>
+          We sip, we boast, we lie, we toast, <i>parlez-vous?</i><br>
+          We sip, we boast, we lie, we toast,<br>
+          To brothers absent from their post,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VIII</span><p>When summer paints the fairways green, <i>parlez-vous?</i><br>
+          When summer paints the fairways green, <i>parlez-vous?</i><br>
+          When summer paints the fairways green,<br>
+          The Northern Open's grandest scene,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">IX</span><p>Now gather, gents, and raise the glass, <i>parlez-vous?</i><br>
+          Now gather, gents, and raise the glass, <i>parlez-vous?</i><br>
+          Now gather, gents, and raise the glass,<br>
+          The Society shall always last,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
       </div>
     </div>
   </div>
