@@ -1106,6 +1106,9 @@ section { padding: 7rem 0; position: relative; }
   display: flex;
   gap: 0;
   position: relative;
+  /* Desaturate all reel symbols with ONE filter layer instead of one per icon
+     (was on .sym-icon x332 — a major iOS scroll-compositing cost). Visually identical. */
+  filter: saturate(0.7);
 }
 
 /* Individual reel */
@@ -1158,7 +1161,7 @@ section { padding: 7rem 0; position: relative; }
 .reel-symbol .sym-icon {
   font-size: 1.15rem;
   line-height: 1;
-  filter: saturate(0.7);
+  /* filter moved up to .slot-reels (one layer instead of 332) */
 }
 .reel-symbol .sym-text {
   font-size: clamp(0.45rem, 1.1vw, 0.6rem);
@@ -2834,15 +2837,18 @@ body::after { display: none !important; }
   inset: 0;
   background: rgba(14,6,0,0.88);
   z-index: 3000;
-  display: flex;
+  /* display:none when closed so the ~32 per-member modals don't each sit as a
+     permanent fixed compositing layer (major iOS scroll-crash factor). They
+     only render when opened. Behavior is otherwise identical. */
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s;
 }
 .bio-modal.active {
+  display: flex;
   opacity: 1;
   pointer-events: all;
 }
