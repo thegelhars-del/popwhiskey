@@ -1,4 +1,7 @@
-# Files that must NOT be served as public static assets.
+# Files/folders that must NOT be served as public static assets.
+.git
+.wrangler
+node_modules
 worker.js
 wrangler.jsonc
 .assetsignore
