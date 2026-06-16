@@ -1,0 +1,21 @@
+{
+  // Cloudflare Worker config for popwhiskey.org (Worker + static assets).
+  "name": "popwhiskey",
+  "main": "worker.js",
+  "compatibility_date": "2026-06-16",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    // Run worker.js for every request so the /members/* gate always fires
+    // (otherwise matching files would be served before the Worker sees them).
+    "run_worker_first": true
+  },
+
+  // The Kavanagh Watch votes/comments live here.
+  // Create a KV namespace in the dashboard and paste its ID below.
+  "kv_namespaces": [
+    { "binding": "PWSOW_KV", "id": "f3d1dbabeb8542f9b53e7f6647b7135c" }
+  ]
+}
