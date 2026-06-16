@@ -48,6 +48,17 @@
   text-align: center; font-family: 'IM Fell English', serif; font-style: italic;
   color: rgba(245,236,224,0.7); font-size: 1.05rem; margin-bottom: 2.5rem;
 }
+#fight .backstory { max-width: 720px; margin: 0 auto 3.5rem; }
+#fight .backstory-label {
+  text-align: center; font-family: 'Oswald', sans-serif; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase; font-size: 0.66rem;
+  color: rgba(212,165,48,0.85); margin-bottom: 1.1rem;
+}
+#fight .backstory p {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.13rem; line-height: 1.85;
+  color: rgba(245,236,224,0.88); margin-bottom: 1.1rem; text-align: justify;
+}
+#fight .backstory em { color: #e6bc4f; font-style: italic; }
 
 /* ── Face-off ──────────────────────────────────────────────── */
 #fight .faceoff {
@@ -219,6 +230,7 @@
 #fight .poster-foot .fine { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,236,224,0.4); margin-top: 1.1rem; }
 
 @media (max-width: 640px) {
+  #fight .backstory p { text-align: left; }
   #fight .faceoff { grid-template-columns: 1fr; gap: 1.2rem; }
   #fight .vs { margin: -0.4rem auto; }
   #fight .tape-row .tv { font-size: 0.85rem; padding: 0.6rem 0.7rem; }
@@ -240,6 +252,14 @@
     <h1 class="marquee">Kavanagh <span class="vsword">vs</span> Kavanagh</h1>
     <p class="marquee-sub">The Long Haul to Marathon &middot; The Great Northern Open</p>  <!-- EDIT: event -->
     <p class="marquee-date">Some 640 miles from Columbus, Ohio to the first tee at Pine Valley. Which brother wants it more? &middot; the Eleventh of July</p> <!-- EDIT: date -->
+
+    <!-- ═══ HOW THIS CAME TO PASS (the backstory) ════════════════ -->
+    <div class="backstory">
+      <div class="backstory-label">&#10022;&ensp;How This Came to Pass&ensp;&#10022;</div>
+      <p>The precise origin of the matter has, like all great feuds, been polished smooth by retelling &mdash; but the Society's archivists are agreed upon its essential shape. Two brothers, both Kavanagh, both held in the highest regard by this Society, fell to debating a question as old as brotherhood itself: <em>which of them would actually make it.</em></p>
+      <p>Each, it is said, professed perfect confidence in his own attendance &mdash; and a brother's affectionate doubt about the other's. Brother Thomas answers to no employer but himself, and therefore to the most merciless taskmaster of all: his own calendar. Brother John's standing at a great national concern keeps him forever one summons away from a flight in the wrong direction. Some six hundred and forty miles of northbound highway lie between boast and proof.</p>
+      <p>A lesser society would have let the matter rest. This is not a lesser society. Where two men of consequence stake their honour on a question of devotion, the Society is duty-bound to convene, to tally the odds, and &mdash; God willing and the calendars permitting &mdash; to welcome them both to the table at the Great Northern Open. The wager is open. The Commodore is watching.</p>
+    </div>
 
     <!-- ═══ THE FACE-OFF ═════════════════════════════════════════ -->
     <div class="faceoff">
