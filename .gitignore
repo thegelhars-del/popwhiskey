@@ -1,0 +1,10 @@
+# Local high-res source artwork — originals kept on disk, never deployed.
+# (Member portraits used by the site live in /images/ as optimized .jpg files.)
+/*.png
+/*.PNG
+!/chapters-map.png
+
+# One-time migration tool and editor/agent state — not part of the deployed site.
+build-migrate.js
+.claude/
+site/

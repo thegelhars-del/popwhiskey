@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Whiskey March · Pop Whiskey Society of Wisconsin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="page-frame" aria-hidden="true">
+  <!-- Top edge line -->
+  <div class="frame-edge frame-top"></div>
+  <div class="frame-edge frame-bottom"></div>
+  <div class="frame-edge frame-left"></div>
+  <div class="frame-edge frame-right"></div>
+  <!-- Corner ornaments -->
+  <svg class="frame-corner fc-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+</div>
+
+<!-- nav + footer are injected by /app.js so they live in ONE place -->
+<section id="march">
+  <div class="container">
+    <span class="section-label">The Society's Anthem</span>
+    <h2 class="section-title">The Whiskey <span>March</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+    </svg></div>
+
+    <div class="pwm-provenance">
+      <p class="pwm-credits">Music: &ldquo;Mademoiselle from Armenti&egrave;res&rdquo; (trad., WWI) &nbsp;&middot;&nbsp; Lyrics: the Commodore &nbsp;&middot;&nbsp; Performed &amp; produced by Anthony J. Milan &nbsp;&middot;&nbsp; Commissioned March 2026</p>
+      <div class="pwm-story">
+        <p>Like most great undertakings of the Society, the Whiskey March was born of a late-night session at the clubhouse &mdash; the Commodore and Vice Commodore, minds suitably lubricated and ambitions suitably inflated &mdash; and then promptly languished for years beneath a fog of procrastination and honest forgetfulness. That it exists at all is something of a miracle.</p>
+        <p>The mandate was simple and faintly absurd: the Society required an anthem, and that anthem ought to be a sing-along &mdash; or at the very least <em>theoretically capable</em> of being sung, should the membership ever find itself sober enough to attempt it. The Commodore at last put nose to grindstone and found a producer, Anthony J. Milan, who grasped both the assignment and its ridiculousness with admirable speed. For the tune we turned to &ldquo;Mademoiselle from Armenti&egrave;res,&rdquo; the ribald march bawled across the trenches of the Great War by British and American troops alike &mdash; its <em>Hinky-Dinky, parlez-vous</em> refrain all but begging for new and less printable words.</p>
+        <p>Those words fell to the Commodore, who labored to ensure not a single line was idle: every lyric is bound to the Society, its lore, and its members &mdash; for this is no ordinary march, and the words must <em>mean</em> something. Anthony then went to town, performing and producing the whole affair into the rousing article you hear below, henceforth the backdrop to all our festivities.</p>
+        <p class="pwm-kicker">Will this pack of animals ever truly be cajoled into singing it? Realistically, it would take all the whiskey in the world. But hey &mdash; at least we have something.</p>
+      </div>
+    </div>
+
+    <div class="pwm-player">
+      <audio controls preload="metadata" src="whiskey-march.mp3">Your browser does not support the audio element &mdash; <a href="whiskey-march.mp3">download the march</a> instead.</audio>
+      <a class="pwm-download" href="whiskey-march.mp3" download>&darr;&nbsp; Download the march</a>
+    </div>
+
+    <div class="pwm-songsheet">
+      <h3 class="pwm-songsheet-title">The Pop Whiskey Marching Song</h3>
+      <p class="pwm-songsheet-sub">to the tune of &ldquo;Mademoiselle from Armenti&egrave;res&rdquo;</p>
+      <div class="pwm-verses">
+        <div class="pwm-verse"><span class="pwm-num">I</span><p>Our Commodore did chart the course, <i>parlez-vous?</i><br>
+          Our Commodore did chart the course, <i>parlez-vous?</i><br>
+          Our Commodore did chart the course,<br>
+          Convened the club with cordial force,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">II</span><p>Olympia to Floral Park, <i>parlez-vous?</i><br>
+          Olympia to Floral Park, <i>parlez-vous?</i><br>
+          Olympia to Floral Park,<br>
+          A banker, farmer, patriarch,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">III</span><p>Our pours are plenty, never small, <i>parlez-vous?</i><br>
+          Our pours are plenty, never small, <i>parlez-vous?</i><br>
+          Our pours are plenty, never small,<br>
+          The printed measure? Lies to all,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">IV</span><p>The tweed is tightly tailored thread, <i>parlez-vous?</i><br>
+          The tweed is tightly tailored thread, <i>parlez-vous?</i><br>
+          The tweed is tightly tailored thread,<br>
+          No fleece, no flannel, none instead,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">V</span><p>Decorum dies when Schuster's near, <i>parlez-vous?</i><br>
+          Decorum dies when Schuster's near, <i>parlez-vous?</i><br>
+          Decorum dies when Schuster's near,<br>
+          The first defendant to appear,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VI</span><p>The modern world we've long declined, <i>parlez-vous?</i><br>
+          The modern world we've long declined, <i>parlez-vous?</i><br>
+          The modern world we've long declined,<br>
+          And thereby most of womankind,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VII</span><p>We sip, we boast, we lie, we toast, <i>parlez-vous?</i><br>
+          We sip, we boast, we lie, we toast, <i>parlez-vous?</i><br>
+          We sip, we boast, we lie, we toast,<br>
+          To brothers absent from their post,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">VIII</span><p>When summer paints the fairways green, <i>parlez-vous?</i><br>
+          When summer paints the fairways green, <i>parlez-vous?</i><br>
+          When summer paints the fairways green,<br>
+          The Northern Open's grandest scene,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+
+        <div class="pwm-verse"><span class="pwm-num">IX</span><p>Now gather, gents, and raise the glass, <i>parlez-vous?</i><br>
+          Now gather, gents, and raise the glass, <i>parlez-vous?</i><br>
+          Now gather, gents, and raise the glass,<br>
+          The Society shall always last,<br>
+          <span class="pwm-refrain">Hinky-dinky, parlez-vous!</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER MAP ══════════════════════════════════════════════════ -->
+<section id="chapter-map">
+  <div class="container">
+    <span class="section-label">Our Reach</span>
+    <h2 class="section-title">Chapters <span>Across America</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+      <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+    </svg></div>
+    <p class="map-intro">From the founding halls of Wausau to the far corners of the Republic, our chapters stand as outposts of taste, tradition, and the unyielding pursuit of the perfect dram.</p>
+    <div id="map-container"></div>
+    <img loading="lazy" decoding="async" src="chapters-map.png" alt="Map of Pop Whiskey Society chapters across the United States — Wausau, Oshkosh, Stevens Point, Minneapolis, Seattle, Dallas, New York, and Annapolis" class="map-static">
+  </div>
+</section>
+
+
+
+<!-- ═══ MEMBERS GATE ═════════════════════════════════════════════════ -->
+<script src="/app.js"></script>
+</body>
+</html>

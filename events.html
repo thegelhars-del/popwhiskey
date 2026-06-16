@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events · Pop Whiskey Society of Wisconsin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="page-frame" aria-hidden="true">
+  <!-- Top edge line -->
+  <div class="frame-edge frame-top"></div>
+  <div class="frame-edge frame-bottom"></div>
+  <div class="frame-edge frame-left"></div>
+  <div class="frame-edge frame-right"></div>
+  <!-- Corner ornaments -->
+  <svg class="frame-corner fc-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+</div>
+
+<!-- nav + footer are injected by /app.js so they live in ONE place -->
+<section id="events">
+  <div class="container">
+    <span class="section-label">Society Calendar</span>
+    <h2 class="section-title">Upcoming <span>Events</span></h2>
+    <div class="section-divider"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+    <path d="M12 2 L13.5 9 L20 8 L15 13 L18 20 L12 16 L6 20 L9 13 L4 8 L10.5 9 Z" stroke="#d4a530" stroke-width="0.8" fill="rgba(212,165,48,0.15)"/>
+  </svg></div>
+    <div class="events-grid">
+      <!-- FEATURED: The 2026 Great Northern Open -->
+      <div class="event-card event-card--featured" style="grid-column: 1 / -1; border: 2px solid var(--gold); box-shadow: 0 0 0 1px rgba(212,165,48,0.25) inset, 0 20px 60px rgba(0,0,0,0.35); background: linear-gradient(180deg, #1e0e00 0%, #2a0e00 100%); position: relative; overflow: hidden;">
+        <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background: var(--gold); color:#1e0e00; font-family:'Cinzel', serif; font-size:0.55rem; letter-spacing:0.4em; padding:0.35rem 1.4rem; text-transform:uppercase; white-space:nowrap; z-index:2;">&#9733; The Society&#8217;s Marquee Event &#9733;</div>
+
+        <div style="padding: 3rem 2.5rem 2.5rem; position: relative;">
+          <div style="position:absolute;top:12px;left:12px;width:40px;height:40px;border-top:1px solid rgba(212,165,48,0.4);border-left:1px solid rgba(212,165,48,0.4);"></div>
+          <div style="position:absolute;top:12px;right:12px;width:40px;height:40px;border-top:1px solid rgba(212,165,48,0.4);border-right:1px solid rgba(212,165,48,0.4);"></div>
+          <div style="position:absolute;bottom:12px;left:12px;width:40px;height:40px;border-bottom:1px solid rgba(212,165,48,0.4);border-left:1px solid rgba(212,165,48,0.4);"></div>
+          <div style="position:absolute;bottom:12px;right:12px;width:40px;height:40px;border-bottom:1px solid rgba(212,165,48,0.4);border-right:1px solid rgba(212,165,48,0.4);"></div>
+
+          <div style="text-align:center; margin-bottom: 0.5rem;">
+            <span style="font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.5em; color:rgba(212,165,48,0.7); text-transform:uppercase;">The Pop Whiskey Society of Wisconsin Presents</span>
+          </div>
+
+          <h3 style="font-family:'Cinzel Decorative',serif; font-size:clamp(1.4rem,4vw,2.4rem); color:#d4a530; text-align:center; line-height:1.15; margin:0 0 0.4rem; text-shadow: 0 0 40px rgba(212,165,48,0.3);">The 2026<br>Great Northern Open</h3>
+
+          <p style="font-family:'IM Fell English',serif; font-style:italic; font-size:clamp(0.85rem,2vw,1.05rem); color:rgba(255,248,240,0.7); text-align:center; margin-bottom:1.5rem; max-width:500px; margin-left:auto; margin-right:auto;">The Society&#8217;s most hallowed contest of golf, gentlemanly conduct, and questionable ball-striking.</p>
+
+          <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;">
+            <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(212,165,48,0.4));"></div>
+            <span style="color:rgba(212,165,48,0.6); font-size:0.8rem;">&#10022; &#10022; &#10022;</span>
+            <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(212,165,48,0.4));"></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; max-width: 540px; margin-left:auto; margin-right:auto;">
+            <div style="text-align:center; padding:1rem; border:1px solid rgba(212,165,48,0.2); background:rgba(212,165,48,0.05);">
+              <div style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.3em; color:rgba(212,165,48,0.6); text-transform:uppercase; margin-bottom:0.4rem;">Our Day of the Lord</div>
+              <div style="font-family:'Cinzel Decorative',serif; font-size:clamp(1rem,2.5vw,1.4rem); color:#d4a530;">Saturday</div>
+              <div style="font-family:'Cinzel',serif; font-size:clamp(0.7rem,1.5vw,0.85rem); color:#fffbf4; letter-spacing:0.1em;">July 11th, 2026</div>
+            </div>
+            <div style="text-align:center; padding:1rem; border:1px solid rgba(212,165,48,0.2); background:rgba(212,165,48,0.05);">
+              <div style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.3em; color:rgba(212,165,48,0.6); text-transform:uppercase; margin-bottom:0.4rem;">Tee Times</div>
+              <div style="font-family:'Cinzel Decorative',serif; font-size:clamp(1rem,2.5vw,1.4rem); color:#d4a530;">12:00 PM</div>
+              <div style="font-family:'Cinzel',serif; font-size:clamp(0.7rem,1.5vw,0.85rem); color:#fffbf4; letter-spacing:0.1em;">through 12:48 PM</div>
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-bottom:1.5rem;">
+            <div style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.3em; color:rgba(212,165,48,0.6); text-transform:uppercase; margin-bottom:0.3rem;">Hallowed Grounds</div>
+            <div style="font-family:'Cinzel',serif; font-size:clamp(0.8rem,2vw,1.1rem); color:#fffbf4; letter-spacing:0.08em;">Pine Valley Golf Course</div>
+            <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.85rem; color:rgba(255,248,240,0.5);">Wausau, Wisconsin <span style="font-size:0.75rem;">(Marathon, technically &#8212; though we shall not burden our out-of-town brethren with such trifles)</span></div>
+          </div>
+
+          <div style="text-align:center; margin-bottom:1.5rem; padding:0.8rem 1rem; border-top:1px solid rgba(212,165,48,0.2); border-bottom:1px solid rgba(212,165,48,0.2);">
+            <div style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.3em; color:rgba(212,165,48,0.6); text-transform:uppercase; margin-bottom:0.3rem;">Defending Champions</div>
+            <div style="font-family:'Cinzel Decorative',serif; font-size:clamp(0.85rem,2vw,1.1rem); color:#d4a530;">Pete Irwin &amp; Eli Irwin</div>
+            <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.8rem; color:rgba(255,248,240,0.5);">One &#8212; possibly both &#8212; expected to defend the cup.</div>
+          </div>
+
+          <div style="max-width:560px; margin:0 auto 1.5rem;">
+            <p style="font-family:'Cormorant Garamond',serif; font-size:1rem; line-height:1.7; color:rgba(255,248,240,0.85); margin-bottom:0.8rem;">Gentlemen of the Society &#8212; and those pledges fortunate enough to have been deemed worthy of consideration &#8212; your Commodore is pleased beyond measure to announce the return of <em>The Great Northern Open</em>, the crown jewel of the PWSOW competitive calendar and what amounts, in this Commodore&#8217;s estimation, to the Masters of Central Wisconsin.</p>
+            <p style="font-family:'Cormorant Garamond',serif; font-size:1rem; line-height:1.7; color:rgba(255,248,240,0.85); margin-bottom:0.8rem;">Twenty-four spots have been reserved for the worthy. The vast majority are already spoken for. Procrastinators shall find themselves spectators. Registration is conducted, as has been our custom, via the link below &#8212; fees paid in advance, that the day itself may remain uncluttered by commerce.</p>
+          </div>
+
+          <div style="max-width:560px; margin:0 auto 1.5rem; font-family:'Cormorant Garamond',serif; font-size:0.95rem; line-height:1.6; color:rgba(255,248,240,0.75);">
+            <div style="margin-bottom:0.6rem;"><strong style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.25em; color:#d4a530; text-transform:uppercase;">The Format</strong> &#8212; Under deliberation by the Elder Council. Updates shall be issued in due course. This is intentional, not lazy.</div>
+            <div style="margin-bottom:0.6rem;"><strong style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.25em; color:#d4a530; text-transform:uppercase;">The Teams</strong> &#8212; Assembled by the Commodore, serving as Puppet Master, in noble pursuit of fairness &#8212; to the best of his abilities, which, given the membership&#8217;s wildly varying skill levels among the Society&#8217;s knuckleheads and honeyucks, will fall short of perfection. He will, nevertheless, do his best.</div>
+            <div style="margin-bottom:0.6rem;"><strong style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.25em; color:#d4a530; text-transform:uppercase;">The Dress</strong> &#8212; Pine Valley imposes no dress code, being a public course rather than a country club. Course attire is at your discretion. The post-round festivities demand the tweed sport coat. Bring the jacket. This is not a request. Pledges, in their pre-jacketed state, are excused.</div>
+            <div style="margin-bottom:0.6rem;"><strong style="font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.25em; color:#d4a530; text-transform:uppercase;">Pledges</strong> &#8212; Non-members deemed worthy of consideration by current members are welcome to attend and compete.</div>
+          </div>
+
+          <div style="text-align:center; margin-bottom:1.5rem;">
+            <p style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.3em; color:#c0392b; text-transform:uppercase; margin-bottom:0.3rem;">&#9888; 24 Spots Total &#8212; Nearly Spoken For &#9888;</p>
+            <p style="font-family:'IM Fell English',serif; font-style:italic; font-size:0.85rem; color:rgba(255,248,240,0.5);">Do not dawdle.</p>
+          </div>
+
+          <div style="text-align:center;">
+            <a href="https://www.tickettailor.com/events/popwhiskeysociety/2184251" target="_blank" style="display:inline-block; background:linear-gradient(180deg, #d4a530 0%, #9a6f1e 100%); color:#1e0e00; font-family:'Cinzel',serif; font-size:0.75rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; padding:1rem 3rem; text-decoration:none; border:2px solid #c48f2a; box-shadow:0 0 0 1px rgba(212,165,48,0.3) inset, 0 8px 24px rgba(0,0,0,0.4); transition:all 0.3s;">Register Now</a>
+          </div>
+
+          <p style="text-align:center; font-family:'IM Fell English',serif; font-style:italic; font-size:0.8rem; color:rgba(255,248,240,0.4); margin-top:1.25rem;">Bring your A-game. Or your B-game. Or, at the very least, a clean shirt.</p>
+        </div>
+      </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Annual Tournament</div>
+            <div class="event-name">GNO History</div>
+          </div>
+          <div class="event-number">I</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            Date TBD — Summer 2025
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Greenwood Hills Country Club, Wausau
+          </div>
+          <p class="event-desc">A pilgrimage for the discerning golfer. A symphony of swings and putts on the hallowed grounds of Greenwood Hills. To win the jacket is to etch one's name in the annals of the Society's history.</p>
+          <button class="btn-outline" onclick="openRsvp('The Great Northern Open')">RSVP &amp; Details</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Inaugural Tournament</div>
+            <div class="event-name">Grand Croquet Classic &amp; Ladies Lawn Beautification Tournament</div>
+          </div>
+          <div class="event-number">II</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            Mid-May 2025 · 1:00–5:00 PM
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Greenwood Hills Country Club
+          </div>
+          <p class="event-desc">Round robin croquet, knockout finals, Best Dressed Lady award, and a secret induction ceremony. Come in your croquet whites. Approximately $100 per couple.</p>
+          <button class="btn-outline" onclick="openRsvp('The Grand Croquet Classic')">RSVP &amp; Details</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Monthly Gathering</div>
+            <div class="event-name">Society Meeting &amp; Tasting</div>
+          </div>
+          <div class="event-number">III</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            Scheduled per membership availability
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Location TBD
+          </div>
+          <p class="event-desc">Sport coats on. Glasses up. The Society convenes to taste, deliberate, and elevate one another's whiskey wisdom. 1.5oz pours per bottle. Drunken haikus optional but encouraged.</p>
+          <button class="btn-outline" onclick="openRsvp('Society Meeting')">RSVP &amp; Details</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Triple Crown · Leg III</div>
+            <div class="event-name">The Curling Classic</div>
+          </div>
+          <div class="event-number">IV</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            Winter 2025–26
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Wausau, Wisconsin
+          </div>
+          <p class="event-desc">The third leg of the PWSOW Triple Crown. Rocks, brooms, ice, and whiskey. Membership induction rights may be earned on the ice.</p>
+          <button class="btn-outline" onclick="openRsvp('The Curling Classic')">RSVP &amp; Details</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Sacred Rite</div>
+            <div class="event-name">Induction Ceremony</div>
+          </div>
+          <div class="event-number">V</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            As warranted
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            The Sacred Grounds, Wausau
+          </div>
+          <p class="event-desc">The Oath is taken. The jacket is presented — one that probably won't fit. New members are welcomed into the ranks with open arms and glasses raised. So let it be written, so let it be drunken.</p>
+          <button class="btn-outline" onclick="openRsvp('Induction Ceremony')">Learn More</button>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-header">
+          <div>
+            <div class="event-type">Society Year</div>
+            <div class="event-name">NFL Draft Kickoff</div>
+          </div>
+          <div class="event-number">VI</div>
+        </div>
+        <div class="event-body">
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5zm0-1A7.5 7.5 0 1 1 8 15.5 7.5 7.5 0 0 1 8 .5zm.5 4.5v3.25l2.5 1.5-.75 1.25-3-1.75V5h1.25z"/></svg>
+            NFL Draft Night — Annual
+          </div>
+          <div class="event-detail">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a5.5 5.5 0 0 0-3.594 9.789l2.256 2.7a1.75 1.75 0 0 0 2.676 0l2.256-2.7A5.5 5.5 0 0 0 8 0zm0 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            TBD
+          </div>
+          <p class="event-desc">The Society year begins with the first round of the NFL Draft and concludes on its eve one year hence. A new chapter opens. Membership dues renew. May the drams flow.</p>
+          <button class="btn-outline" onclick="openRsvp('NFL Draft Kickoff')">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP MODAL -->
+<div id="rsvp-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeRsvp()">×</button>
+    <h3 id="modal-event-name">Event Name</h3>
+    <p>Your interest has been noted by the Society. For formal RSVP and event details, please contact the Commodore or Captain of Public Relations directly, or submit an inquiry below.</p>
+    <a href="#audience" class="btn-primary" onclick="closeRsvp()">Request an Audience</a>
+  </div>
+</div>
+
+    <div class="video-showcase">
+      <p class="video-showcase-title">— Great Northern Open Films —</p>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/40oYTSWeZ7E" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Great Northern Open 2022</div>
+        </div>
+        <div class="video-card">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/wjHar_cU_ks" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-label">Great Northern Open 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ORACLE OF THE CASK ════════════════════════════════════════════ -->
+<script src="/app.js"></script>
+</body>
+</html>

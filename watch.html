@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavanagh vs Kavanagh · Pop Whiskey Society of Wisconsin</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital@0;1&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ═══ KAVANAGH vs KAVANAGH — fight-promo poster (scoped to #fight) ════════ */
+#fight {
+  position: relative; isolation: isolate; overflow: hidden;
+  color: #f5ece0; padding: 5.5rem 0 5rem;
+  background:
+    radial-gradient(120% 90% at 18% 22%, rgba(179,18,42,0.45) 0%, rgba(179,18,42,0) 42%),
+    radial-gradient(120% 90% at 82% 24%, rgba(212,165,48,0.42) 0%, rgba(212,165,48,0) 44%),
+    radial-gradient(140% 120% at 50% 120%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(180deg, #14090a 0%, #0a0604 60%, #0a0604 100%);
+}
+/* film grain */
+#fight::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0.06; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#fight .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; position: relative; }
+
+#fight .promo-eyebrow {
+  text-align: center; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.42em;
+  text-transform: uppercase; color: rgba(212,165,48,0.85); margin-bottom: 0.5rem;
+}
+#fight .promo-eyebrow::before, #fight .promo-eyebrow::after { content: "✦"; margin: 0 0.7em; color: rgba(212,165,48,0.5); }
+#fight .marquee {
+  text-align: center; font-family: 'Anton', sans-serif; text-transform: uppercase;
+  font-size: clamp(2.4rem, 9vw, 5.6rem); line-height: 0.92; letter-spacing: 0.01em;
+  margin: 0; color: #f5ece0;
+  text-shadow: 0 2px 0 #000, 0 0 28px rgba(212,165,48,0.25);
+}
+#fight .marquee .vsword {
+  display: inline-block; color: #b3122a; font-size: 0.5em; vertical-align: middle;
+  margin: 0 0.15em; -webkit-text-stroke: 1px rgba(212,165,48,0.6); text-stroke: 1px rgba(212,165,48,0.6);
+}
+#fight .marquee-sub {
+  text-align: center; font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.3em;
+  text-transform: uppercase; color: #d4a530; font-size: clamp(0.7rem, 2.2vw, 1rem);
+  margin: 0.9rem 0 0.2rem;
+}
+#fight .marquee-date {
+  text-align: center; font-family: 'IM Fell English', serif; font-style: italic;
+  color: rgba(245,236,224,0.7); font-size: 1.05rem; margin-bottom: 2.5rem;
+}
+
+/* ── Face-off ──────────────────────────────────────────────── */
+#fight .faceoff {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 0.5rem;
+  margin-bottom: 1.6rem;
+}
+#fight .corner { text-align: center; }
+#fight .frame {
+  position: relative; border: 2px solid rgba(212,165,48,0.5);
+  aspect-ratio: 3/4; overflow: hidden; background: #000;
+}
+#fight .corner--red  .frame { box-shadow: 0 0 45px rgba(179,18,42,0.55), 0 0 0 1px rgba(179,18,42,0.4) inset; border-color: rgba(179,18,42,0.65); }
+#fight .corner--gold .frame { box-shadow: 0 0 45px rgba(212,165,48,0.5),  0 0 0 1px rgba(212,165,48,0.45) inset; }
+#fight .frame img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 18%;
+  filter: grayscale(0.55) contrast(1.18) brightness(0.92);
+}
+#fight .corner--red  .frame::after,
+#fight .corner--gold .frame::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(10,6,4,0.9) 100%);
+}
+#fight .corner--red  .frame::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(179,18,42,0.25), transparent 50%); mix-blend-mode: screen; }
+#fight .corner--gold .frame::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(212,165,48,0.22), transparent 50%); mix-blend-mode: screen; }
+#fight .corner-tag {
+  font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 0.62rem; margin-bottom: 0.5rem;
+}
+#fight .corner--red  .corner-tag { color: #e0566c; }
+#fight .corner--gold .corner-tag { color: #e6bc4f; }
+#fight .nick {
+  font-family: 'IM Fell English', serif; font-style: italic; color: rgba(245,236,224,0.7);
+  font-size: 1rem; margin: 0.7rem 0 0;
+}
+#fight .first {
+  font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem); color: rgba(245,236,224,0.85); margin-top: 0.2rem;
+}
+#fight .last {
+  font-family: 'Anton', sans-serif; text-transform: uppercase; line-height: 0.95;
+  font-size: clamp(1.6rem, 5.5vw, 2.8rem); margin: 0;
+  color: #f5ece0; text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+}
+#fight .record {
+  font-family: 'Oswald', sans-serif; font-weight: 300; letter-spacing: 0.08em;
+  color: rgba(245,236,224,0.6); font-size: 0.85rem; margin-top: 0.35rem;
+}
+/* VS medallion */
+#fight .vs {
+  z-index: 2; width: clamp(58px, 13vw, 96px); height: clamp(58px, 13vw, 96px);
+  display: flex; align-items: center; justify-content: center; align-self: center;
+  border-radius: 50%; background: radial-gradient(circle at 50% 35%, #2a0e00, #0a0604);
+  border: 2px solid #d4a530; box-shadow: 0 0 30px rgba(212,165,48,0.5), 0 0 0 6px rgba(10,6,4,0.8);
+  font-family: 'Anton', sans-serif; font-size: clamp(1.3rem, 4vw, 2.2rem); color: #d4a530;
+}
+
+/* ── Tale of the tape ──────────────────────────────────────── */
+#fight .tape {
+  max-width: 720px; margin: 0 auto 4.5rem; border: 1px solid rgba(212,165,48,0.3);
+  background: rgba(0,0,0,0.3);
+}
+#fight .tape-head {
+  text-align: center; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.32em;
+  text-transform: uppercase; font-size: 0.7rem; color: #d4a530;
+  padding: 0.8rem; border-bottom: 1px solid rgba(212,165,48,0.25);
+}
+#fight .tape-row {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  border-bottom: 1px solid rgba(212,165,48,0.12);
+}
+#fight .tape-row:last-child { border-bottom: none; }
+#fight .tape-row .tv {
+  font-family: 'Oswald', sans-serif; font-weight: 500; padding: 0.7rem 1rem; font-size: 0.98rem;
+}
+#fight .tape-row .tv.left  { text-align: right; color: #f0b6bf; }
+#fight .tape-row .tv.right { text-align: left;  color: #e6bc4f; }
+#fight .tape-row .tc {
+  font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245,236,224,0.45); padding: 0 0.9rem; white-space: nowrap;
+}
+
+/* ── The Line (wager / betting board) ──────────────────────── */
+#fight .board { max-width: 720px; margin: 0 auto 4.5rem; }
+#fight .sect-title {
+  text-align: center; font-family: 'Anton', sans-serif; text-transform: uppercase;
+  font-size: clamp(1.6rem, 5vw, 2.4rem); color: #f5ece0; margin: 0 0 0.3rem; letter-spacing: 0.02em;
+}
+#fight .sect-sub {
+  text-align: center; font-family: 'IM Fell English', serif; font-style: italic;
+  color: rgba(245,236,224,0.7); margin: 0 auto 1.8rem; max-width: 560px; font-size: 1.05rem;
+}
+#fight .picks { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.4rem; }
+#fight .pick {
+  width: 100%; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem;
+  background: rgba(0,0,0,0.35); border: 1px solid rgba(212,165,48,0.4); color: #f5ece0;
+  font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 1.05rem; letter-spacing: 0.04em;
+  padding: 0.85rem 1.2rem; text-align: left; transition: all 0.18s; text-transform: uppercase;
+}
+#fight .pick:hover:not(:disabled) { border-color: #d4a530; background: rgba(212,165,48,0.12); transform: translateX(2px); }
+#fight .pick:disabled { cursor: default; }
+#fight .pick .odds { font-family: 'Anton', sans-serif; font-size: 1.3rem; color: #d4a530; }
+#fight .line { border-top: 1px solid rgba(212,165,48,0.25); padding-top: 1.2rem; }
+#fight .line-row { margin-bottom: 0.95rem; }
+#fight .line-row .lbl {
+  display: flex; justify-content: space-between; font-family: 'Oswald', sans-serif; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; color: rgba(245,236,224,0.85); margin-bottom: 0.3rem;
+}
+#fight .line-row .lbl .pct { color: #d4a530; font-weight: 700; }
+#fight .meter { height: 9px; background: rgba(255,255,255,0.07); overflow: hidden; }
+#fight .meter > span { display: block; height: 100%; width: 0; transition: width 0.8s ease; }
+#fight .meter.m-thomas  > span { background: linear-gradient(90deg,#7a0c1c,#e0566c); }
+#fight .meter.m-john    > span { background: linear-gradient(90deg,#9a6f1e,#e6bc4f); }
+#fight .meter.m-both    > span { background: linear-gradient(90deg,#3f7a4a,#7fd091); }
+#fight .meter.m-neither > span { background: linear-gradient(90deg,#3a3330,#8a7e72); }
+#fight .line-total {
+  text-align: center; font-family: 'IM Fell English', serif; font-style: italic;
+  color: rgba(245,236,224,0.6); margin-top: 1.1rem; font-size: 0.98rem;
+}
+#fight .pick-note {
+  text-align: center; font-family: 'IM Fell English', serif; font-style: italic; color: #d4a530;
+  margin-top: 0.9rem; min-height: 1.2rem;
+}
+
+/* ── Press row (comments) ──────────────────────────────────── */
+#fight .press { max-width: 720px; margin: 0 auto; }
+#fight .press-form { border: 1px solid rgba(212,165,48,0.3); background: rgba(0,0,0,0.3); padding: 1.4rem; margin-bottom: 2.2rem; }
+#fight .press-form input, #fight .press-form textarea {
+  width: 100%; background: rgba(0,0,0,0.45); border: 1px solid rgba(212,165,48,0.35); color: #f5ece0;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; padding: 0.65rem 0.9rem; margin-bottom: 0.75rem;
+}
+#fight .press-form input:focus, #fight .press-form textarea:focus { outline: none; border-color: #d4a530; }
+#fight .press-form textarea { min-height: 84px; resize: vertical; }
+#fight .press-btn {
+  background: #b3122a; color: #fff; border: none; padding: 0.7rem 1.6rem;
+  font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.78rem; cursor: pointer;
+}
+#fight .press-btn:hover { background: #d4163180; background: #cf1730; }
+#fight .press-btn:disabled { opacity: 0.5; cursor: default; }
+#fight .quote { border-left: 3px solid #b3122a; padding: 0.2rem 0 0.2rem 1.1rem; margin-bottom: 1.5rem; }
+#fight .quote:nth-child(even) { border-left-color: #d4a530; }
+#fight .quote .who { font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem; color: #d4a530; }
+#fight .quote .when { font-family: 'Oswald', sans-serif; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,236,224,0.4); margin-left: 0.6rem; }
+#fight .quote .msg { font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; line-height: 1.55; color: rgba(245,236,224,0.9); margin-top: 0.25rem; }
+#fight .press-empty { text-align: center; font-family: 'IM Fell English', serif; font-style: italic; color: rgba(245,236,224,0.55); padding: 1.4rem 0; }
+#fight .offline { max-width: 720px; margin: 0 auto 2rem; text-align: center; border: 1px dashed rgba(212,165,48,0.35); padding: 0.85rem 1.1rem; font-family: 'IM Fell English', serif; font-style: italic; color: rgba(245,236,224,0.7); font-size: 0.96rem; }
+/* press-row corner picker (this is what moves the meter) */
+#fight .backing { margin-bottom: 0.9rem; }
+#fight .backing-label { display: block; font-family: 'Oswald', sans-serif; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.6rem; color: rgba(245,236,224,0.55); margin-bottom: 0.5rem; }
+#fight .backing-opts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+#fight .backing-opt { cursor: pointer; background: rgba(0,0,0,0.4); border: 1px solid rgba(212,165,48,0.35); color: rgba(245,236,224,0.85); font-family: 'Oswald', sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.72rem; padding: 0.45rem 0.95rem; transition: all 0.15s; }
+#fight .backing-opt:hover:not(:disabled) { border-color: #d4a530; }
+#fight .backing-opt.selected { background: #d4a530; color: #1e0e00; border-color: #d4a530; }
+#fight .backing-opt:disabled { opacity: 0.55; cursor: default; }
+#fight .backing-note { font-family: 'IM Fell English', serif; font-style: italic; color: rgba(245,236,224,0.55); font-size: 0.85rem; margin-top: 0.5rem; }
+#fight .quote .badge { display: inline-block; margin-left: 0.6rem; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.56rem; padding: 0.12rem 0.5rem; border: 1px solid; vertical-align: middle; }
+#fight .badge--thomas { color: #e0566c; border-color: #7a0c1c; }
+#fight .badge--john { color: #e6bc4f; border-color: #9a6f1e; }
+#fight .badge--both { color: #7fd091; border-color: #3f7a4a; }
+#fight .badge--neither { color: #b3a99e; border-color: #5a504c; }
+
+/* ── Poster footer ─────────────────────────────────────────── */
+#fight .poster-foot { text-align: center; margin-top: 4.5rem; }
+#fight .poster-foot .big {
+  font-family: 'Anton', sans-serif; text-transform: uppercase; color: #d4a530;
+  font-size: clamp(1.4rem, 5vw, 2.2rem); letter-spacing: 0.04em;
+}
+#fight .poster-foot .venue { font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,236,224,0.7); font-size: 0.8rem; margin-top: 0.3rem; }
+#fight .poster-foot .fine { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,236,224,0.4); margin-top: 1.1rem; }
+
+@media (max-width: 640px) {
+  #fight .faceoff { grid-template-columns: 1fr; gap: 1.2rem; }
+  #fight .vs { margin: -0.4rem auto; }
+  #fight .tape-row .tv { font-size: 0.85rem; padding: 0.6rem 0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     EDIT THE FIGHTERS / EVENT HERE (names, nicknames, corners, records, date,
+     venue) — it's all plain text in the markup below. Look for EDIT comments.
+     The picks/odds + press row are wired to Cloudflare in the <script> at the
+     bottom (see the WATCH data block there).
+     ════════════════════════════════════════════════════════════════════════ -->
+<section id="fight">
+  <div class="wrap">
+
+    <p class="promo-eyebrow">The Pop Whiskey Society of Wisconsin Presents</p>
+    <h1 class="marquee">Kavanagh <span class="vsword">vs</span> Kavanagh</h1>
+    <p class="marquee-sub">The Long Haul to Marathon &middot; The Great Northern Open</p>  <!-- EDIT: event -->
+    <p class="marquee-date">Some 640 miles from Columbus, Ohio to the first tee at Pine Valley. Which brother wants it more? &middot; the Eleventh of July</p> <!-- EDIT: date -->
+
+    <!-- ═══ THE FACE-OFF ═════════════════════════════════════════ -->
+    <div class="faceoff">
+      <!-- RED CORNER ───────────────────────────── EDIT fighter below -->
+      <div class="corner corner--red">
+        <div class="corner-tag">The Red Corner</div>
+        <div class="frame"><img src="/images/thomas-kavanagh.jpg" alt="Thomas Kavanagh" loading="lazy" decoding="async"></div>
+        <p class="nick">&ldquo;The Proprietor&rdquo;</p>   <!-- EDIT: nickname -->
+        <div class="first">Thomas</div>
+        <h2 class="last">Kavanagh</h2>
+        <div class="record">Brother in Good Standing &middot; vs. a merciless calendar</div> <!-- EDIT: record/billing -->
+      </div>
+
+      <div class="vs">VS</div>
+
+      <!-- GOLD CORNER ──────────────────────────── EDIT fighter below -->
+      <div class="corner corner--gold">
+        <div class="corner-tag">The Gold Corner</div>
+        <div class="frame"><img src="/images/john-kavanagh.jpg" alt="John Kavanagh" loading="lazy" decoding="async"></div>
+        <p class="nick">&ldquo;The Franchise&rdquo;</p>  <!-- EDIT: nickname -->
+        <div class="first">John</div>
+        <h2 class="last">Kavanagh</h2>
+        <div class="record">Brother in Good Standing &middot; vs. the long way up from Columbus</div> <!-- EDIT: record/billing -->
+      </div>
+    </div>
+
+    <!-- ═══ TALE OF THE TAPE ═════════════════════════════════════ -->
+    <!-- EDIT freely — left value = Thomas, right value = John -->
+    <div class="tape">
+      <div class="tape-head">Tale of the Tape</div>
+      <div class="tape-row"><div class="tv left">The Proprietor</div><div class="tc">Nickname</div><div class="tv right">The Franchise</div></div>
+      <div class="tape-row"><div class="tv left">Red</div><div class="tc">Corner</div><div class="tv right">Gold</div></div>
+      <div class="tape-row"><div class="tv left">Runs his own shop</div><div class="tc">Day Job</div><div class="tv right">National outfit, big deal</div></div>
+      <div class="tape-row"><div class="tv left">His own calendar</div><div class="tc">Chief Adversary</div><div class="tv right">The 640 miles north</div></div>
+      <div class="tape-row"><div class="tv left">Bottomless</div><div class="tc">Desire to Attend</div><div class="tv right">Bottomless</div></div>
+      <div class="tape-row"><div class="tv left">Even money</div><div class="tc">Odds of Arrival</div><div class="tv right">Even money</div></div>
+    </div>
+
+    <!-- ═══ THE LINE (member wager) ══════════════════════════════ -->
+    <div class="board">
+      <h2 class="sect-title">The Line</h2>
+      <p class="sect-sub">The membership sets the odds. Which brother wants it more &mdash; and will actually shuck his earthly obligations to appear at Pine Valley on the 11th?</p>
+      <div class="picks" id="wager-options"></div>
+      <div class="line" id="ledger"></div>
+      <div class="pick-note" id="wager-note"></div>
+    </div>
+
+    <!-- ═══ PRESS ROW (comments) ═════════════════════════════════ -->
+    <div class="press">
+      <h2 class="sect-title">Press Row</h2>
+      <p class="sect-sub">Back a brother below and the line moves &mdash; then file your prediction and your trash talk. The Society is listening.</p>
+      <div class="offline" id="wire-offline" style="display:none;">Press row is dark &mdash; the Society's wire goes live once the site is deployed to its rightful home.</div>
+      <form class="press-form" id="wire-form">
+        <input type="text" id="wire-name" maxlength="40" placeholder="Your name, or your rank within the Society">
+        <textarea id="wire-text" maxlength="500" placeholder="Step up to the microphone&hellip;"></textarea>
+        <div class="backing">
+          <span class="backing-label">My money's on</span>
+          <div class="backing-opts" id="backing-opts">
+            <button type="button" class="backing-opt" data-id="thomas">Thomas</button>
+            <button type="button" class="backing-opt" data-id="john">John</button>
+            <button type="button" class="backing-opt" data-id="both">Both</button>
+            <button type="button" class="backing-opt" data-id="neither">Neither</button>
+          </div>
+          <div class="backing-note" id="backing-note"></div>
+        </div>
+        <button type="submit" class="press-btn" id="wire-btn">File Your Take</button>
+      </form>
+      <div id="wire-list"></div>
+    </div>
+
+    <!-- ═══ POSTER FOOTER ════════════════════════════════════════ -->
+    <div class="poster-foot">
+      <div class="big">July 11 &middot; The Great Northern Open &middot; Pine Valley G.C. &middot; Marathon, WI</div>  <!-- EDIT -->
+      <div class="venue">Sanctioned by the Commodore</div>
+      <div class="fine">Doors at dusk &middot; Tweed encouraged &middot; No snobbery admitted &middot; Pours are 1.5 oz, win or lose</div>
+    </div>
+
+  </div>
+</section>
+
+<script src="/app.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════════════════
+ *  KAVANAGH vs KAVANAGH — picks + press row behavior
+ *  ------------------------------------------------------------------------
+ *  EDIT THE PICK OPTIONS HERE. The keys (thomas/john/both/neither) must match the
+ *  ones the backend accepts in /functions/api/vote.js. The tallies and press
+ *  row save on Cloudflare KV; with no backend yet the page still works (your
+ *  pick is remembered only on this device, press row shows as "dark").
+ * ════════════════════════════════════════════════════════════════════════ */
+var WATCH = {
+  wagerOptions: [
+    { id: 'thomas',  label: 'Thomas makes the haul', short: 'Thomas',  meter: 'm-thomas'  },
+    { id: 'john',    label: 'John makes the haul',   short: 'John',    meter: 'm-john'    },
+    { id: 'both',    label: 'Both somehow break free', short: 'Both',  meter: 'm-both'    },
+    { id: 'neither', label: 'Neither — the calendars win the day', short: 'Neither', meter: 'm-neither' }
+  ]
+};
+
+var voteEl = document.getElementById('wager-options');
+var ledgerEl = document.getElementById('ledger');
+var noteEl = document.getElementById('wager-note');
+var wireListEl = document.getElementById('wire-list');
+var offlineEl = document.getElementById('wire-offline');
+var backingEl = document.getElementById('backing-opts');
+var backingNoteEl = document.getElementById('backing-note');
+var pressSide = '';  // which corner the press-row author is backing
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function alreadyCast() { return localStorage.getItem('kavanagh_pick') || ''; }
+function shortFor(id) { var o = WATCH.wagerOptions.filter(function (x) { return x.id === id; })[0]; return o ? o.short : id; }
+
+// The press row drives the meter: picking a corner here IS your wager.
+function setupBacking() {
+  if (!backingEl) return;
+  backingEl.querySelectorAll('.backing-opt').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (alreadyCast()) return;            // one wager per device — locked once placed
+      pressSide = b.getAttribute('data-id');
+      syncBacking();
+    });
+  });
+  syncBacking();
+}
+function syncBacking() {
+  if (!backingEl) return;
+  var cast = alreadyCast();
+  if (cast) pressSide = cast;
+  backingEl.querySelectorAll('.backing-opt').forEach(function (b) {
+    var id = b.getAttribute('data-id');
+    b.disabled = !!cast;
+    b.classList.toggle('selected', id === pressSide);
+  });
+  backingNoteEl.textContent = cast
+    ? 'Your wager is locked in — talk all you like.'
+    : (pressSide ? '' : 'Pick a corner to move the line (optional).');
+}
+
+function renderWager(votes) {
+  votes = votes || {};
+  var total = WATCH.wagerOptions.reduce(function (s, o) { return s + (votes[o.id] || 0); }, 0);
+  var cast = alreadyCast();
+
+  voteEl.innerHTML = WATCH.wagerOptions.map(function (o) {
+    var n = votes[o.id] || 0;
+    var pct = total ? Math.round(n / total * 100) : 0;
+    return '<button class="pick" data-id="' + o.id + '"' + (cast ? ' disabled' : '') + '>' +
+      '<span>' + esc(o.label) + '</span><span class="odds">' + pct + '%</span></button>';
+  }).join('');
+
+  ledgerEl.innerHTML = WATCH.wagerOptions.map(function (o) {
+    var n = votes[o.id] || 0;
+    var pct = total ? Math.round(n / total * 100) : 0;
+    return '<div class="line-row"><div class="lbl"><span>' + esc(o.label) + '</span>' +
+      '<span class="pct">' + pct + '%</span></div>' +
+      '<div class="meter ' + o.meter + '"><span style="width:' + pct + '%"></span></div></div>';
+  }).join('') +
+    '<div class="line-total">' +
+    (total ? (total === 1 ? 'One wager on the books.' : total + ' wagers on the books.')
+           : 'No wagers yet. Be the first to back a Kavanagh.') +
+    '</div>';
+
+  if (cast) {
+    var chosen = WATCH.wagerOptions.filter(function (o) { return o.id === cast; })[0];
+    noteEl.textContent = chosen ? 'Your money is down: “' + chosen.label + '”' : 'Your wager is recorded.';
+  } else {
+    noteEl.textContent = '';
+    voteEl.querySelectorAll('.pick').forEach(function (btn) {
+      btn.addEventListener('click', function () { castVote(btn.getAttribute('data-id')); });
+    });
+  }
+  syncBacking();
+}
+
+function castVote(id) {
+  localStorage.setItem('kavanagh_pick', id); // ceremonial: one wager per device
+  state.votes[id] = (state.votes[id] || 0) + 1;
+  renderWager(state.votes);
+  fetch('/api/vote', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ choice: id })
+  }).then(function (r) { return r.json(); })
+    .then(function (d) { if (d && d.votes) { state.votes = d.votes; renderWager(state.votes); } })
+    .catch(function () { /* offline preview — the optimistic tally stands locally */ });
+}
+
+function renderWire(comments) {
+  comments = comments || [];
+  if (!comments.length) {
+    wireListEl.innerHTML = '<div class="press-empty">Press row is silent. No takes have been filed.</div>';
+    return;
+  }
+  wireListEl.innerHTML = comments.map(function (c) {
+    var when = '';
+    try { when = new Date(c.ts).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); } catch (e) {}
+    var badge = c.side ? '<span class="badge badge--' + c.side + '">' + esc(shortFor(c.side)) + '</span>' : '';
+    return '<div class="quote"><div><span class="who">' + esc(c.name || 'A Member') + '</span>' + badge +
+      '<span class="when">' + esc(when) + '</span></div>' +
+      '<div class="msg">' + esc(c.text || '') + '</div></div>';
+  }).join('');
+}
+
+var state = { votes: { thomas: 0, john: 0, both: 0, neither: 0 }, comments: [] };
+
+function loadState() {
+  fetch('/api/state').then(function (r) {
+    if (!r.ok) throw new Error('no backend');
+    return r.json();
+  }).then(function (d) {
+    state.votes = d.votes || state.votes;
+    state.comments = d.comments || [];
+    renderWager(state.votes);
+    renderWire(state.comments);
+  }).catch(function () {
+    offlineEl.style.display = '';
+    renderWager(state.votes);
+    renderWire(state.comments);
+  });
+}
+
+document.getElementById('wire-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('wire-name').value.trim() || 'A Member';
+  var text = document.getElementById('wire-text').value.trim();
+  if (!text) return;
+  // backing a corner moves the meter (once per device)
+  if (pressSide && !alreadyCast()) castVote(pressSide);
+  var side = alreadyCast(); // badge the dispatch with the wager actually on record
+  var btn = document.getElementById('wire-btn');
+  btn.disabled = true;
+  fetch('/api/comment', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, text: text, side: side })
+  }).then(function (r) {
+    if (!r.ok) throw new Error('no backend');
+    return r.json();
+  }).then(function (d) {
+    document.getElementById('wire-text').value = '';
+    if (d && d.comment) { state.comments.unshift(d.comment); renderWire(state.comments); }
+    btn.disabled = false;
+  }).catch(function () {
+    state.comments.unshift({ name: name, text: text, ts: Date.now(), side: side });
+    document.getElementById('wire-text').value = '';
+    offlineEl.style.display = '';
+    renderWire(state.comments);
+    btn.disabled = false;
+  });
+});
+
+setupBacking();
+loadState();
+</script>
+</body>
+</html>
