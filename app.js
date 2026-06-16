@@ -4,15 +4,15 @@
  * ============================================================ */
 var NAV_ITEMS = [
   { label: 'About',          href: '/' },
-  { label: 'The March',      href: '/march.html' },
-  { label: 'The Membership', href: '/membership.html' },
-  { label: 'Wall of Shame',  href: '/shame.html' },
-  { label: 'Aspirancy',      href: '/aspirancy.html' },
-  { label: 'Events',         href: '/events.html' },
-  { label: 'The Watch',      href: '/watch.html' },
-  { label: 'Oracle',         href: '/oracle.html' },
-  { label: 'Cellar',         href: '/cellar.html' },
-  { label: 'Join',           href: '/join.html' },
+  { label: 'The March',      href: '/march' },
+  { label: 'The Membership', href: '/membership' },
+  { label: 'Wall of Shame',  href: '/shame' },
+  { label: 'Aspirancy',      href: '/aspirancy' },
+  { label: 'Events',         href: '/events' },
+  { label: 'The Watch',      href: '/watch' },
+  { label: 'Oracle',         href: '/oracle' },
+  { label: 'Cellar',         href: '/cellar' },
+  { label: 'Join',           href: '/join' },
   { label: 'Inner Sanctum',  href: '/members/' }
 ];
 function buildChrome() {
