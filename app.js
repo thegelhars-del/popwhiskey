@@ -9,7 +9,7 @@ var NAV_ITEMS = [
   { label: 'Wall of Shame',  href: '/shame' },
   { label: 'Aspirancy',      href: '/aspirancy' },
   { label: 'Events',         href: '/events' },
-  { label: 'The Watch',      href: '/watch' },
+  { label: 'The Open',       href: '/open' },
   { label: 'Oracle',         href: '/oracle' },
   { label: 'Cellar',         href: '/cellar' },
   { label: 'Join',           href: '/join' },

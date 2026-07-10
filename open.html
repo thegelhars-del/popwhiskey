@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Northern Open · Pop Whiskey Society of Wisconsin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+/* ═══ THE GREAT NORTHERN OPEN — official event page (scoped to #open) ═══ */
+#open { padding: 5.5rem 0 4rem; color: #2a1a08; }
+#open .wrap { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* hero */
+#open .gno-crest-ring {
+  width: 150px; height: 150px; margin: 0 auto 1.2rem;
+  border: 2px solid rgba(154,111,30,0.45); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+#open .gno-crest-ring::before {
+  content: ''; position: absolute; inset: 6px;
+  border: 1px solid var(--gold-border); border-radius: 50%;
+}
+#open .gno-crest-ring img { width: 104px; height: auto; }
+#open h1 {
+  font-family: 'Cinzel Decorative', serif; font-weight: 700;
+  font-size: clamp(1.6rem, 5vw, 2.8rem); letter-spacing: 0.12em;
+  text-align: center; color: var(--gold); text-transform: uppercase; line-height: 1.2;
+}
+#open .gno-sub {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.25rem); text-align: center; margin-top: 0.4rem;
+}
+#open .gno-eventline {
+  font-family: 'Cinzel', serif; font-size: clamp(0.6rem, 1.6vw, 0.75rem);
+  letter-spacing: 0.22em; text-transform: uppercase; text-align: center;
+  color: var(--gold-dark); margin-top: 0.7rem;
+}
+#open .gno-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 2.2rem auto; width: min(60%, 420px);
+}
+#open .gno-divider::before, #open .gno-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--gold-border);
+}
+#open .gno-divider span { color: var(--gold); font-size: 1rem; line-height: 1; }
+
+/* section headings */
+#open h2.gno-h2 {
+  font-family: 'Cinzel Decorative', serif; font-weight: 700;
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem); letter-spacing: 0.14em;
+  text-align: center; color: var(--gold); text-transform: uppercase; margin-bottom: 0.4rem;
+}
+#open .gno-note {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 1rem; text-align: center; color: var(--gold-dark); margin-bottom: 1.8rem;
+}
+
+/* rules */
+#open .rules-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2.2rem;
+  margin-top: 1.6rem;
+}
+@media (max-width: 700px) { #open .rules-grid { grid-template-columns: 1fr; } }
+#open .rule h3 {
+  font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem;
+}
+#open .rule h3 .num { color: var(--gold-dark); margin-right: 0.4em; }
+#open .rule p {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.55;
+}
+#open .rule p + p { margin-top: 0.3rem; }
+#open .rule p em { font-family: 'IM Fell English', serif; }
+
+/* conduct box */
+#open .conduct {
+  border: 1px solid var(--gold-border); background: rgba(154,111,30,0.06);
+  padding: 1.3rem 1.5rem; margin: 2.2rem auto 0; max-width: 720px; text-align: center;
+}
+#open .conduct h3 {
+  font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.95rem;
+  letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+#open .conduct p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.5; }
+#open .conduct .kicker {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 1.15rem; color: var(--gold-dark); margin-top: 0.4rem;
+}
+
+/* pairings */
+#open .teams-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.4rem; margin-top: 0.5rem;
+}
+#open .team-card {
+  border: 1px solid var(--gold-border); background: rgba(154,111,30,0.05);
+  padding: 1.2rem 1.2rem 1.3rem;
+}
+#open .team-card h3 {
+  font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold);
+  text-align: center; padding-bottom: 0.6rem; margin-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(154,111,30,0.25);
+}
+#open .team-card .crew-sub {
+  font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.85rem;
+  color: var(--gold-dark); text-align: center; margin: -0.5rem 0 0.9rem;
+}
+#open .player {
+  display: flex; align-items: center; gap: 0.9rem; padding: 0.35rem 0;
+}
+#open .player img, #open .player .sil {
+  width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: top;
+  border: 2px solid rgba(154,111,30,0.4); flex-shrink: 0; background: #eedcca;
+}
+#open .player .sil {
+  background-color: #eedcca;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='38' r='19' fill='%23120a02'/%3E%3Cpath d='M50 61c-20 0-34 13-36 33h72c-2-20-16-33-36-33z' fill='%23120a02'/%3E%3C/svg%3E");
+  background-size: 82%; background-position: center bottom; background-repeat: no-repeat;
+}
+#open .player .pname {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; line-height: 1.2;
+}
+#open .player .ptag {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 0.78rem; color: var(--gold-dark);
+}
+
+/* schedule */
+#open .schedule { max-width: 620px; margin: 1.6rem auto 0; }
+#open .sched-row {
+  display: flex; align-items: baseline; gap: 1.4rem; padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(154,111,30,0.15);
+}
+#open .sched-row:last-child { border-bottom: none; }
+#open .sched-time {
+  font-family: 'Cinzel', serif; font-weight: 600; font-size: 1.05rem;
+  letter-spacing: 0.08em; color: var(--gold-dark);
+  width: 6.2rem; text-align: right; flex-shrink: 0;
+}
+#open .sched-what { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.4; }
+#open .sched-what em { font-family: 'IM Fell English', serif; }
+
+/* after party / jacket */
+#open .gno-prose { max-width: 680px; margin: 1.2rem auto 0; text-align: center; }
+#open .gno-prose p {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; line-height: 1.6; margin-top: 0.7rem;
+}
+#open .gno-prose p.fell {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 1.05rem; color: var(--gold-dark);
+}
+
+/* closing */
+#open .gno-close { text-align: center; margin-top: 2.6rem; }
+#open .gno-close .motto {
+  font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.35rem;
+}
+#open .gno-close .prost {
+  font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 1.15rem;
+  letter-spacing: 0.32em; color: var(--gold); margin-top: 0.5rem; text-transform: uppercase;
+}
+#open .gno-close .latin {
+  font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold-dark); margin-top: 0.7rem;
+}
+#open .gno-pdf {
+  text-align: center; margin-top: 1.6rem;
+  font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.95rem; color: var(--gold-dark);
+}
+</style>
+</head>
+<body>
+<div id="page-frame" aria-hidden="true">
+  <!-- Top edge line -->
+  <div class="frame-edge frame-top"></div>
+  <div class="frame-edge frame-bottom"></div>
+  <div class="frame-edge frame-left"></div>
+  <div class="frame-edge frame-right"></div>
+  <!-- Corner ornaments -->
+  <svg class="frame-corner fc-tl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-tr" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-bl" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+  <svg class="frame-corner fc-br" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 78 L2 16 Q2 2 16 2 L78 2" stroke="rgba(212,165,48,0.7)" stroke-width="1.2" fill="none"/>
+    <path d="M8 78 L8 20 Q8 8 20 8 L78 8" stroke="rgba(212,165,48,0.3)" stroke-width="0.6" fill="none"/>
+    <circle cx="2" cy="2" r="3" fill="rgba(212,165,48,0.8)"/>
+    <circle cx="2" cy="2" r="1.2" fill="#d4a530"/>
+    <line x1="2" y1="30" x2="14" y2="30" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <line x1="30" y1="2" x2="30" y2="14" stroke="rgba(212,165,48,0.55)" stroke-width="0.8"/>
+    <path d="M2 48 L6 44 L10 48 L6 52 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+    <path d="M48 2 L44 6 L48 10 L52 6 Z" fill="rgba(212,165,48,0.35)" stroke="rgba(212,165,48,0.5)" stroke-width="0.5"/>
+  </svg>
+</div>
+
+<!-- nav + footer are injected by /app.js so they live in ONE place -->
+<section id="open">
+  <div class="wrap">
+
+    <!-- ─── HERO ─────────────────────────────────────────── -->
+    <div class="gno-crest-ring"><img src="/images/pwsow-crest.png" alt="PWSOW Crest"></div>
+    <h1>The Great Northern Open</h1>
+    <div class="gno-sub">Official Rules of Play &middot; The Pairings &middot; Orders of the Day</div>
+    <div class="gno-eventline">Sanctioned by the POP Whiskey Society</div>
+    <div class="gno-eventline">Saturday, July 11, 2026 &nbsp;&middot;&nbsp; Pine Valley Golf Course &nbsp;&middot;&nbsp; Marathon, Wisconsin</div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── RULES OF PLAY ────────────────────────────────── -->
+    <h2 class="gno-h2">Official Rules of Play</h2>
+
+    <div class="rules-grid">
+      <div class="rule">
+        <h3><span class="num">I.</span>Format</h3>
+        <p>Four-person scramble. Eighteen holes. Five teams.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">II.</span>Tee Shots</h3>
+        <p>All four players tee off on every hole. The team selects the best ball and plays from there.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">III.</span>Tees</h3>
+        <p>Men play from the silver tees. Women play from the red tees.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">IV.</span>Playing the Selected Ball</h3>
+        <p>Mark the selected ball&rsquo;s spot. Each player plays from within one club length of the mark &mdash; no closer to the hole, and staying in the same condition. Rough stays rough; sand stays sand.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">V.</span>The Two-Putt Rule</h3>
+        <p>Once the team&rsquo;s selected ball is on the green, each player gets one putt from the selected ball&rsquo;s spot. If any player holes it, it counts. If no one makes it, the team records one additional putt &mdash; a two-putt &mdash; and moves to the next hole. No second putts are taken.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">VI.</span>Mulligans</h3>
+        <p>Each player receives one mulligan for the round. Honor system. A mulligan may be used on any shot from tee to green, but never on the putting green &mdash; <em>the Two-Putt Rule stands inviolate.</em></p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">VII.</span>Scoring</h3>
+        <p>Record one team score per hole. Maximum score on any hole is double bogey &mdash; once reached, pick up, record it, and move on. Lowest eighteen-hole total wins the Great Northern Open and the Jacket of Distinction.</p>
+        <p>Ties are broken by scorecard playoff: best back-nine total, then the last six holes, then the last three, then the 18th alone.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">VIII.</span>Pace of Play</h3>
+        <p>Keep up with the group ahead. Beer may be consumed at pace; golf must be played at pace.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">IX.</span>Spectator Carts</h3>
+        <p>Beer cart and spectator crew are support personnel. They may encourage, heckle, and hydrate, but may not strike a ball or advise a putt.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">X.</span>Contests</h3>
+        <p>Skill contests are in play. Holes and prizes will be announced the day of the event.</p>
+      </div>
+      <div class="rule">
+        <h3><span class="num">XI.</span>Rulings</h3>
+        <p>All disputes are settled on the spot by the Commodore. All rulings are final and shall be entered into the Great Ledger.</p>
+        <p><em>The matter is therefore considered settled.</em></p>
+      </div>
+    </div>
+
+    <div class="conduct">
+      <h3>On Conduct</h3>
+      <p>The Great Northern Open is contested for fun, for fellowship, and &mdash; of course &mdash; for the trophy. Assholery, in any and all forms, shall not be tolerated.</p>
+      <p class="kicker">Save it for Sunday.</p>
+    </div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── THE PAIRINGS ─────────────────────────────────── -->
+    <h2 class="gno-h2">The Pairings</h2>
+    <div class="gno-note">As proposed &mdash; final pairings subject to the Commodore&rsquo;s ruling on the day.</div>
+
+    <div class="teams-grid">
+      <div class="team-card">
+        <h3>Team I</h3>
+        <div class="player"><img src="/images/matthew-lange.jpg" alt="Matthew Lange" loading="lazy"><div class="pname">Matthew Lange</div></div>
+        <div class="player"><img src="/images/jeffrey-ziegel.jpg" alt="Jeff Ziegel" loading="lazy"><div class="pname">Jeff Ziegel</div></div>
+        <div class="player"><span class="sil" role="img" aria-label="Brian Noone"></span><div><div class="pname">Brian Noone</div><div class="ptag">Portrait pending the Archivist</div></div></div>
+        <div class="player"><img src="/images/scott-lange.jpg" alt="Scott Lange" loading="lazy"><div class="pname">Scott Lange</div></div>
+      </div>
+      <div class="team-card">
+        <h3>Team II</h3>
+        <div class="player"><img src="/images/andrew-wagner.jpg" alt="Andrew Wagner" loading="lazy"><div class="pname">Andrew Wagner</div></div>
+        <div class="player"><span class="sil" role="img" aria-label="Graysen Kronschnabel"></span><div><div class="pname">Graysen Kronschnabel</div><div class="ptag">Portrait pending the Archivist</div></div></div>
+        <div class="player"><span class="sil" role="img" aria-label="Brandon Milliu"></span><div><div class="pname">Brandon Milliu</div><div class="ptag">Portrait pending the Archivist</div></div></div>
+        <div class="player"><img src="/images/connor-buechel.jpg" alt="Connor Beuchel" loading="lazy"><div class="pname">Connor Beuchel</div></div>
+      </div>
+      <div class="team-card">
+        <h3>Team III</h3>
+        <div class="player"><img src="/images/jeff-mohring.jpg" alt="Jeff Mohring" loading="lazy"><div class="pname">Jeff Mohring</div></div>
+        <div class="player"><img src="/images/peter-gelhar.jpg" alt="Peter Gelhar" loading="lazy"><div><div class="pname">Peter Gelhar</div><div class="ptag">The Commodore</div></div></div>
+        <div class="player"><span class="sil" role="img" aria-label="Eric Lindman"></span><div><div class="pname">Eric Lindman</div><div class="ptag">Portrait pending the Archivist</div></div></div>
+        <div class="player"><img src="/images/jerry-kronschnabel.jpg" alt="Jerry Kronschnabel" loading="lazy"><div class="pname">Jerry Kronschnabel</div></div>
+      </div>
+      <div class="team-card">
+        <h3>Team IV</h3>
+        <div class="player"><img src="/images/noah-miesfeld.jpg" alt="Noah Miesfeldt" loading="lazy"><div class="pname">Noah Miesfeldt</div></div>
+        <div class="player"><img src="/images/matthew-gelhar.jpg" alt="Matthew Gelhar" loading="lazy"><div class="pname">Matthew Gelhar</div></div>
+        <div class="player"><img src="/images/james-baranowski.jpg" alt="Jim Baranowski" loading="lazy"><div><div class="pname">Jim Baranowski</div><div class="ptag">Marshal of the Society</div></div></div>
+        <div class="player"><span class="sil" role="img" aria-label="Curtis Engelbrecht"></span><div><div class="pname">Curtis Engelbrecht</div><div class="ptag">Portrait pending the Archivist</div></div></div>
+      </div>
+      <div class="team-card">
+        <h3>Team V</h3>
+        <div class="player"><img src="/images/bob-hearn.jpg" alt="Bob Hearn" loading="lazy"><div class="pname">Bob Hearn</div></div>
+        <div class="player"><img src="/images/maisie-gelhar.jpg" alt="Maisie Gelhar" loading="lazy"><div class="pname">Maisie Gelhar</div></div>
+        <div class="player"><img src="/bwjordan.jpg" alt="Jordan Steltenpohl" loading="lazy"><div><div class="pname">Jordan Steltenpohl</div><div class="ptag">Pictured in his pledge grays</div></div></div>
+        <div class="player"><img src="/images/gregory-gelhar.jpg" alt="Greg Gelhar" loading="lazy"><div class="pname">Greg Gelhar</div></div>
+      </div>
+      <div class="team-card">
+        <h3>The Beer Cart</h3>
+        <div class="crew-sub">Spectator Corps &mdash; support personnel</div>
+        <div class="player"><img src="/images/terry-s-noone.jpg" alt="Terry Noone" loading="lazy"><div class="pname">Terry Noone</div></div>
+        <div class="player"><img src="/images/george-p-gelhar.jpg" alt="George Gelhar" loading="lazy"><div><div class="pname">George Gelhar</div><div class="ptag">Reader of the Great Ledger</div></div></div>
+        <div class="player"><img src="/images/jeffrey-schuster.jpg" alt="Jeff Schuster" loading="lazy"><div><div class="pname">Jeff Schuster</div><div class="ptag">Steward of the Cask</div></div></div>
+      </div>
+    </div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── ORDERS OF THE DAY ────────────────────────────── -->
+    <h2 class="gno-h2">Orders of the Day</h2>
+
+    <div class="schedule">
+      <div class="sched-row">
+        <div class="sched-time">11:00 AM</div>
+        <div class="sched-what">The Commodore arrives on the grounds.</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">11:30 AM</div>
+        <div class="sched-what">All players present &mdash; <em>no later</em> &mdash; so staging may proceed properly.</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">12:00 PM</div>
+        <div class="sched-what">First team goes off. <em>Sharp.</em></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">After 18</div>
+        <div class="sched-what">The After Party commences immediately. Proceed to the pavilion.</div>
+      </div>
+    </div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── THE AFTER PARTY ──────────────────────────────── -->
+    <h2 class="gno-h2" style="font-size: clamp(1rem, 3vw, 1.3rem);">The After Party</h2>
+    <div class="gno-prose">
+      <p>In a departure from previous years, the Society shall remain at Pine Valley for the evening&rsquo;s celebration. A covered pavilion awaits &mdash; tables and chairs provided, two grills at the ready.</p>
+      <p>The menu is subject to change, but expect brisket sandwiches alongside a proper spread of sides.</p>
+      <p class="fell">Vegetarians are advised to remain home. It is not that type of club, for God&rsquo;s sake.</p>
+    </div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── THE JACKET OF DISTINCTION ────────────────────── -->
+    <h2 class="gno-h2" style="font-size: clamp(1rem, 3vw, 1.3rem);">The Jacket of Distinction</h2>
+    <div class="gno-prose">
+      <p>All Brethren shall bring their Jackets of Distinction. Owing to the forecasted weather and the open-air nature of the evening&rsquo;s festivities, the wearing of them is hereby declared optional &mdash; donned briefly, perhaps, for the official photograph. The Society is confident its members will be sufficiently fragrant by day&rsquo;s end without the assistance of insulated wool.</p>
+      <p class="fell">Those dedicated few who wear theirs regardless shall be awarded extra points, duly entered into the Great Ledger. What the points may be redeemed for, the Ledger declines to say.</p>
+    </div>
+
+    <!-- ─── CLOSING ──────────────────────────────────────── -->
+    <div class="gno-close">
+      <div class="motto">&ldquo;Gentle when stroked, Fierce if provoked.&rdquo;</div>
+      <div class="prost">Prost!</div>
+      <div class="latin">The POP Whiskey Society &nbsp;&middot;&nbsp; MMXXVI</div>
+    </div>
+
+  </div>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>
