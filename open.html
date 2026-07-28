@@ -56,6 +56,95 @@
   font-size: 1rem; text-align: center; color: var(--gold-dark); margin-bottom: 1.8rem;
 }
 
+/* ─── the champions' proclamation ─────────────────────────── */
+#open .champs {
+  position: relative; background: #2a0e00;
+  border: 1px solid rgba(212,165,48,0.45);
+  box-shadow: inset 0 0 0 4px #2a0e00, inset 0 0 0 5px rgba(212,165,48,0.3),
+              0 18px 50px rgba(42,14,0,0.35);
+  padding: 3.2rem 2.4rem 2.6rem; margin: 0 auto; max-width: 900px;
+  text-align: center; color: #d4b896;
+}
+#open .champs::before {
+  content: '\2726'; position: absolute; top: -0.85rem; left: 50%; transform: translateX(-50%);
+  background: #2a0e00; color: #d4a530; padding: 0 0.9rem;
+  font-size: 1.15rem; line-height: 1.6rem;
+}
+#open .champs-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: rgba(212,165,48,0.75); margin-bottom: 1rem;
+}
+#open .champs-title {
+  font-family: 'Cinzel Decorative', serif; font-weight: 700;
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem); letter-spacing: 0.14em;
+  text-transform: uppercase; color: #fffbf4; line-height: 1.15;
+}
+#open .champs-title-sub {
+  font-family: 'Cinzel', serif; font-size: clamp(0.62rem, 1.8vw, 0.8rem);
+  letter-spacing: 0.3em; text-transform: uppercase; color: #d4a530; margin-top: 0.55rem;
+}
+#open .champs-score-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(0.6rem, 3vw, 1.8rem); margin: 1.6rem 0 0.4rem;
+}
+#open .champs-laurel { width: clamp(38px, 8vw, 60px); height: auto; flex-shrink: 0; }
+#open .champs-laurel.flip { transform: scaleX(-1); }
+#open .champs-score {
+  font-family: 'Cinzel Decorative', serif; font-weight: 900;
+  font-size: clamp(3.4rem, 12vw, 5.6rem); line-height: 1; color: #d4a530;
+  text-shadow: 0 0 34px rgba(212,165,48,0.35), 0 2px 4px rgba(0,0,0,0.55);
+}
+#open .champs-score sup {
+  font-size: 0.42em; color: #f0d9a0; vertical-align: super; margin-left: 0.06em;
+}
+#open .champs-scoreline {
+  font-family: 'Cinzel', serif; font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+  letter-spacing: 0.28em; text-transform: uppercase; color: #d4b896; margin-bottom: 2rem;
+}
+#open .champs-row {
+  display: flex; justify-content: center; align-items: flex-start;
+  flex-wrap: wrap; gap: 2rem 2.4rem; margin: 0 auto 2.2rem;
+}
+#open .champ { width: 178px; }
+#open .champ-oval {
+  width: 162px; height: 206px; margin: 0 auto 1rem; border-radius: 50%;
+  overflow: hidden; border: 2px solid #d4a530;
+  box-shadow: 0 0 0 6px rgba(212,165,48,0.18), 0 14px 30px rgba(0,0,0,0.45);
+  background: #f1e3c5;
+}
+#open .champ-oval img, #open .champ-oval svg {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+}
+#open .champ-name {
+  font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.86rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #f0d9a0; line-height: 1.4;
+}
+#open .champ-name sup { color: rgba(212,165,48,0.8); font-size: 0.7em; }
+#open .champ-tag {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 0.82rem; color: #d4a530; margin-top: 0.3rem;
+}
+#open .champs-prose { max-width: 640px; margin: 0 auto; text-align: center; }
+#open .champs-prose p {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.12rem; line-height: 1.7;
+  color: #e8d4bd; margin-top: 0.9rem;
+}
+#open .champs-prose p:first-child { margin-top: 0; }
+#open .champs-rule {
+  width: min(50%, 300px); height: 1px; margin: 1.9rem auto;
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.5), transparent);
+}
+#open .champs-foot {
+  font-family: 'IM Fell English', serif; font-style: italic;
+  font-size: 0.85rem; line-height: 1.75; color: rgba(212,165,48,0.7);
+}
+@media (max-width: 700px) {
+  #open .champs { padding: 2.4rem 1.2rem 2rem; }
+  #open .champs-row { gap: 1.6rem 1.2rem; }
+  #open .champ { width: 150px; }
+  #open .champ-oval { width: 136px; height: 173px; }
+}
+
 /* rules */
 #open .rules-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2.2rem;
@@ -228,9 +317,105 @@
     <!-- ─── HERO ─────────────────────────────────────────── -->
     <div class="gno-crest-ring"><img src="/images/pwsow-crest.png" alt="PWSOW Crest"></div>
     <h1>The Great Northern Open</h1>
-    <div class="gno-sub">Official Rules of Play &middot; The Pairings &middot; Orders of the Day</div>
+    <div class="gno-sub">The Champions &middot; Official Rules of Play &middot; The Pairings &middot; Orders of the Day</div>
     <div class="gno-eventline">Sanctioned by the POP Whiskey Society</div>
     <div class="gno-eventline">Saturday, July 11, 2026 &nbsp;&middot;&nbsp; Pine Valley Golf Course &nbsp;&middot;&nbsp; Marathon, Wisconsin</div>
+
+    <div class="gno-divider"><span>&#10022;</span></div>
+
+    <!-- ─── THE CHAMPIONS ────────────────────────────────── -->
+    <!-- Shared artwork for this section: the laurel branch and the gentleman's
+         vacant-portrait cameo (companion to the Auxiliary roster's lady). -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="gno-laurel" viewBox="0 0 60 120">
+          <path d="M52 112 C 30 96 20 70 24 30" fill="none" stroke="#d4a530" stroke-width="2"/>
+          <g fill="rgba(212,165,48,0.85)">
+            <ellipse cx="47" cy="102" rx="3.6" ry="10" transform="rotate(-60 47 102)"/>
+            <ellipse cx="37" cy="94"  rx="3.6" ry="10" transform="rotate(-15 37 94)"/>
+            <ellipse cx="33" cy="82"  rx="3.6" ry="10" transform="rotate(-55 33 82)"/>
+            <ellipse cx="25" cy="72"  rx="3.6" ry="10" transform="rotate(-8 25 72)"/>
+            <ellipse cx="26" cy="60"  rx="3.6" ry="10" transform="rotate(-48 26 60)"/>
+            <ellipse cx="19" cy="49"  rx="3.6" ry="10" transform="rotate(-2 19 49)"/>
+            <ellipse cx="23" cy="38"  rx="3.6" ry="10" transform="rotate(-40 23 38)"/>
+            <ellipse cx="18" cy="27"  rx="3.6" ry="10" transform="rotate(5 18 27)"/>
+            <ellipse cx="22" cy="16"  rx="3.4" ry="9"  transform="rotate(-18 22 16)"/>
+          </g>
+        </symbol>
+        <symbol id="gno-gent" viewBox="0 0 200 260">
+          <rect width="200" height="260" fill="#f1e3c5"/>
+          <path fill="#150d05" d="M 99 30
+            C 84 31 73 40 68 54
+            C 65 62 63.5 70 63.8 77
+            C 62 80 60.8 82 59.8 85
+            C 57 90 54.5 95 53 99.5
+            C 52.5 102.5 56 104.5 60 105.5
+            C 59 108 58.5 110 59.5 112
+            C 61.5 113.5 61.5 114.5 60 116
+            C 59.5 118.5 60 121 62 123
+            C 60.5 126 60.5 129 63 133
+            C 66 137.5 71 141 78 143.5
+            C 82 145 84 147 84.5 150
+            C 85 156 84.5 162 83 167
+            C 78 176 70 183 58 190
+            C 45 196 36 204 31 216
+            C 28 224 26.5 236 26 248
+            L 26 268
+            L 176 268
+            C 175.5 250 174 236 171 224
+            C 167 210 158 200 146 193
+            C 138 188 132 182 129 174
+            C 127.5 166 127 158 127.5 150
+            C 128 142 129 134 132 127
+            C 141 120 147 110 149 97
+            C 151 82 148 65 138 50
+            C 130 38 115 31 99 30 Z"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="champs">
+      <div class="champs-eyebrow">By Order of the Committee &middot; Duly Entered into the Great Ledger</div>
+      <h2 class="champs-title">The Champions</h2>
+      <div class="champs-title-sub">Of the Great Northern Open &middot; MMXXVI</div>
+
+      <div class="champs-score-row">
+        <svg class="champs-laurel" viewBox="0 0 60 120" aria-hidden="true"><use href="#gno-laurel"/></svg>
+        <div class="champs-score">&minus;8<sup>*</sup></div>
+        <svg class="champs-laurel flip" viewBox="0 0 60 120" aria-hidden="true"><use href="#gno-laurel"/></svg>
+      </div>
+      <div class="champs-scoreline">Three Men &middot; Four Seats &middot; Eight Under Par</div>
+
+      <div class="champs-row">
+        <div class="champ">
+          <div class="champ-oval"><img src="/images/matthew-gelhar.jpg" alt="Matthew Gelhar" loading="lazy"></div>
+          <div class="champ-name">Matthew Gelhar</div>
+          <div class="champ-tag">Vice Commodore &middot; Co-Founder</div>
+        </div>
+        <div class="champ">
+          <div class="champ-oval"><img src="/images/james-baranowski.jpg" alt="James Baranowski" loading="lazy"></div>
+          <div class="champ-name">James Baranowski</div>
+          <div class="champ-tag">Grand Marshal of the Society</div>
+        </div>
+        <div class="champ">
+          <div class="champ-oval"><svg viewBox="0 0 200 260" role="img" aria-label="Curtis Engelbrecht, portrait pending"><use href="#gno-gent"/></svg></div>
+          <div class="champ-name">Curtis Engelbrecht<sup>&dagger;</sup></div>
+          <div class="champ-tag">Champion also of the Open of 2024</div>
+        </div>
+      </div>
+
+      <div class="champs-prose">
+        <p>Let it be recorded &mdash; plainly, in permanent ink, and above all without further inquiry &mdash; that the Great Northern Open of MMXXVI has been won. Team IV took the field a man short, offered no explanation, requested no sympathy, and returned a scorecard reading eight under par against a field at full strength.</p>
+        <p>The Committee is aware that a figure of this size, produced by a crew of this size, has occasioned comment. Correspondence has been received &mdash; some of it signed. Words such as &ldquo;improbable,&rdquo; &ldquo;convenient,&rdquo; and &ldquo;arithmetic&rdquo; have been employed. The Committee has weighed each letter with the gravity it deserves and filed it accordingly. Attention is directed to Rule XI: all rulings are final, and the matter is therefore considered settled.</p>
+        <p>Nonetheless, let no shadow fall upon the day. Shorthanded and unbothered, the three played the empty seat like an instrument, and the Society is proud of them &mdash; cautiously proud, officially proud, irrevocably proud, in the manner of a body that has examined the scorecard, found it signed, and elected to look no closer. The Jacket of Distinction passes to their keeping, its wool no less warm for the murmuring.</p>
+      </div>
+
+      <div class="champs-rule"></div>
+      <div class="champs-foot">
+        * The asterisk is ornamental. The Committee insists upon this.<br>
+        &dagger; The Archivist renews his request for a likeness of Mr. Engelbrecht, and begins to suspect the delay is deliberate.
+      </div>
+    </div>
 
     <div class="gno-divider"><span>&#10022;</span></div>
 
