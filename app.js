@@ -6,6 +6,7 @@ var NAV_ITEMS = [
   { label: 'About',          href: '/' },
   { label: 'The March',      href: '/march' },
   { label: 'The Membership', href: '/membership' },
+  { label: 'The Ladies&rsquo; Auxiliary', href: '/auxiliary' },
   { label: 'Wall of Shame',  href: '/shame' },
   { label: 'Aspirancy',      href: '/aspirancy' },
   { label: 'Events',         href: '/events' },

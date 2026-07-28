@@ -8,3 +8,6 @@
 build-migrate.js
 .claude/
 site/
+
+# Wrangler local dev state (created by `npx wrangler dev`).
+.wrangler/

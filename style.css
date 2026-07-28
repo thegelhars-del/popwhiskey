@@ -3831,3 +3831,237 @@ nav.scrolled {
           border: 1px solid rgba(154,111,30,0.3);
         }
       }
+
+/* ═══ THE LADIES' AUXILIARY ═════════════════════════════════════════
+   Three pages: /auxiliary (the bait), /auxiliary/charter (the payoff),
+   /auxiliary/roster (the vacant offices). Backgrounds follow the site's
+   alternating parchment/leather scheme. */
+
+#auxiliary   { background: #fdf0d5; }
+#aux-charter { background: #fdf0d5; }
+#aux-roster  { background: #2a0e00; }
+
+#auxiliary .container-narrow,
+#aux-charter .container,
+#aux-roster .container { text-align: center; }
+
+/* ── The bait landing: a taunt with a button ─────────────────────── */
+#auxiliary { padding: 10rem 0; }
+.aux-bait-copy {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #2a0e00;
+  max-width: 620px;
+  margin: 0 auto 2.8rem;
+}
+
+/* ── The charter: sealed letters patent on parchment ─────────────── */
+.aux-charter-doc {
+  max-width: 860px;
+  margin: 3rem auto 0;
+  background: linear-gradient(180deg, #fbf1dc 0%, #f3e4c6 100%);
+  border: 1px solid rgba(154,111,30,0.4);
+  border-radius: 3px;
+  padding: 3.5rem 3rem;
+  text-align: left;
+  box-shadow: 0 14px 40px rgba(42,14,0,0.18), inset 0 0 70px rgba(154,111,30,0.06);
+}
+.aux-charter-masthead {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+  color: #2a0e00;
+  text-align: center;
+  line-height: 1.35;
+  margin-bottom: 0.9rem;
+}
+.aux-charter-institute {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  color: #6b4c10;
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1.6rem;
+}
+.aux-doc-ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+.aux-whereas p,
+.aux-article > p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: #2a1606;
+  margin-bottom: 1.4rem;
+}
+.aux-article > p { margin-bottom: 0; }
+.aux-auxname {
+  color: var(--gold-dark);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.aux-article { margin-top: 2.6rem; }
+.aux-article-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.aux-offices {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.aux-office {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+}
+.aux-office-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.aux-office-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: #2a1606;
+}
+.aux-seal {
+  margin-top: 3.2rem;
+  text-align: center;
+}
+.aux-seal-star {
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.aux-seal-text {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2a1606;
+  max-width: 560px;
+  margin: 0 auto 1.2rem;
+}
+.aux-seal-motto {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.aux-charter-cta { text-align: center; margin-top: 3rem; }
+
+/* ── The roster: four empty thrones on Society leather ───────────── */
+#aux-roster .section-label { color: #d4a530; }
+#aux-roster .section-title { color: #fffbf4; }
+#aux-roster .section-title span { color: #d4a530; }
+#aux-roster .section-divider::before,
+#aux-roster .section-divider::after {
+  background: linear-gradient(to right, transparent, rgba(212,165,48,0.35), transparent);
+}
+.aux-roster-intro {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #d4b896;
+}
+.aux-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+}
+.aux-office-card { display: flex; flex-direction: column; }
+.aux-office-card .member-photo svg.aux-silhouette {
+  width: 90%;
+  height: 90%;
+  opacity: 1;
+  display: block;
+}
+.aux-tier-label { margin-top: 3.5rem; }
+.aux-tier-label .section-label { margin-bottom: 0; }
+.aux-tier-label + .aux-roster-grid { margin-top: 1.6rem; }
+.aux-office-card .member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0.8rem;
+  /* Room for a two-line title so all four cards stay the same height
+     even when the grid stacks to one or two columns. */
+  min-height: 5.9rem;
+}
+.aux-office-card .member-name {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  margin-bottom: 0.35rem;
+}
+
+/* ── The infomercial (deliberately at odds with everything above) ── */
+.aux-cta {
+  max-width: 760px;
+  margin: 4.5rem auto 0;
+  padding: 3rem 2.5rem;
+  background: #3d1a00;
+  border: 1px solid rgba(212,165,48,0.35);
+  border-radius: 3px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+}
+.aux-cta-heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+  color: #fffbf4;
+  line-height: 1.3;
+  margin-bottom: 1.4rem;
+}
+.aux-cta-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  line-height: 1.85;
+  color: #d4b896;
+  margin-bottom: 1.6rem;
+}
+.aux-cta-fine {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: rgba(212,165,48,0.75);
+}
+
+@media (max-width: 900px) {
+  .aux-roster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 480px;
+  }
+}
+@media (max-width: 720px) {
+  #auxiliary { padding: 7rem 0 5rem; }
+  .aux-charter-doc { padding: 2.4rem 1.5rem; }
+  .aux-cta { padding: 2.2rem 1.4rem; }
+}
+@media (max-width: 460px) {
+  .aux-roster-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 240px;
+  }
+}
