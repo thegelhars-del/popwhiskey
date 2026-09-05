@@ -1,0 +1,148 @@
+{
+  "note": "Feeds the front page and the site-wide Wire. The Gazette Engine rewrites this file when content is approved, then commits it. EVERY line here must be true — see personas/_canon.md.",
+  "updated": "2026-09-05",
+  "lead": {
+    "id": "steltenpohl-induction",
+    "kicker": "An Induction",
+    "title": "Seventy-One Days",
+    "byline": "Mr. Barnaby Prescott · Junior Golf Reporter",
+    "standfirst": "Mr. Jordan Steltenpohl was recognised as an aspirant upon the first of May and was wearing the jacket by the eleventh of July, inducted upon the grounds at Pine Valley following the Great Northern Open. He enters as an Associate Member, with the Commodore's expectation upon him — said aloud, which the Commodore does not do.",
+    "href": "/dispatches/steltenpohl-induction",
+    "date": "2026-09-05",
+    "dateline": "Inducted 11 July 2026",
+    "stat": {
+      "n": "71",
+      "word": "days from recognition to jacket"
+    }
+  },
+  "dispatches": [
+    {
+      "id": "d-2026-09-05-ohio",
+      "kind": "dispatch",
+      "byline": "Mr. Barnaby Prescott · Junior Golf Reporter",
+      "title": "The Society Goes South",
+      "body": "Six years. Two invitations. Not one Kavanagh. Thomas gave his word on the instant and did not come; John called it smoke, was proven right, and did not come either. It has fallen to their father to arrange what the sons could not — and on the eighteenth of October, the Society drives to Ohio.",
+      "href": "/dispatches/ohio-outing",
+      "linkText": "Read the dispatch",
+      "countdownTo": "2026-10-18",
+      "countdownLabel": "until the delegation departs",
+      "date": "2026-09-05"
+    },
+    {
+      "id": "d-2026-09-05-marki",
+      "kind": "dispatch",
+      "byline": "Mr. Edmund Vance · Wall of Shame",
+      "title": "The Contentment of Mr. Marki",
+      "body": "Three years a pledge. Not one enquiry, not one petition, no visible distress of any kind. He holds a rank nobody has explained to him and he appears to be perfectly happy about it. There is no charge available and the Correspondent has filed anyway. He is to be married on the tenth of October, which explains an October. It does not explain 2024.",
+      "href": "/dispatches/marki-contentment",
+      "linkText": "Read the filing",
+      "date": "2026-09-05"
+    },
+    {
+      "id": "d-2026-09-05-auxiliary",
+      "kind": "dispatch",
+      "byline": "Mrs. Ashby · Auxiliary Editor",
+      "title": "Appointments Have Been Made",
+      "body": "The Auxiliary is pleased to report that its offices are filling, and filling well. Names will be published when the Auxiliary is ready to publish them, which is a different matter from when the gentlemen would like to read them. One is assured the wait will be brief. One has been assured of a great many things.",
+      "href": "/auxiliary/roster",
+      "linkText": "The Auxiliary Roster",
+      "date": "2026-09-05"
+    },
+    {
+      "id": "d-2026-09-05-roll",
+      "kind": "notice",
+      "byline": null,
+      "title": "Entered in the Roll",
+      "body": "Mr. Jordan Steltenpohl is removed from the Probationary Roster and entered upon the Membership as an Associate Member. Mr. Thomas and Mr. John Kavanagh stand at Double Secret Probationary, a rank earned across six years and no appearances whatsoever. Mr. Paul Kavanagh, their father, is newly recognized at Probationary, having arranged in one afternoon what his sons managed in none.",
+      "href": "/aspirancy",
+      "linkText": "The Probationary Roster",
+      "date": "2026-09-05"
+    }
+  ],
+  "wire": [
+    {
+      "text": "Mr. Jordan Steltenpohl inducted at the Great Northern Open — seventy-one days from recognition to jacket.",
+      "href": "/dispatches/steltenpohl-induction"
+    },
+    {
+      "text": "The Commodore anticipates great things of Mr. Steltenpohl, and has now said so in writing, which cannot be withdrawn.",
+      "href": "/dispatches/steltenpohl-induction"
+    },
+    {
+      "text": "Mr. Payton Marki has been a pledge since 2023 and has never once asked after his standing. The Society cannot get over it.",
+      "href": "/dispatches/marki-contentment"
+    },
+    {
+      "text": "Mr. Marki is to be married upon the tenth of October. The Society's congratulations. It accounts for an October; the Ledger contains three years.",
+      "href": "/dispatches/marki-contentment"
+    },
+    {
+      "text": "The delegation departs for Ohio eight days after the Marki wedding. The Correspondent draws no conclusion and mentions it twice."
+    },
+    {
+      "text": "The Society travels to Ohio upon the eighteenth of October — the first such journey in its history, undertaken because the Ohio men would not.",
+      "href": "/dispatches/ohio-outing"
+    },
+    {
+      "text": "Three Kavanaghs now stand upon the roll of aspirants. Between them, across six years, they have attended nothing.",
+      "href": "/aspirancy"
+    },
+    {
+      "text": "The Council of Elders is understood to have convened. The particulars are not understood."
+    },
+    {
+      "text": "Charges against Mr. Buechel remain pending. The bottle has not been seen since.",
+      "href": "/shame"
+    },
+    {
+      "text": "Champions of the Great Northern Open MMXXVI — Gelhar, Baranowski, Engelbrecht. Eight under, a man short.",
+      "href": "/open"
+    },
+    {
+      "text": "The asterisk is ornamental. The Committee insists upon this.",
+      "href": "/open"
+    },
+    {
+      "text": "No correctly-sized jacket has ever been issued by this Society to anybody. The Archivist declines to look into it."
+    },
+    {
+      "text": "Article III stands. The tweed is mandatory."
+    },
+    {
+      "text": "The Ladies' Auxiliary reports its offices are filling. Names to follow, at the Auxiliary's convenience.",
+      "href": "/auxiliary/roster"
+    }
+  ],
+  "archive": [
+    {
+      "id": "steltenpohl-induction",
+      "kicker": "An Induction",
+      "title": "Seventy-One Days",
+      "byline": "Mr. Barnaby Prescott",
+      "standfirst": "Recognised in May, jacketed in July. Mr. Steltenpohl enters as an Associate Member, and certain other gentlemen are invited to read the figure slowly.",
+      "href": "/dispatches/steltenpohl-induction",
+      "date": "2026-09-05",
+      "dateDisplay": "Inducted 11 July 2026"
+    },
+    {
+      "id": "marki-contentment",
+      "kicker": "A Standing Matter",
+      "title": "The Contentment of Mr. Marki",
+      "byline": "Mr. Edmund Vance",
+      "standfirst": "Three years a pledge, not one enquiry, and no visible distress whatsoever. The Society has examined it from every angle and cannot get over it.",
+      "href": "/dispatches/marki-contentment",
+      "date": "2026-09-05",
+      "dateDisplay": "5 September 2026"
+    },
+    {
+      "id": "ohio-outing",
+      "kicker": "The Ohio Outing",
+      "title": "The Society Goes South",
+      "byline": "Mr. Barnaby Prescott",
+      "standfirst": "Six years, two invitations, not one Kavanagh. Their father has been obliged to arrange what the sons could not.",
+      "href": "/dispatches/ohio-outing",
+      "date": "2026-09-05",
+      "dateDisplay": "5 September 2026"
+    }
+  ]
+}

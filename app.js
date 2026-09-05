@@ -4,6 +4,7 @@
  * ============================================================ */
 var NAV_ITEMS = [
   { label: 'About',          href: '/' },
+  { label: 'Dispatches',     href: '/dispatches/' },
   { label: 'The March',      href: '/march' },
   { label: 'The Membership', href: '/membership' },
   { label: 'The Ladies&rsquo; Auxiliary', href: '/auxiliary' },
@@ -800,15 +801,9 @@ function toggleMembersPassword() {
      'Probationary' | 'Secret Probationary' | 'Double Secret Probationary'
    ═════════════════════════════════════════════════════════════════ */
 const probationaryRoster = [
-  {
-    image: 'bwjordan.jpg',
-    name: 'Mr. Jordan Steltenpohl',
-    region: 'Of Central Wisconsin',
-    sponsor: 'Mr. Matt Lange',
-    recognizedDate: '1 May 2026',
-    standing: 'Probationary',
-    commodoreObserves: 'Mr. Steltenpohl presents himself capably, save for those particulars upon which the Society shall not, at this juncture, elaborate.'
-  },
+  // Mr. Jordan Steltenpohl was inducted at the Great Northern Open on
+  // 11 July 2026 and now sits on the Membership roll as an Associate Member.
+  // He is therefore no longer an aspirant. Do not restore him here.
   {
     image: 'bwpayton.jpg',
     name: 'Mr. Payton Marki',
@@ -816,7 +811,39 @@ const probationaryRoster = [
     sponsor: 'Mr. Matt Lange',
     recognizedDate: '2023',
     standing: 'Secret Probationary',
-    commodoreObserves: 'Mr. Marki has been a pledge of this Society since 2023. The membership had begun to grow accustomed to his presence. His decision to absent himself from the forthcoming golf outing has reminded the membership why his candidacy remains, at present, exactly that.'
+    commodoreObserves: 'Mr. Marki has been a pledge of this Society since 2023, and the Commodore wishes it understood that this is not an oversight. It has been open to him to press his case at any hour of any of those three years. He has not pressed it. He appears, so far as anyone has been able to establish, to be entirely content. The membership has turned this over at length and remains unable to account for it, and the Commodore has stopped pretending he can. Mr. Marki is to be married upon the tenth of October, which may go some distance toward explaining the preoccupation. It does not excuse it.'
+  },
+  // ── The Boys from Ohio, and their father ──────────────────────────
+  // `sponsor: null` renders the Society's standing non-disclosure.
+  // `image: null` renders the awaited-likeness cameo.
+  {
+    image: '/images/thomas-kavanagh.jpg',
+    focus: 'center 22%',   // landscape source — keep the head in frame
+    name: 'Mr. Thomas Kavanagh',
+    region: 'Of Columbus, Ohio &mdash; some 640 miles distant',
+    sponsor: null,
+    recognizedDate: '2020',
+    standing: 'Double Secret Probationary',
+    commodoreObserves: 'Mr. Kavanagh gave his word upon the instant the question was put to him, and this Society admired the performance greatly at the time. He has since attended nothing. The Commodore continues to hold the word in the highest regard and has begun quietly to hope that it might one day arrive accompanied by the man.'
+  },
+  {
+    image: '/images/john-kavanagh.jpg',
+    focus: 'center 22%',   // landscape source — keep the head in frame
+    name: 'Mr. John Kavanagh',
+    region: 'Of Columbus, Ohio &mdash; some 640 miles distant',
+    sponsor: null,
+    recognizedDate: '2020',
+    standing: 'Double Secret Probationary',
+    commodoreObserves: 'Mr. Kavanagh pronounced his brother’s pledge to be smoke, said so to his brother’s face, and was proven entirely correct — a vindication somewhat undercut by his own absence on the very same afternoon. The Society has entered the prediction as sound. The Society has entered the predictor’s whereabouts separately.'
+  },
+  {
+    image: null,
+    name: 'Mr. Paul Kavanagh',
+    region: 'Of Columbus, Ohio &middot; father to Thomas and John',
+    sponsor: null,
+    recognizedDate: '2026',
+    standing: 'Probationary',
+    commodoreObserves: 'Mr. Kavanagh regarded an arithmetic that had defeated this Society for six years and proposed, without ceremony, that we should simply drive to him. The Commodore has reviewed the proposal at length and been unable to locate the flaw in it, which is not a sensation this office is accustomed to. That it fell to the father to arrange what the sons could not has been noted, and shall go on being noted.'
   }
 ];
 
@@ -837,17 +864,36 @@ function renderProbationaryRoster() {
 
   container.innerHTML = probationaryRoster.map(p => {
     const standingSlug = p.standing.toLowerCase().replace(/\s+/g, '-');
+
+    // No likeness on file — the Archivist has been informed and is waiting.
+    const portrait = p.image
+      ? `<img loading="lazy" decoding="async" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" class="pledge-photo"${p.focus ? ` style="object-position:${escapeHtml(p.focus)}"` : ''}>`
+      : `<div class="pledge-photo pledge-photo--awaited" role="img" aria-label="No likeness on file for ${escapeHtml(p.name)}">
+           <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+             <circle cx="40" cy="36" r="17" stroke="rgba(212,165,48,0.45)" stroke-width="1.2" fill="rgba(212,165,48,0.06)"/>
+             <path d="M11 100 C11 74 24 62 40 62 C56 62 69 74 69 100 Z" stroke="rgba(212,165,48,0.45)" stroke-width="1.2" fill="rgba(212,165,48,0.06)"/>
+           </svg>
+           <span class="pledge-photo-awaited-note">Likeness awaited</span>
+         </div>`;
+
+    // The Society is under no obligation to disclose a sponsor, and often doesn't.
+    const sponsor = p.sponsor
+      ? escapeHtml(p.sponsor)
+      : '<span class="pledge-undisclosed">The Society does not say</span>';
+
     return `
     <article class="pledge-card">
       <div class="pledge-photo-wrap">
-        <img loading="lazy" decoding="async" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" class="pledge-photo">
+        ${portrait}
         <div class="pledge-stamp pledge-stamp--${standingSlug}">${escapeHtml(p.standing)}</div>
       </div>
       <div class="pledge-info">
         <div class="pledge-name">${escapeHtml(p.name)}</div>
-        <div class="pledge-region">${escapeHtml(p.region)}</div>
+        <!-- region is author-written and may carry entities (&mdash;), so it is
+             inserted raw. It comes from the array above, never from a visitor. -->
+        <div class="pledge-region">${p.region}</div>
         <dl class="pledge-meta">
-          <dt>Sponsor</dt><dd>${escapeHtml(p.sponsor)}</dd>
+          <dt>Sponsor</dt><dd>${sponsor}</dd>
           <dt>Recognized</dt><dd>${escapeHtml(p.recognizedDate)}</dd>
           <dt>Standing</dt><dd>${escapeHtml(p.standing)}</dd>
         </dl>
@@ -864,3 +910,385 @@ function renderProbationaryRoster() {
 document.addEventListener('DOMContentLoaded', renderProbationaryRoster);
 
 
+
+
+/* ═══ RECENT PROCEEDINGS + THE PAIRING ORACLE ════════════════════════════
+   The living-content layer on the front page.
+
+   Both read plain JSON files that the Gazette Engine rewrites and commits:
+       /content/dispatches.json   — the lead item and the short dispatches
+       /content/pairings.json     — Sir Reginald's pre-written verdicts
+
+   To change what the front page says, edit those files. No code changes.
+
+   The Oracle makes NO network request when a visitor consults it — the whole
+   batch of verdicts is fetched once on page load and picked from in the
+   browser. Clicking it costs nothing.
+
+   Every function below returns early when its container is absent, because
+   app.js is loaded on every page of the site.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── The band ──────────────────────────────────────────────────────── */
+function renderProceedings() {
+  var host = document.getElementById('proceedings-grid');
+  if (!host) return;
+
+  fetch('/content/dispatches.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('dispatches ' + r.status); return r.json(); })
+    .then(function (data) {
+      var lead = data.lead;
+      var items = data.dispatches || [];
+
+      var leadHtml = '';
+      if (lead) {
+        leadHtml =
+          '<article class="lead-card rise">' +
+            countdownMarkup(lead) +
+            '<div class="lead-kicker">' + escapeHtml(lead.kicker || 'Of Recent Note') + '</div>' +
+            '<h3 class="lead-title">' + escapeHtml(lead.title) + '</h3>' +
+            '<div class="lead-byline">' + escapeHtml(lead.byline || 'The Society') +
+              (lead.dateline ? '<span class="lead-dateline">' + escapeHtml(lead.dateline) + '</span>' : '') +
+            '</div>' +
+            '<p class="lead-standfirst">' + escapeHtml(lead.standfirst || '') + '</p>' +
+            (lead.href ? '<a class="lead-more" href="' + escapeHtml(lead.href) + '">Read the dispatch</a>' : '') +
+          '</article>';
+      }
+
+      var cards = items.map(function (d, i) {
+        var notice = (d.kind === 'notice');
+        return '<article class="dispatch-card rise' + (notice ? ' is-notice' : '') + '" style="transition-delay:' + (i * 90) + 'ms">' +
+            countdownMarkup(d, 'countdown-sm') +
+            (d.byline ? '<div class="dispatch-card-byline">' + escapeHtml(d.byline) + '</div>' : '') +
+            '<h4 class="dispatch-card-title">' + escapeHtml(d.title) + '</h4>' +
+            '<p class="dispatch-card-body">' + escapeHtml(d.body || '') + '</p>' +
+            (d.href ? '<a class="dispatch-card-link" href="' + escapeHtml(d.href) + '">' +
+                        escapeHtml(d.linkText || 'Read on') + '</a>' : '') +
+          '</article>';
+      }).join('');
+
+      host.innerHTML =
+        leadHtml +
+        '<div class="proceedings-rail">' +
+          '<div class="rail-head">Short Dispatches</div>' +
+          cards +
+          buildOracleShell() +
+        '</div>';
+
+      initPairingOracle();
+      initReveals();
+    })
+    .catch(function (err) {
+      // Nothing to show is better than something broken — retire the band.
+      console.warn('Proceedings unavailable:', err);
+      var section = document.getElementById('proceedings');
+      if (section) section.remove();
+    });
+}
+
+/* ── The Pairing Oracle ────────────────────────────────────────────── */
+function buildOracleShell() {
+  return '' +
+    '<div class="oracle-box">' +
+      '<div class="oracle-head">The Pairing Oracle</div>' +
+      '<div class="oracle-sub">Sir Reginald Hiccupsworth III presides</div>' +
+      '<div class="oracle-stage" id="oracle-stage">' +
+        '<p class="oracle-idle">Put a pop and a whiskey before him and he shall rule upon the pairing. He has never once declined to.</p>' +
+      '</div>' +
+      '<button class="oracle-btn" id="oracle-btn" type="button">Consult the Oracle</button>' +
+    '</div>';
+}
+
+var oraclePairings = [];
+var oracleRecent = [];
+
+function initPairingOracle() {
+  var btn = document.getElementById('oracle-btn');
+  if (!btn) return;
+
+  fetch('/content/pairings.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('pairings ' + r.status); return r.json(); })
+    .then(function (data) {
+      oraclePairings = data.verdicts || [];
+      if (!oraclePairings.length) throw new Error('no verdicts');
+      btn.addEventListener('click', consultOracle);
+    })
+    .catch(function (err) {
+      console.warn('Oracle unavailable:', err);
+      var box = btn.closest('.oracle-box');
+      if (box) box.remove();
+    });
+}
+
+/* Picks at random, avoiding anything shown in the last third of the batch,
+   so a visitor clicking repeatedly does not see the same verdict twice. */
+function pickPairing() {
+  var memory = Math.max(1, Math.floor(oraclePairings.length / 3));
+  var pool = oraclePairings.filter(function (p) { return oracleRecent.indexOf(p.id) === -1; });
+  if (!pool.length) { oracleRecent = []; pool = oraclePairings; }
+
+  var pick = pool[Math.floor(Math.random() * pool.length)];
+  oracleRecent.push(pick.id);
+  while (oracleRecent.length > memory) oracleRecent.shift();
+  return pick;
+}
+
+function consultOracle() {
+  var stage = document.getElementById('oracle-stage');
+  var btn = document.getElementById('oracle-btn');
+  if (!stage || !btn) return;
+
+  var pick = pickPairing();
+
+  stage.classList.add('is-turning');
+  btn.disabled = true;
+
+  setTimeout(function () {
+    stage.innerHTML =
+      '<div class="oracle-pairing">' +
+        escapeHtml(pick.pop) +
+        '<span class="oracle-amp">with</span>' +
+        escapeHtml(pick.whiskey) +
+      '</div>' +
+      '<div class="oracle-verdict">' + escapeHtml(pick.verdict) + '</div>' +
+      '<p class="oracle-ruling">&ldquo;' + escapeHtml(pick.ruling) + '&rdquo;' +
+        '<span class="oracle-attrib">Sir Reginald Hiccupsworth III &middot; Chief Critic</span>' +
+      '</p>';
+    stage.classList.remove('is-turning');
+    btn.disabled = false;
+    btn.textContent = 'Consult him again';
+  }, 260);
+}
+
+/* ── The archive (dispatches/index.html) ───────────────────────────── */
+function renderDispatchArchive() {
+  var list = document.getElementById('archive-list');
+  if (!list) return;
+
+  fetch('/content/dispatches.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('dispatches ' + r.status); return r.json(); })
+    .then(function (data) {
+      var items = data.archive || [];
+      if (!items.length) {
+        list.innerHTML = '<p class="archive-intro">The record stands empty. It will not remain so.</p>';
+        return;
+      }
+      list.innerHTML = items.map(function (a) {
+        return '<a class="archive-item" href="' + escapeHtml(a.href) + '">' +
+            '<div class="archive-item-kicker">' + escapeHtml(a.kicker || 'Dispatch') + '</div>' +
+            '<div class="archive-item-title">' + escapeHtml(a.title) + '</div>' +
+            '<div class="archive-item-meta">' + escapeHtml(a.byline || 'The Society') +
+              (a.dateDisplay ? ' &middot; ' + escapeHtml(a.dateDisplay) : '') + '</div>' +
+            '<div class="archive-item-standfirst">' + escapeHtml(a.standfirst || '') + '</div>' +
+          '</a>';
+      }).join('');
+    })
+    .catch(function (err) {
+      console.warn('Archive unavailable:', err);
+      list.innerHTML = '<p class="archive-intro">The record is momentarily out of reach. The Archivist has been notified and is, as ever, unsurprised.</p>';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', renderProceedings);
+document.addEventListener('DOMContentLoaded', renderDispatchArchive);
+
+
+/* ═══ THE WIRE ═══════════════════════════════════════════════════════════
+   A persistent crawl across the top of EVERY page — the Society's running
+   intelligence. Items come from the "wire" array in /content/dispatches.json.
+
+   It is deliberately unhurried: a slow, continuous scroll that pauses when
+   hovered or focused, and stops dead for anyone who has asked their system
+   for reduced motion. At the right-hand end sits the Council lamp, which
+   pulses and never resolves into anything.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+var WIRE_SECONDS_PER_ITEM = 7;   // higher = slower crawl
+
+function buildWire() {
+  if (document.getElementById('the-wire')) return;
+
+  var bar = document.createElement('div');
+  bar.id = 'the-wire';
+  bar.setAttribute('role', 'complementary');
+  bar.setAttribute('aria-label', 'Society wire');
+  bar.innerHTML =
+    '<div class="wire-label">The Wire</div>' +
+    '<div class="wire-window"><div class="wire-track" id="wire-track"></div></div>' +
+    '<div class="wire-lamp" title="The Council of Elders is in session. It does not stop.">' +
+      '<span class="wire-lamp-dot"></span>' +
+      '<span class="wire-lamp-text">The Council is sitting<small>In session &middot; always</small></span>' +
+    '</div>';
+  document.body.insertBefore(bar, document.body.firstChild);
+  document.body.classList.add('has-wire');
+
+  applyCouncilStatus();
+
+  fetch('/content/dispatches.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('wire ' + r.status); return r.json(); })
+    .then(function (data) {
+      var items = data.wire || [];
+      if (!items.length) throw new Error('no wire items');
+
+      var one = items.map(function (w) {
+        var body = escapeHtml(w.text);
+        var piece = w.href
+          ? '<a class="wire-item" href="' + escapeHtml(w.href) + '">' + body + '</a>'
+          : '<span class="wire-item">' + body + '</span>';
+        return piece + '<span class="wire-sep">&#10022;</span>';
+      }).join('');
+
+      var track = document.getElementById('wire-track');
+      // The run is printed twice so the loop is seamless at -50%.
+      track.innerHTML = '<div class="wire-run">' + one + '</div><div class="wire-run" aria-hidden="true">' + one + '</div>';
+      track.style.animationDuration = (items.length * WIRE_SECONDS_PER_ITEM) + 's';
+    })
+    .catch(function (err) {
+      console.warn('The Wire is dark:', err);
+      bar.remove();
+      document.body.classList.remove('has-wire');
+    });
+}
+
+/* ═══ SCROLL REVEALS ═════════════════════════════════════════════════════
+   Cards rise into place as they are reached. Anything already on screen at
+   load is shown immediately, so nothing is ever stuck invisible.
+   ═══════════════════════════════════════════════════════════════════════ */
+function initReveals() {
+  var targets = document.querySelectorAll('.rise');
+  if (!targets.length) return;
+
+  var showAll = function () {
+    targets.forEach(function (el) { el.classList.add('is-risen'); });
+  };
+
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still || !('IntersectionObserver' in window)) { showAll(); return; }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-risen'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
+
+  targets.forEach(function (el) { io.observe(el); });
+
+  // Failsafe. The animation is a flourish; the content is not optional. If the
+  // observer has not fired within two seconds — a background tab, a prerender,
+  // an engine that throttles observers on hidden documents — show everything
+  // anyway. Content must never be left invisible waiting on a nicety.
+  setTimeout(showAll, 2000);
+}
+
+/* ═══ THE COUNTDOWN ══════════════════════════════════════════════════════
+   Days remaining until a dated event. Recomputed on every load, so the
+   front page is literally different tomorrow.
+   ═══════════════════════════════════════════════════════════════════════ */
+function daysUntil(iso) {
+  if (!iso) return null;
+  var parts = iso.split('-');
+  var target = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((target - today) / 86400000);
+}
+
+/* Renders either a live countdown (item.countdownTo) or a fixed figure
+   (item.stat = {n, word}). Works on the lead card and on dispatch cards. */
+function countdownMarkup(item, extraClass) {
+  var n, word;
+
+  if (item.stat && item.stat.n) {
+    n = escapeHtml(String(item.stat.n));
+    word = item.stat.word || '';
+  } else {
+    var d = daysUntil(item.countdownTo);
+    if (d === null || d < 0) return '';
+    if (d > 1)        { n = d; word = 'days ' + (item.countdownLabel || ''); }
+    else if (d === 1) { n = 1; word = 'day ' + (item.countdownLabel || ''); }
+    else              { n = '&#10022;'; word = 'the day is upon us'; }
+  }
+
+  return '<div class="lead-countdown' + (extraClass ? ' ' + extraClass : '') + '">' +
+           '<span class="countdown-n">' + n + '</span>' +
+           '<span class="countdown-word">' + escapeHtml(word.trim()) + '</span>' +
+         '</div>';
+}
+
+document.addEventListener('DOMContentLoaded', buildWire);
+
+
+/* ═══ THE COUNCIL'S STATUS ═══════════════════════════════════════════════
+   The lamp is not always green. The Council sits, adjourns, and reconvenes,
+   and the beacon reports whichever it is presently doing.
+
+   Two sources, in order of authority:
+
+     1. An override set by the Commodore (POST /api/council from the control
+        page at /members/council). This wins while it lasts.
+     2. AUTO — derived from the clock. The state is seeded from the current
+        half-hour block, so every visitor on earth sees the SAME state at the
+        same moment, and it changes on its own through the day. Randomising
+        per-visitor would mean the Council was sitting and not sitting at
+        once, which is a liberty even this Society will not take.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+var COUNCIL_PRESENTATION = {
+  sitting:   { label: 'The Council is sitting', sub: 'In session',           cls: 'is-sitting' },
+  convening: { label: 'The Council is convening', sub: 'Members are arriving', cls: 'is-convening' },
+  risen:     { label: 'The Council has risen',  sub: 'Adjourned &middot; no ruling given', cls: 'is-risen-council' }
+};
+
+/* Deterministic, clock-seeded. Same answer for everyone, changes every 30 min.
+   Weighted so the Council is most often sitting — it is, after all, the joke
+   that the thing never quite stops. */
+function councilAutoStatus(now) {
+  var block = Math.floor((now || Date.now()) / (30 * 60 * 1000));
+  // cheap integer hash so consecutive blocks do not march in a pattern
+  var h = block * 2654435761 % 4294967296;
+  h = (h ^ (h >>> 13)) >>> 0;
+  var r = (h % 100);
+  if (r < 55) return 'sitting';
+  if (r < 78) return 'convening';
+  return 'risen';
+}
+
+function paintCouncilLamp(status) {
+  var lamp = document.querySelector('.wire-lamp');
+  var text = document.querySelector('.wire-lamp-text');
+  if (!lamp || !text) return;
+
+  var p = COUNCIL_PRESENTATION[status] || COUNCIL_PRESENTATION.sitting;
+  lamp.classList.remove('is-sitting', 'is-convening', 'is-risen-council');
+  lamp.classList.add(p.cls);
+  lamp.setAttribute('title', p.label);
+  text.innerHTML = escapeHtml(p.label) + '<small>' + p.sub + '</small>';
+}
+
+function applyCouncilStatus() {
+  // Paint the clock-derived state immediately so the lamp is never blank,
+  // then let an override from the Worker correct it if one exists.
+  paintCouncilLamp(councilAutoStatus());
+
+  fetch('/api/council', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data) return;
+      var s = data.status;
+      paintCouncilLamp(s && s !== 'auto' ? s : councilAutoStatus());
+    })
+    .catch(function () { /* no Worker (static preview) — the clock stands. */ });
+
+  // Re-evaluate every few minutes so a long-open tab keeps up.
+  setInterval(applyCouncilStatusQuietly, 4 * 60 * 1000);
+}
+
+function applyCouncilStatusQuietly() {
+  fetch('/api/council', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      var s = data && data.status;
+      paintCouncilLamp(s && s !== 'auto' ? s : councilAutoStatus());
+    })
+    .catch(function () { paintCouncilLamp(councilAutoStatus()); });
+}

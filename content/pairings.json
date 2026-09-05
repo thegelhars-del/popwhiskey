@@ -1,0 +1,217 @@
+{
+  "byline": "Sir Reginald Hiccupsworth III, Chief Critic",
+  "note": "Pre-generated pairing verdicts. The front page picks one at random, client-side. Regenerated with each batch of Society content — no API call is made when a visitor consults the Oracle.",
+  "generated": "2026-09-05",
+  "verdicts": [
+    {
+      "id": "p01",
+      "pop": "Cherry Coca-Cola",
+      "whiskey": "Woodford Reserve",
+      "verdict": "Permitted",
+      "ruling": "The cherry is already in the whiskey. Adding more of it is not an error, merely a redundancy, and the Society has forgiven worse. Serve it tall, serve it cold, and do not serve it to anyone you are trying to impress."
+    },
+    {
+      "id": "p02",
+      "pop": "Coca-Cola",
+      "whiskey": "Lagavulin 16yr",
+      "verdict": "Refused",
+      "ruling": "Sixteen years on Islay, and this is what you propose. I have considered the matter for as long as it deserves, which was not long. No."
+    },
+    {
+      "id": "p03",
+      "pop": "Ginger ale",
+      "whiskey": "Redbreast 12yr",
+      "verdict": "Encouraged",
+      "ruling": "Here at last is a question worth the asking. The ginger lifts the pot still without arguing with it, and the result is a drink a gentleman may hold for an hour without embarrassment. I have nothing further to add. I rarely do when a thing is correct."
+    },
+    {
+      "id": "p04",
+      "pop": "Sprecher Root Beer",
+      "whiskey": "Elijah Craig Small Batch",
+      "verdict": "Endorsed",
+      "ruling": "Vanilla meeting vanilla, sarsaparilla meeting char. It is a Wisconsin answer to a Wisconsin question and I decline to be sophisticated about it. Pour it over a great deal of ice and say nothing clever while you drink it."
+    },
+    {
+      "id": "p05",
+      "pop": "Mountain Dew",
+      "whiskey": "Macallan 18yr",
+      "verdict": "Forbidden",
+      "ruling": "I am told this has been attempted. I am told it was attempted by a member. I have asked not to be told his name, as I do not wish to be unable to look at him."
+    },
+    {
+      "id": "p06",
+      "pop": "Dr Pepper",
+      "whiskey": "Rittenhouse Rye",
+      "verdict": "Permitted",
+      "ruling": "Twenty-three flavours, of which perhaps four are doing anything, meeting a rye that is doing everything. The rye wins. That it wins while outnumbered is, I concede, rather to its credit."
+    },
+    {
+      "id": "p07",
+      "pop": "Squirt",
+      "whiskey": "Bulleit Rye",
+      "verdict": "Encouraged",
+      "ruling": "Grapefruit and rye is an old arrangement and a sound one. The Society did not invent it and cannot claim it. The Society can, however, drink it, and does."
+    },
+    {
+      "id": "p08",
+      "pop": "Sprite",
+      "whiskey": "Suntory Toki",
+      "verdict": "Endorsed without reservation",
+      "ruling": "This is the highball, or near enough that the distinction is a matter for men with more time than I have. Tall glass, hard ice, three parts to one. It is the finest thing on this list and it costs almost nothing. I find that irritating and I endorse it anyway."
+    },
+    {
+      "id": "p09",
+      "pop": "Diet cola",
+      "whiskey": "Any expression whatsoever",
+      "verdict": "Refused",
+      "ruling": "If a man has decided to be careful, he ought to be careful about the whiskey. To be careful about the pop and reckless about the Scotch is not restraint. It is accounting."
+    },
+    {
+      "id": "p10",
+      "pop": "Vernors",
+      "whiskey": "Buffalo Trace",
+      "verdict": "Permitted",
+      "ruling": "A ginger soda with genuine conviction and a bourbon with nothing to prove. They meet as equals. I am told Vernors is medicinal. I am told a great many things about the Midwest."
+    },
+    {
+      "id": "p11",
+      "pop": "Cream soda",
+      "whiskey": "Balvenie DoubleWood 12yr",
+      "verdict": "Permitted, barely",
+      "ruling": "The honey in the Balvenie does not require assistance and receives a great deal of it. The result is pleasant. Pleasant is not the standard to which that whiskey was distilled, and I would ask you to remember that."
+    },
+    {
+      "id": "p12",
+      "pop": "Orange Crush",
+      "whiskey": "Glenmorangie 10yr",
+      "verdict": "Permitted",
+      "ruling": "There is citrus in the Glenmorangie already, and this is the loud cousin of that citrus arriving unannounced. It works. I did not expect it to work and I have not entirely recovered."
+    },
+    {
+      "id": "p13",
+      "pop": "Club soda",
+      "whiskey": "Lagavulin 16yr",
+      "verdict": "Sanctioned",
+      "ruling": "Club soda is water that has been somewhere. A little of it opens the peat and does not otherwise involve itself. This is the only member of the present company that knows when to stop talking."
+    },
+    {
+      "id": "p14",
+      "pop": "Tonic water",
+      "whiskey": "Hakushu 12yr",
+      "verdict": "Encouraged",
+      "ruling": "The quinine finds the green note in the Hakushu and holds it up to the light. Garnish with mint if you must. You must not, but I have learned that saying so achieves nothing."
+    },
+    {
+      "id": "p15",
+      "pop": "Barq's Root Beer",
+      "whiskey": "Wild Turkey 101",
+      "verdict": "Endorsed",
+      "ruling": "Both have a bite and neither apologises for it. This is the pairing of a man who has finished his obligations for the day and intends to be pleasant about it for several hours."
+    },
+    {
+      "id": "p16",
+      "pop": "Moxie",
+      "whiskey": "Ardbeg 10yr",
+      "verdict": "Sanctioned, with concern",
+      "ruling": "Gentian root and Islay peat. Two flavours that have each been described, independently, as an acquired taste and a medical event. Taken together they cancel to something almost gentle. I do not understand it. I have stopped trying."
+    },
+    {
+      "id": "p17",
+      "pop": "Grape soda",
+      "whiskey": "Macallan 18yr",
+      "verdict": "Condemned",
+      "ruling": "No."
+    },
+    {
+      "id": "p18",
+      "pop": "RC Cola",
+      "whiskey": "Evan Williams Single Barrel",
+      "verdict": "Permitted",
+      "ruling": "Two honest articles of no pretension whatsoever, each of them better than its price suggests and neither of them interested in your opinion. They deserve one another. I mean that warmly."
+    },
+    {
+      "id": "p19",
+      "pop": "Cherry 7UP",
+      "whiskey": "Four Roses Single Barrel",
+      "verdict": "Permitted",
+      "ruling": "The Four Roses arrives carrying cherry and clove already, and is here handed a second cherry by a soda that has never carried anything else. It is generous. It is unnecessary. It is Tuesday."
+    },
+    {
+      "id": "p20",
+      "pop": "Mello Yello",
+      "whiskey": "Laphroaig Quarter Cask",
+      "verdict": "Forbidden",
+      "ruling": "Iodine, seaweed, and hospital smoke, sweetened. I have written the sentence out in full so that the reader may sit with it as I have."
+    },
+    {
+      "id": "p21",
+      "pop": "Fanta Orange",
+      "whiskey": "Glenfiddich 15yr",
+      "verdict": "Refused",
+      "ruling": "The Solera vat is fifteen years of patient accumulation. This proposal undoes it in roughly four seconds. I am not angry. I am recording the time."
+    },
+    {
+      "id": "p22",
+      "pop": "Big Red",
+      "whiskey": "George Dickel Bottled in Bond",
+      "verdict": "Permitted in private",
+      "ruling": "Not in company. Not at a meeting. Not where a photograph might be taken. In your own kitchen, at an hour of your choosing, the Society has no jurisdiction and will not be seeking any."
+    },
+    {
+      "id": "p23",
+      "pop": "Sunkist",
+      "whiskey": "Knob Creek 9yr",
+      "verdict": "Permitted, barely",
+      "ruling": "Nine years of patience against an orange soda. The bourbon survives, which I record as a testament to the bourbon and not as an endorsement of the arrangement."
+    },
+    {
+      "id": "p24",
+      "pop": "Pepsi",
+      "whiskey": "Crown Royal Northern Harvest",
+      "verdict": "Permitted",
+      "ruling": "A Canadian rye of genuine distinction, buried. It goes down easily. Most things do, when you have removed the reason to pay attention."
+    },
+    {
+      "id": "p25",
+      "pop": "Ginger beer",
+      "whiskey": "High West Double Rye",
+      "verdict": "Endorsed",
+      "ruling": "The ginger beer has heat and the rye has heat and they agree to share the room. Add lime and you have something the Society would serve at an event, which is the highest thing I am prepared to say about a mixed drink."
+    },
+    {
+      "id": "p26",
+      "pop": "Sarsaparilla",
+      "whiskey": "Springbank 10yr",
+      "verdict": "Under advisement",
+      "ruling": "Campbeltown salt against root and bark. It ought to fail. It does not fail. I have asked for a second glass, strictly to confirm the finding, and I intend to ask for a third."
+    },
+    {
+      "id": "p27",
+      "pop": "7UP",
+      "whiskey": "Green Spot",
+      "verdict": "Permitted",
+      "ruling": "Clean and green and lightly sweet, and now sweeter. The Irish take this sort of thing better than the Scots do, and take a great many things better than the Scots do, and I shall leave the observation there."
+    },
+    {
+      "id": "p28",
+      "pop": "Coca-Cola",
+      "whiskey": "Nikka From the Barrel",
+      "verdict": "Refused",
+      "ruling": "It is bottled at 51.4 per cent for a reason and the reason was not this. Drink it neat. If you find it strong, that is the point, and the point is not negotiable."
+    },
+    {
+      "id": "p29",
+      "pop": "Pink Whitney",
+      "whiskey": "Aberlour A'bunadh",
+      "verdict": "Refused, and entered into the record",
+      "ruling": "It is not a pop and it is not a whiskey, and the Society has already had one afternoon on this subject that it would rather not revisit. Charges in that matter remain pending. I have no jurisdiction over the charges. I have jurisdiction over the pairing, and the pairing is refused."
+    },
+    {
+      "id": "p30",
+      "pop": "Nothing whatsoever",
+      "whiskey": "Glenfarclas 12yr",
+      "verdict": "Endorsed without reservation",
+      "ruling": "The Oracle has been consulted thirty times and has, on twenty-nine occasions, indulged the question as it was asked. On this occasion it declines. Pour the Glenfarclas. Add nothing to it. Sit down. This was always the answer and you were always going to arrive here."
+    }
+  ]
+}
