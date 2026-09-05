@@ -4001,12 +4001,8 @@ nav.scrolled {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
-  padding: 1rem 0.8rem;
-  /* Room for a two-line title so all four cards stay the same height
-     even when the grid stacks to one or two columns. */
-  min-height: 5.9rem;
+  padding: 1rem 0.9rem 0.9rem;
 }
 .aux-office-card .member-name {
   white-space: normal;
@@ -4014,8 +4010,18 @@ nav.scrolled {
   text-overflow: clip;
   font-size: 0.78rem;
   line-height: 1.45;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.45rem;
 }
+.aux-card-desc {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: #d4b896;
+  margin-bottom: 0.8rem;
+}
+/* status anchored to the card foot so all cards in a row align */
+.aux-office-card .aux-office-status { margin-top: auto; }
 
 /* ── The infomercial (deliberately at odds with everything above) ── */
 .aux-cta {
