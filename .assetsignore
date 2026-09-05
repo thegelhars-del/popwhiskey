@@ -7,3 +7,18 @@ wrangler.jsonc
 .assetsignore
 .gitignore
 READ-ME-FIRST.md
+
+# Local preview helper — never deployed.
+.preview-server.js
+
+# High-res source artwork (~262 MB of working files used to prepare portraits).
+# The site never links to these — it serves the optimised copies in /images/.
+# They are gitignored too, so a GitHub deploy never sees them; these rules make
+# a local `wrangler deploy` / `versions upload` behave the same way.
+# Root level only — /images/*.png (the crests) must still be served.
+/*.png
+/*.PNG
+!/chapters-map.png
+
+# Local-only dev secrets. Never deployed, never committed.
+.dev.vars

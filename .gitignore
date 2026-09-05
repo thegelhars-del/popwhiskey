@@ -11,3 +11,9 @@ site/
 
 # Wrangler local dev state (created by `npx wrangler dev`).
 .wrangler/
+
+# Local preview helper — never deployed.
+.preview-server.js
+
+# Local-only dev secrets. Never deployed, never committed.
+.dev.vars
