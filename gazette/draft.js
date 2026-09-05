@@ -18,15 +18,30 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 
+/* The guides are bundled INTO the Worker at build time rather than fetched
+   over HTTP. That keeps personas/ out of the public asset upload — the canon
+   file gives away how the Council trick works, and it is not for readers.
+   Editing a guide and pushing still changes the writing: the push rebuilds
+   the Worker, so the workflow is unchanged. */
+import CANON from '../personas/_canon.md';
+import SIR_REGINALD from '../personas/sir-reginald.md';
+import WALL_OF_SHAME from '../personas/wall-of-shame-correspondent.md';
+import AUXILIARY from '../personas/ladies-auxiliary-editor.md';
+import GOLF from '../personas/junior-golf-reporter.md';
+
 const MODEL = 'claude-opus-5';
 
-/* Persona files live in the repo and are served as static assets, so the
-   Worker reads them the same way a browser would. Editing the markdown
-   changes the writing — no deploy of this file required. */
-async function loadGuide(env, name) {
-  const res = await env.ASSETS.fetch(new Request(`https://popwhiskey.org/personas/${name}.md`));
-  if (!res.ok) throw new Error(`Could not load persona guide: ${name} (${res.status})`);
-  return res.text();
+const GUIDES = {
+  'sir-reginald': SIR_REGINALD,
+  'wall-of-shame-correspondent': WALL_OF_SHAME,
+  'ladies-auxiliary-editor': AUXILIARY,
+  'junior-golf-reporter': GOLF
+};
+
+function loadGuide(name) {
+  const guide = GUIDES[name];
+  if (!guide) throw new Error(`No such correspondent: ${name}`);
+  return guide;
 }
 
 const OUTPUT_CONTRACT = `
@@ -67,10 +82,8 @@ export async function draftArticle(env, { personaKey, brief, facts, previousHtml
     throw new Error('ANTHROPIC_API_KEY is not set on this Worker. Run: wrangler secret put ANTHROPIC_API_KEY');
   }
 
-  const [canon, voice] = await Promise.all([
-    loadGuide(env, '_canon'),
-    loadGuide(env, personaKey)
-  ]);
+  const canon = CANON;
+  const voice = loadGuide(personaKey);
 
   const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
 

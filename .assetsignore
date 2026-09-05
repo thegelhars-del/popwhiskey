@@ -27,3 +27,7 @@ READ-ME-FIRST.md
 gazette
 package.json
 package-lock.json
+
+# The persona guides are bundled into the Worker, not served. The canon file
+# explains the Council; it is not for readers.
+personas
