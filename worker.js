@@ -39,6 +39,10 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    // ── The Council's status ─────────────────────────────────────────
+    if (path === '/api/council' && request.method === 'GET')  return apiCouncilGet(env);
+    if (path === '/api/council' && request.method === 'POST') return apiCouncilSet(request, env);
+
     // ── Kavanagh Watch API ───────────────────────────────────────────
     if (path === '/api/state') return apiState(env);
     if (path === '/api/vote' && request.method === 'POST') return apiVote(request, env);
@@ -78,6 +82,70 @@ async function guardMembers(request, env) {
     return html(loginPage('The Society does not recognize that passphrase.'), 401);
   }
   return html(loginPage(''), 401);
+}
+
+/* ── The Council's status ─────────────────────────────────────────────────
+ *  GET  /api/council   public. Returns the Council's present condition.
+ *  POST /api/council   the Commodore only — requires the members cookie.
+ *
+ *  When no override is set (or one has expired) the status is left on AUTO,
+ *  and the browser derives it from the clock. See councilStatus() in app.js:
+ *  it is seeded from the current half-hour so that every visitor sees the
+ *  same thing at the same moment. The Council either is sitting or it is
+ *  not; it cannot be doing both because two people happened to load the page.
+ * ────────────────────────────────────────────────────────────────────── */
+const COUNCIL_KEY = 'council:status';
+const COUNCIL_STATES = ['sitting', 'convening', 'risen', 'auto'];
+
+async function apiCouncilGet(env) {
+  const kv = env.PWSOW_KV;
+  if (!kv) return json({ status: 'auto' });
+
+  const raw = await kv.get(COUNCIL_KEY);
+  if (!raw) return json({ status: 'auto' });
+
+  let saved;
+  try { saved = JSON.parse(raw); } catch (e) { return json({ status: 'auto' }); }
+
+  // An override may be set to lapse on its own, returning the lamp to AUTO.
+  if (saved.expiresAt && Date.now() > saved.expiresAt) return json({ status: 'auto' });
+
+  return json({ status: saved.status || 'auto', note: saved.note || '', setAt: saved.setAt || 0 });
+}
+
+async function apiCouncilSet(request, env) {
+  const kv = env.PWSOW_KV;
+  if (!kv) return json({ error: 'The intelligence store is not configured.' }, 503);
+
+  // Same credential as the Inner Sanctum — no second password to keep.
+  const password = env.MEMBERS_PASSWORD;
+  if (!password) return json({ error: 'not configured' }, 503);
+  const expected = await tokenFor(password);
+  if (readCookie(request.headers.get('Cookie'), COOKIE) !== expected) {
+    return json({ error: 'The Council does not take instruction from strangers.' }, 401);
+  }
+
+  let body;
+  try { body = await request.json(); } catch (e) { return json({ error: 'bad request' }, 400); }
+
+  const status = (body.status || '').toString();
+  if (!COUNCIL_STATES.includes(status)) return json({ error: 'unrecognised status' }, 400);
+
+  if (status === 'auto') {
+    await kv.delete(COUNCIL_KEY);
+    return json({ status: 'auto' });
+  }
+
+  const hours = Math.min(Math.max(parseInt(body.hours, 10) || 0, 0), 168);
+  const record = {
+    status,
+    note: (body.note || '').toString().slice(0, 120),
+    setAt: Date.now()
+  };
+  if (hours > 0) record.expiresAt = Date.now() + hours * 3600 * 1000;
+
+  await kv.put(COUNCIL_KEY, JSON.stringify(record));
+  return json(record);
 }
 
 /* ── Kavanagh Watch API (KV-backed) ───────────────────────────────────── */

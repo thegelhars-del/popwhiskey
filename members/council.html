@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Council &middot; Commodore's Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 0%, #2a1400 0%, #150a00 55%, #0a0500 100%);
+    color: #fffbf4;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    padding: 1.5rem 1.1rem 3rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 460px; margin: 0 auto; }
+
+  header { text-align: center; margin-bottom: 1.8rem; }
+  .crest { color: #d4a530; font-size: 1.5rem; }
+  h1 {
+    font-family: 'Cinzel Decorative', serif; font-size: 1.3rem; color: #d4a530;
+    letter-spacing: 0.06em; margin: 0.4rem 0 0.3rem;
+  }
+  .sub { font-style: italic; color: rgba(255,251,244,0.6); font-size: 0.95rem; }
+
+  /* Live reading of the lamp */
+  .now {
+    display: flex; align-items: center; gap: 0.9rem;
+    border: 1px solid rgba(212,165,48,0.3);
+    background: rgba(0,0,0,0.4);
+    padding: 1.1rem 1.2rem; margin-bottom: 1.6rem;
+  }
+  .now-dot { width: 16px; height: 16px; border-radius: 50%; flex: 0 0 auto; background: #2a2a2a; }
+  .now-dot.sitting   { background: radial-gradient(circle at 35% 30%, #d8ffe6, #3ef27f 40%, #0f8f45);
+                       animation: flash 1.15s steps(1,end) infinite; }
+  .now-dot.convening { background: radial-gradient(circle at 35% 30%, #ffe9ae, #e8bc4f 42%, #8a6413);
+                       box-shadow: 0 0 10px 3px rgba(212,165,48,0.7); }
+  .now-dot.risen     { background: radial-gradient(circle at 35% 30%, #4a4038, #2a231c 70%, #171310); }
+  @keyframes flash {
+    0%,38%   { box-shadow: 0 0 10px 4px rgba(46,229,109,1); filter: brightness(1.35); }
+    39%,100% { box-shadow: 0 0 3px 0 rgba(46,229,109,0.3);  filter: brightness(0.5); }
+  }
+  .now-label { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .now-meta { font-style: italic; font-size: 0.88rem; color: rgba(255,251,244,0.5); margin-top: 0.2rem; }
+
+  .legend {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: rgba(212,165,48,0.75);
+    margin: 0 0 0.8rem; padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(212,165,48,0.2);
+  }
+
+  /* Big thumb-sized buttons */
+  .btn {
+    display: block; width: 100%; text-align: left;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,165,48,0.3);
+    color: #fffbf4; font-family: 'Cormorant Garamond', serif;
+    padding: 1.05rem 1.15rem; margin-bottom: 0.7rem;
+    font-size: 1.05rem; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.2s, background 0.2s, transform 0.08s;
+  }
+  .btn:active { transform: scale(0.985); }
+  .btn strong {
+    display: block; font-family: 'Cinzel', serif; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.25rem;
+  }
+  .btn span { font-style: italic; color: rgba(255,251,244,0.55); font-size: 0.9rem; }
+  .btn.sitting   strong { color: #7dfaa9; }
+  .btn.sitting:hover,   .btn.sitting.on   { border-color: rgba(46,229,109,0.75); background: rgba(46,229,109,0.1); }
+  .btn.convening strong { color: #f0d9a0; }
+  .btn.convening:hover, .btn.convening.on { border-color: rgba(212,165,48,0.75); background: rgba(212,165,48,0.1); }
+  .btn.risen     strong { color: rgba(212,165,48,0.6); }
+  .btn.risen:hover,     .btn.risen.on     { border-color: rgba(212,165,48,0.5); background: rgba(255,255,255,0.05); }
+  .btn.auto      strong { color: #d4a530; }
+  .btn.auto:hover,      .btn.auto.on      { border-color: rgba(212,165,48,0.75); background: rgba(212,165,48,0.08); }
+
+  .lapse { margin: 1.4rem 0 0.4rem; }
+  .lapse label {
+    display: block; font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(212,165,48,0.7);
+    margin-bottom: 0.5rem;
+  }
+  select {
+    width: 100%; padding: 0.85rem 0.9rem; font-size: 1rem;
+    background: rgba(0,0,0,0.45); color: #fffbf4;
+    border: 1px solid rgba(212,165,48,0.3);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .flash {
+    margin-top: 1.2rem; padding: 0.9rem 1rem; font-style: italic;
+    border-left: 2px solid #d4a530; background: rgba(212,165,48,0.08);
+    display: none;
+  }
+  .flash.bad { border-left-color: #e88; background: rgba(230,136,136,0.1); }
+  .flash.show { display: block; }
+
+  .back {
+    display: inline-block; margin-top: 1.8rem; color: rgba(212,165,48,0.7);
+    text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .foot {
+    margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid rgba(212,165,48,0.15);
+    font-style: italic; font-size: 0.88rem; color: rgba(255,251,244,0.4); line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="crest">&#10022;</div>
+    <h1>The Council</h1>
+    <p class="sub">Its present condition, and the setting thereof</p>
+  </header>
+
+  <div class="now">
+    <div class="now-dot" id="now-dot"></div>
+    <div>
+      <div class="now-label" id="now-label">Reading the lamp&hellip;</div>
+      <div class="now-meta" id="now-meta"></div>
+    </div>
+  </div>
+
+  <p class="legend">Set the Council's condition</p>
+
+  <button class="btn sitting"   data-status="sitting">
+    <strong>In Session</strong>
+    <span>The green beacon flashes. The Council is sitting.</span>
+  </button>
+
+  <button class="btn convening" data-status="convening">
+    <strong>Convening</strong>
+    <span>Amber, steady. Members are arriving.</span>
+  </button>
+
+  <button class="btn risen"     data-status="risen">
+    <strong>Risen</strong>
+    <span>Dark and cold. Adjourned, no ruling given.</span>
+  </button>
+
+  <div class="lapse">
+    <label for="hours">And let it lapse after</label>
+    <select id="hours">
+      <option value="0">Until I say otherwise</option>
+      <option value="1">1 hour</option>
+      <option value="3">3 hours</option>
+      <option value="6">6 hours</option>
+      <option value="12">12 hours</option>
+      <option value="24" selected>24 hours</option>
+      <option value="72">3 days</option>
+      <option value="168">1 week</option>
+    </select>
+  </div>
+
+  <button class="btn auto" data-status="auto" style="margin-top:1.4rem;">
+    <strong>Return to Auto</strong>
+    <span>Let the clock decide. Changes on its own through the day, and the same for every visitor.</span>
+  </button>
+
+  <div class="flash" id="flash"></div>
+
+  <a class="back" href="/">&larr; The front hall</a>
+
+  <p class="foot">
+    Whatever is set here appears on the beacon at the top of every page of the
+    site, at once. On Auto, the Council's condition is derived from the clock
+    &mdash; it shifts through the day on its own, and every visitor sees the
+    same thing at the same moment.
+  </p>
+
+</div>
+
+<script>
+var LABELS = {
+  sitting:   { label: 'The Council is sitting',   cls: 'sitting' },
+  convening: { label: 'The Council is convening', cls: 'convening' },
+  risen:     { label: 'The Council has risen',    cls: 'risen' }
+};
+
+/* Mirrors councilAutoStatus() in app.js — same seed, same answer. */
+function autoStatus() {
+  var block = Math.floor(Date.now() / (30 * 60 * 1000));
+  var h = block * 2654435761 % 4294967296;
+  h = (h ^ (h >>> 13)) >>> 0;
+  var r = h % 100;
+  if (r < 55) return 'sitting';
+  if (r < 78) return 'convening';
+  return 'risen';
+}
+
+function paint(status, isAuto, meta) {
+  var eff = (!status || status === 'auto') ? autoStatus() : status;
+  var p = LABELS[eff] || LABELS.sitting;
+  var dot = document.getElementById('now-dot');
+  dot.className = 'now-dot ' + p.cls;
+  document.getElementById('now-label').textContent = p.label;
+  document.getElementById('now-meta').textContent =
+    isAuto ? 'On auto — set by the clock' : (meta || 'Set by the Commodore');
+
+  document.querySelectorAll('.btn').forEach(function (b) {
+    b.classList.toggle('on', b.dataset.status === (isAuto ? 'auto' : status));
+  });
+}
+
+function load() {
+  fetch('/api/council', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var isAuto = !d.status || d.status === 'auto';
+      var meta = '';
+      if (!isAuto && d.setAt) meta = 'Set ' + new Date(d.setAt).toLocaleString();
+      paint(d.status, isAuto, meta);
+    })
+    .catch(function () { paint('auto', true); });
+}
+
+function say(msg, bad) {
+  var f = document.getElementById('flash');
+  f.textContent = msg;
+  f.className = 'flash show' + (bad ? ' bad' : '');
+  setTimeout(function () { f.className = 'flash'; }, 4000);
+}
+
+document.querySelectorAll('.btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var status = btn.dataset.status;
+    var hours = parseInt(document.getElementById('hours').value, 10) || 0;
+    fetch('/api/council', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: status, hours: hours })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) return say(res.d.error || 'The Council declined.', true);
+        if (status === 'auto') { say('Returned to auto. The clock has it.'); paint('auto', true); }
+        else {
+          say('Entered into the Ledger. The beacon is set site-wide.');
+          paint(status, false, 'Set just now');
+        }
+      })
+      .catch(function () { say('Could not reach the Council.', true); });
+  });
+});
+
+load();
+setInterval(load, 60000);
+</script>
+</body>
+</html>
