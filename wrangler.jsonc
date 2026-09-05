@@ -13,9 +13,17 @@
     "run_worker_first": true
   },
 
-  // The Kavanagh Watch votes/comments live here.
-  // Create a KV namespace in the dashboard and paste its ID below.
+  // The Kavanagh Watch votes/comments and the Council's status live here.
   "kv_namespaces": [
     { "binding": "PWSOW_KV", "id": "f3d1dbabeb8542f9b53e7f6647b7135c" }
+  ],
+
+  // The Gazette Engine: roster, brain dumps, drafts, events, submissions.
+  "d1_databases": [
+    {
+      "binding": "GAZETTE_DB",
+      "database_name": "pwsow-gazette",
+      "database_id": "0f80ede2-9b42-4590-9b68-9480212d0725"
+    }
   ]
 }
