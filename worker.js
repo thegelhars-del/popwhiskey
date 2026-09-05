@@ -1,3 +1,7 @@
+import { identify } from './gazette/auth.js';
+import { handleAdminApi } from './gazette/api.js';
+import ADMIN_APP from './gazette/app.html';
+
 /* ============================================================================
  *  Pop Whiskey Society — Cloudflare Worker (serves the whole site)
  *  ---------------------------------------------------------------------------
@@ -38,6 +42,24 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
+
+    // ── The Gazette Engine (behind Cloudflare Access) ────────────────
+    if (path === '/admin' || path.startsWith('/admin/') || path.startsWith('/api/admin')) {
+      const who = await identify(request, env);
+      if (!who.ok) {
+        // Fail closed. No token, a bad token, or Access unconfigured all land here.
+        return new Response(
+          JSON.stringify({ error: who.reason }),
+          { status: who.status, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      if (path.startsWith('/api/admin')) {
+        return handleAdminApi(request, env, who, path);
+      }
+      return new Response(ADMIN_APP, {
+        headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
 
     // ── The Council's status ─────────────────────────────────────────
     if (path === '/api/council' && request.method === 'GET')  return apiCouncilGet(env);

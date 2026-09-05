@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Gazette Engine</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f3ece0; --dim:rgba(243,236,224,.6); --faint:rgba(243,236,224,.38);
+    --gold:#d4a530; --gold-dim:rgba(212,165,48,.32);
+    --bg:#120a02; --panel:#1e1105; --panel2:#2a1808;
+    --red:#e07a6a; --green:#5fd48a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;
+       font-size:17px;line-height:1.55;-webkit-text-size-adjust:100%;padding-bottom:5.5rem}
+  .cap{font-family:'Cinzel',serif;text-transform:uppercase;letter-spacing:.2em}
+
+  header.top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#1c1004,#150c03);
+       border-bottom:1px solid var(--gold-dim);padding:.85rem 1rem;display:flex;
+       align-items:center;justify-content:space-between;gap:.75rem}
+  .brand{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .who{font-size:.78rem;color:var(--faint);text-align:right;line-height:1.3}
+  .who b{display:block;color:var(--gold);font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.16em}
+
+  main{padding:1rem .9rem 1rem;max-width:820px;margin:0 auto}
+  h2.screen{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+       color:var(--gold);padding-bottom:.6rem;margin-bottom:1rem;border-bottom:1px solid var(--gold-dim);
+       display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+  h2.screen span{font-family:'Cormorant Garamond',serif;text-transform:none;letter-spacing:0;
+       font-style:italic;color:var(--faint);font-size:.95rem}
+
+  .card{background:var(--panel);border:1px solid rgba(212,165,48,.18);padding:.95rem 1rem;margin-bottom:.7rem}
+  .card.u1{border-left:3px solid var(--red)}
+  .card.u2{border-left:3px solid var(--gold)}
+  .card.u3{border-left:3px solid rgba(212,165,48,.5)}
+  .card h3{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.03em;line-height:1.4;color:var(--ink);margin-bottom:.35rem;font-weight:600}
+  .card p{font-size:.98rem;color:var(--dim);margin-bottom:.5rem}
+  .meta{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  .tag{display:inline-block;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;
+       padding:.2rem .5rem;border:1px solid var(--gold-dim);color:var(--gold);margin-right:.35rem}
+  .tag.red{border-color:rgba(224,122,106,.6);color:var(--red)}
+  .tag.green{border-color:rgba(95,212,138,.5);color:var(--green)}
+
+  button,.btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+       background:transparent;color:var(--gold);border:1px solid var(--gold-dim);
+       padding:.6rem .9rem;cursor:pointer;-webkit-tap-highlight-color:transparent;
+       transition:background .2s,border-color .2s;display:inline-block;text-decoration:none;min-height:40px}
+  button:hover,.btn:hover{background:rgba(212,165,48,.1);border-color:var(--gold)}
+  button:disabled{opacity:.4;cursor:default}
+  button.primary{background:var(--gold);color:#1a0e02;border-color:var(--gold);font-weight:600}
+  button.primary:hover{background:#e6bc4f}
+  button.danger{color:var(--red);border-color:rgba(224,122,106,.4)}
+  .row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+
+  textarea,input,select{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--gold-dim);
+       color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:1.02rem;padding:.75rem .8rem;margin-bottom:.6rem}
+  textarea{min-height:7rem;resize:vertical;line-height:1.6}
+  label{display:block;font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.18em;
+       text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;opacity:.9}
+
+  nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:60;display:grid;grid-template-columns:repeat(5,1fr);
+       background:#0d0601;border-top:1px solid var(--gold-dim);padding-bottom:env(safe-area-inset-bottom)}
+  nav.tabs a{padding:.7rem .2rem .8rem;text-align:center;text-decoration:none;color:var(--faint);
+       font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;position:relative}
+  nav.tabs a.on{color:var(--gold)}
+  nav.tabs a.on::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--gold)}
+  nav.tabs .n{display:block;font-size:1.15rem;font-family:'Cormorant Garamond',serif;line-height:1.1;color:var(--ink)}
+  nav.tabs a.on .n{color:var(--gold)}
+
+  .issue{background:var(--panel2);border:1px solid var(--gold-dim);padding:1rem;margin-bottom:1rem}
+  .issue .big{font-size:2rem;font-family:'Cinzel',serif;color:var(--gold);line-height:1}
+  .check{display:flex;align-items:center;gap:.5rem;font-size:.95rem;color:var(--dim);padding:.22rem 0}
+  .check .mark{color:var(--green)} .check .miss{color:var(--faint)}
+
+  .empty{text-align:center;color:var(--faint);font-style:italic;padding:2.5rem 1rem;font-size:1.05rem}
+  .flash{position:fixed;left:.6rem;right:.6rem;bottom:5.2rem;z-index:70;padding:.8rem 1rem;
+       background:#241505;border-left:3px solid var(--gold);font-style:italic;display:none}
+  .flash.bad{border-left-color:var(--red)}
+  .flash.show{display:block}
+  .spin{display:inline-block;animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+
+  .body-preview{background:rgba(0,0,0,.25);border:1px solid rgba(212,165,48,.14);padding:1rem;margin:.6rem 0}
+  .body-preview h2{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+       color:var(--gold);margin:1.2rem 0 .5rem}
+  .body-preview p{font-size:1.02rem;color:var(--ink);margin-bottom:.8rem;line-height:1.75}
+  .body-preview em{color:#e6bc4f}
+  details summary{cursor:pointer;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.16em;
+       text-transform:uppercase;color:var(--gold);padding:.5rem 0}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">The Gazette Engine</div>
+  <div class="who" id="who">…</div>
+</header>
+
+<main id="main"><div class="empty">Opening the desk…</div></main>
+
+<nav class="tabs" id="tabs">
+  <a href="#desk"  data-s="desk"><span class="n" id="c-desk">·</span>Desk</a>
+  <a href="#inbox" data-s="inbox"><span class="n" id="c-inbox">·</span>Inbox</a>
+  <a href="#roster" data-s="roster"><span class="n" id="c-roster">·</span>Roster</a>
+  <a href="#drafts" data-s="drafts"><span class="n" id="c-drafts">·</span>Drafts</a>
+  <a href="#more"  data-s="more"><span class="n">⋯</span>More</a>
+</nav>
+
+<div class="flash" id="flash"></div>
+
+<script>
+/* ═══ plumbing ════════════════════════════════════════════════════════ */
+const $ = s => document.querySelector(s);
+const main = $('#main');
+let ME = { role: 'editor', email: '' };
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+async function api(path, opts) {
+  const res = await fetch('/api/admin/' + path, {
+    headers: { 'Content-Type': 'application/json' }, ...opts
+  });
+  const text = await res.text();
+  let data; try { data = JSON.parse(text); } catch { data = { error: text.slice(0,200) }; }
+  if (!res.ok) throw new Error(data.error || ('Request failed (' + res.status + ')'));
+  return data;
+}
+
+let flashTimer;
+function say(msg, bad) {
+  const f = $('#flash');
+  f.textContent = msg;
+  f.className = 'flash show' + (bad ? ' bad' : '');
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(() => { f.className = 'flash'; }, 5000);
+}
+
+const busy = (el, on, label) => {
+  el.disabled = on;
+  el.textContent = on ? '⟳ ' + (label || 'Working') : el.dataset.label;
+};
+
+/* ═══ screens ═════════════════════════════════════════════════════════ */
+const SCREENS = {};
+
+/* ── The Commodore's Desk ─────────────────────────────────────────── */
+SCREENS.desk = async () => {
+  const d = await api('desk');
+  const c = d.counts;
+  ['inbox','roster','drafts'].forEach(k => {});
+  $('#c-inbox').textContent  = c.dumps || '·';
+  $('#c-roster').textContent = c.stale || '·';
+  $('#c-drafts').textContent = c.drafts || '·';
+  $('#c-desk').textContent   = d.tasks.length || '·';
+
+  const greeting = ME.role === 'commodore' ? 'Commodore' : 'Editor';
+  const tasks = d.tasks.map(t => `
+    <div class="card u${Math.min(t.urgency,3)}">
+      <h3>${esc(t.title)}</h3>
+      <p>${esc(t.detail)}</p>
+      <div class="row">
+        <button data-go="${esc(t.screen)}" data-ref="${esc(t.ref)}" data-label="Go">Go</button>
+        ${t.meta ? `<span class="meta" style="align-self:center">${esc(t.meta)}</span>` : ''}
+      </div>
+    </div>`).join('');
+
+  main.innerHTML = `
+    <h2 class="screen">The Commodore's Desk <span>Good day, ${greeting}</span></h2>
+
+    <div class="issue">
+      <div class="cap" style="font-size:.55rem;color:var(--gold);opacity:.85">Next issue due in</div>
+      <div class="big">${d.issue.dueIn} days</div>
+      <div style="margin-top:.7rem">
+        ${d.issue.checklist.map(i => `<div class="check">
+           <span class="${i.done?'mark':'miss'}">${i.done?'✓':'○'}</span> ${esc(i.item)}</div>`).join('')}
+      </div>
+    </div>
+
+    ${d.tasks.length ? tasks : '<div class="empty">Nothing wants your attention. The Society is, briefly, in order.</div>'}
+  `;
+  main.querySelectorAll('[data-go]').forEach(b =>
+    b.onclick = () => { location.hash = '#' + b.dataset.go; });
+};
+
+/* ── Inbox ───────────────────────────────────────────────────────── */
+SCREENS.inbox = async () => {
+  const rows = await api('dumps');
+  const open = rows.filter(r => !r.processed_at);
+  const done = rows.filter(r => r.processed_at);
+
+  main.innerHTML = `
+    <h2 class="screen">Inbox <span>${open.length} unprocessed</span></h2>
+
+    <div class="card">
+      <label for="dj">Dump something</label>
+      <input id="dsub" placeholder="A line to remember it by (optional)">
+      <textarea id="dj" placeholder="Whatever you have. Rough notes are the point — the correspondents tidy it up."></textarea>
+      <button class="primary" id="dsave" data-label="File it">File it</button>
+    </div>
+
+    ${open.map(r => card(r, false)).join('') || '<div class="empty">The inbox is empty.</div>'}
+
+    ${done.length ? `<details><summary>${done.length} already used</summary>${done.map(r => card(r, true)).join('')}</details>` : ''}
+  `;
+
+  function card(r, isDone) {
+    return `<div class="card${isDone ? '' : ' u3'}">
+      <div class="meta">${esc(r.source)}${r.from_addr ? ' · ' + esc(r.from_addr) : ''} · ${esc((r.received_at||'').slice(0,10))}</div>
+      ${r.subject ? `<h3 style="margin-top:.4rem">${esc(r.subject)}</h3>` : ''}
+      <p style="white-space:pre-wrap;margin-top:.4rem">${esc(r.body)}</p>
+      <div class="row">
+        ${isDone
+          ? `<button data-reopen="${r.id}" data-label="Reopen">Reopen</button>`
+          : `<button class="primary" data-draft="${r.id}" data-label="Write it up">Write it up</button>
+             <button data-done="${r.id}" data-label="Mark used">Mark used</button>`}
+      </div>
+    </div>`;
+  }
+
+  $('#dsave').onclick = async e => {
+    const body = $('#dj').value.trim();
+    if (!body) return say('Nothing to file.', true);
+    busy(e.target, true, 'Filing');
+    try { await api('dumps', { method:'POST', body: JSON.stringify({ body, subject: $('#dsub').value }) });
+      say('Filed.'); render(); }
+    catch (err) { say(err.message, true); busy(e.target, false); }
+  };
+  main.querySelectorAll('[data-done]').forEach(b => b.onclick = async () => {
+    await api('dumps/' + b.dataset.done + '/processed', { method:'POST' }); render(); });
+  main.querySelectorAll('[data-reopen]').forEach(b => b.onclick = async () => {
+    await api('dumps/' + b.dataset.reopen + '/reopen', { method:'POST' }); render(); });
+  main.querySelectorAll('[data-draft]').forEach(b => b.onclick = () => {
+    location.hash = '#drafts?dump=' + b.dataset.draft; });
+};
+
+/* ── Roster ──────────────────────────────────────────────────────── */
+const STATUSES = ['Prospect','Probationary','Secret Probationary','Double Secret Probationary','Associate Member','Member'];
+
+SCREENS.roster = async () => {
+  const rows = await api('roster');
+  main.innerHTML = `
+    <h2 class="screen">Roster <span>${rows.length} on the books</span></h2>
+    ${rows.map(m => {
+      const stale = m.days_in_status != null && m.days_in_status >= 90 && m.status !== 'Member';
+      return `<div class="card${stale ? ' u3' : ''}">
+        <h3>${esc(m.name)}</h3>
+        <div class="meta">${esc(m.status)}${m.days_in_status != null ? ' · ' + m.days_in_status + ' days' : ''}${stale ? ' · long overdue' : ''}</div>
+        ${m.region ? `<p style="margin-top:.4rem">${esc(m.region)}</p>` : ''}
+        <div class="row">
+          <select data-status="${m.id}" style="flex:1;min-width:11rem;margin:0">
+            ${STATUSES.map(s => `<option${s===m.status?' selected':''}>${s}</option>`).join('')}
+          </select>
+          <button data-save="${m.id}" data-label="Change">Change</button>
+        </div>
+      </div>`;
+    }).join('')}
+  `;
+  main.querySelectorAll('[data-save]').forEach(b => b.onclick = async () => {
+    const id = b.dataset.save;
+    const status = main.querySelector(`[data-status="${id}"]`).value;
+    busy(b, true, 'Saving');
+    try {
+      const r = await api('roster/' + id, { method:'PATCH', body: JSON.stringify({ status }) });
+      say(r.statusChanged ? 'Changed, and queued as news.' : 'Saved.');
+      render();
+    } catch (e) { say(e.message, true); busy(b, false); }
+  });
+};
+
+/* ── Drafts & Publishing ─────────────────────────────────────────── */
+const PERSONAS = [
+  ['junior-golf-reporter','Mr. Barnaby Prescott — golf & outings'],
+  ['wall-of-shame-correspondent','Mr. Edmund Vance — charges & demerits'],
+  ['ladies-auxiliary-editor','Mrs. Eleanor Ashby — society pages'],
+  ['sir-reginald','Sir Reginald Hiccupsworth III — whiskey verdicts']
+];
+
+SCREENS.drafts = async (query) => {
+  const [arts, events] = await Promise.all([api('articles'), api('events')]);
+  const dumpId = new URLSearchParams(query).get('dump');
+
+  main.innerHTML = `
+    <h2 class="screen">Drafts &amp; Publishing <span>${arts.filter(a=>a.status!=='published').length} in hand</span></h2>
+
+    <div class="card">
+      <label>Commission a piece</label>
+      <select id="persona">${PERSONAS.map(p=>`<option value="${p[0]}">${p[1]}</option>`).join('')}</select>
+      <select id="eventsel"><option value="">No particular event</option>
+        ${events.map(e=>`<option value="${e.id}">${esc(e.name)}${e.confirmed?'':' (unconfirmed)'}</option>`).join('')}</select>
+      <textarea id="brief" placeholder="What is this about? Rough is fine.">${dumpId?'':''}</textarea>
+      <button class="primary" id="commission" data-label="Write it">Write it</button>
+      ${dumpId ? `<div class="meta" style="margin-top:.5rem">Using inbox item #${esc(dumpId)}</div>` : ''}
+    </div>
+
+    ${arts.map(a => `
+      <div class="card${a.status==='approved'?' u2':''}">
+        <div>
+          <span class="tag${a.status==='published'?' green':''}">${esc(a.status)}</span>
+          <span class="meta">${esc(a.byline||'')}</span>
+        </div>
+        <h3 style="margin-top:.5rem">${esc(a.title)}</h3>
+        <p>${esc(a.standfirst||'')}</p>
+        <div class="row">
+          <button data-open="${a.id}" data-label="Open">Open</button>
+        </div>
+      </div>`).join('') || '<div class="empty">Nothing drafted yet.</div>'}
+  `;
+
+  $('#commission').onclick = async e => {
+    const brief = $('#brief').value.trim();
+    if (!brief) return say('Tell the correspondent what it is about.', true);
+    busy(e.target, true, 'Writing — this takes a moment');
+    try {
+      const r = await api('articles', { method:'POST', body: JSON.stringify({
+        persona: $('#persona').value, brief,
+        event_id: $('#eventsel').value || null,
+        dump_ids: dumpId ? [Number(dumpId)] : []
+      })});
+      say(r.notes ? 'Filed. Note from the desk: ' + r.notes : 'Filed.');
+      location.hash = '#article?id=' + r.id;
+    } catch (err) { say(err.message, true); busy(e.target, false); }
+  };
+  main.querySelectorAll('[data-open]').forEach(b => b.onclick = () => {
+    location.hash = '#article?id=' + b.dataset.open; });
+};
+
+/* ── One article ─────────────────────────────────────────────────── */
+SCREENS.article = async (query) => {
+  const id = new URLSearchParams(query).get('id');
+  const a = await api('articles/' + id);
+  const canPublish = ME.role === 'commodore';
+
+  main.innerHTML = `
+    <h2 class="screen">${esc(a.status)} <span>${esc(a.byline||'')}</span></h2>
+
+    <div class="card">
+      <label>Kicker</label><input id="f-kicker" value="${esc(a.kicker)}">
+      <label>Title</label><input id="f-title" value="${esc(a.title)}">
+      <label>Standfirst</label><textarea id="f-sf" style="min-height:4.5rem">${esc(a.standfirst)}</textarea>
+      <button id="savefields" data-label="Save these">Save these</button>
+    </div>
+
+    <div class="body-preview">${a.body_html || ''}</div>
+
+    <div class="card">
+      <label>Ask for changes — plain words</label>
+      <textarea id="instr" placeholder="e.g. make the second paragraph meaner about the garnish"></textarea>
+      <button class="primary" id="revise" data-label="Rewrite it">Rewrite it</button>
+    </div>
+
+    <details class="card">
+      <summary>Edit the body by hand</summary>
+      <textarea id="rawbody" style="min-height:16rem;margin-top:.6rem">${esc(a.body_html||'')}</textarea>
+      <button id="saveraw" data-label="Save body">Save body</button>
+    </details>
+
+    <div class="card">
+      ${a.status === 'published'
+        ? '<p>Published. It is on the site.</p>'
+        : canPublish
+          ? `<div class="row">
+               ${a.status === 'approved'
+                 ? `<button class="primary" id="publish" data-label="Publish to the site">Publish to the site</button>
+                    <button id="unapprove" data-label="Withdraw approval">Withdraw approval</button>`
+                 : `<button class="primary" id="approve" data-label="Approve">Approve</button>`}
+             </div>`
+          : '<p>Only the Commodore may approve or publish. Leave it with him.</p>'}
+    </div>
+
+    ${a.revisions?.length ? `<details><summary>${a.revisions.length} revisions</summary>
+      ${a.revisions.map(r=>`<div class="card"><div class="meta">${esc((r.created_at||'').slice(0,16))} · ${esc(r.created_by||'')}</div>
+      <p style="margin-top:.3rem">${esc(r.instruction)}</p></div>`).join('')}</details>` : ''}
+  `;
+
+  $('#savefields').onclick = async e => {
+    busy(e.target, true, 'Saving');
+    try { await api('articles/' + id, { method:'PATCH', body: JSON.stringify({
+      kicker:$('#f-kicker').value, title:$('#f-title').value, standfirst:$('#f-sf').value })});
+      say('Saved.'); render(); } catch (err) { say(err.message, true); busy(e.target,false); }
+  };
+  $('#saveraw').onclick = async e => {
+    busy(e.target, true, 'Saving');
+    try { await api('articles/' + id, { method:'PATCH', body: JSON.stringify({ body_html:$('#rawbody').value })});
+      say('Saved.'); render(); } catch (err) { say(err.message, true); busy(e.target,false); }
+  };
+  $('#revise').onclick = async e => {
+    const instruction = $('#instr').value.trim();
+    if (!instruction) return say('Say what you would like changed.', true);
+    busy(e.target, true, 'Rewriting');
+    try { const r = await api('articles/' + id + '/revise', { method:'POST', body: JSON.stringify({ instruction })});
+      say(r.notes ? 'Rewritten. ' + r.notes : 'Rewritten.'); render(); }
+    catch (err) { say(err.message, true); busy(e.target,false); }
+  };
+  const approve = $('#approve'); if (approve) approve.onclick = async e => {
+    busy(e.target, true, 'Approving');
+    try { await api('articles/' + id + '/approve', { method:'POST' }); say('Approved.'); render(); }
+    catch (err) { say(err.message, true); busy(e.target,false); }
+  };
+  const un = $('#unapprove'); if (un) un.onclick = async () => {
+    await api('articles/' + id + '/unapprove', { method:'POST' }); render(); };
+  const pub = $('#publish'); if (pub) pub.onclick = async e => {
+    if (!confirm('Publish “' + a.title + '” to popwhiskey.org?')) return;
+    busy(e.target, true, 'Publishing');
+    try { const r = await api('articles/' + id + '/publish', { method:'POST' });
+      say(r.note || 'Published.'); render(); }
+    catch (err) { say(err.message, true); busy(e.target,false); }
+  };
+};
+
+/* ── More: events, submissions, export ───────────────────────────── */
+SCREENS.more = async () => {
+  const [events, subs] = await Promise.all([api('events'), api('submissions')]);
+  main.innerHTML = `
+    <h2 class="screen">Events &amp; Submissions</h2>
+
+    ${events.map(e => `<div class="card${e.confirmed?'':' u2'}">
+      <h3>${esc(e.name)}</h3>
+      <div class="meta">${e.confirmed ? 'confirmed' : 'logistics unconfirmed'}</div>
+      <label style="margin-top:.6rem">Date</label><input data-ev="${e.id}" data-f="event_date" value="${esc(e.event_date)}" placeholder="YYYY-MM-DD">
+      <label>Time</label><input data-ev="${e.id}" data-f="event_time" value="${esc(e.event_time)}" placeholder="e.g. 12:00">
+      <label>Venue</label><input data-ev="${e.id}" data-f="venue" value="${esc(e.venue)}">
+      <div class="row">
+        <button data-saveev="${e.id}" data-label="Save">Save</button>
+        <button data-confirm="${e.id}" data-v="${e.confirmed?0:1}" data-label="${e.confirmed?'Mark unconfirmed':'Confirm logistics'}">${e.confirmed?'Mark unconfirmed':'Confirm logistics'}</button>
+      </div>
+    </div>`).join('')}
+
+    <h2 class="screen" style="margin-top:1.5rem">Member submissions <span>${subs.filter(s=>s.status==='pending').length} pending</span></h2>
+    ${subs.length ? subs.map(s => `<div class="card">
+      <span class="tag">${esc(s.kind)}</span><span class="tag${s.status==='pending'?'':' green'}">${esc(s.status)}</span>
+      <h3 style="margin-top:.5rem">${esc(s.name||'Anonymous')}</h3>
+      <p>${esc(s.body||'')}</p>
+      <div class="row">
+        <button data-sub="${s.id}" data-v="accepted" data-label="Accept">Accept</button>
+        <button class="danger" data-sub="${s.id}" data-v="declined" data-label="Decline">Decline</button>
+      </div></div>`).join('')
+      : '<div class="empty">Nothing from the membership yet.</div>'}
+
+    <div class="card" style="margin-top:1.5rem">
+      <h3>Keep a copy</h3>
+      <p>Everything in the Engine — roster, dumps, drafts, submissions — as one JSON file.</p>
+      <a class="btn" href="/api/admin/export" download>Export the lot</a>
+    </div>
+  `;
+  main.querySelectorAll('[data-saveev]').forEach(b => b.onclick = async () => {
+    const id = b.dataset.saveev; const payload = {};
+    main.querySelectorAll(`[data-ev="${id}"]`).forEach(i => payload[i.dataset.f] = i.value || null);
+    busy(b, true, 'Saving');
+    try { await api('events/' + id, { method:'PATCH', body: JSON.stringify(payload) }); say('Saved.'); render(); }
+    catch (e) { say(e.message, true); busy(b,false); }
+  });
+  main.querySelectorAll('[data-confirm]').forEach(b => b.onclick = async () => {
+    await api('events/' + b.dataset.confirm, { method:'PATCH', body: JSON.stringify({ confirmed: Number(b.dataset.v) }) });
+    say('Updated.'); render();
+  });
+  main.querySelectorAll('[data-sub]').forEach(b => b.onclick = async () => {
+    await api('submissions/' + b.dataset.sub, { method:'PATCH', body: JSON.stringify({ status: b.dataset.v }) });
+    render();
+  });
+};
+
+/* ═══ router ══════════════════════════════════════════════════════════ */
+async function render() {
+  const raw = location.hash.slice(1) || 'desk';
+  const [name, query] = raw.split('?');
+  const fn = SCREENS[name] || SCREENS.desk;
+  document.querySelectorAll('nav.tabs a').forEach(a =>
+    a.classList.toggle('on', a.dataset.s === name || (name === 'article' && a.dataset.s === 'drafts')));
+  main.innerHTML = '<div class="empty"><span class="spin">✦</span></div>';
+  try { await fn(query || ''); window.scrollTo(0,0); }
+  catch (e) { main.innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
+}
+
+window.addEventListener('hashchange', render);
+
+(async () => {
+  try {
+    ME = await api('me');
+    $('#who').innerHTML = '<b>' + esc(ME.role) + '</b>' + esc(ME.email);
+  } catch (e) {
+    main.innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+    return;
+  }
+  render();
+})();
+</script>
+</body>
+</html>

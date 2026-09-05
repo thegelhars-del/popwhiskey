@@ -17,3 +17,6 @@ site/
 
 # Local-only dev secrets. Never deployed, never committed.
 .dev.vars
+
+# Node dependencies for the Worker bundle (wrangler bundles at deploy time).
+node_modules/

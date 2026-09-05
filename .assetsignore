@@ -22,3 +22,8 @@ READ-ME-FIRST.md
 
 # Local-only dev secrets. Never deployed, never committed.
 .dev.vars
+
+# Engine source and seed data are not public assets.
+gazette
+package.json
+package-lock.json

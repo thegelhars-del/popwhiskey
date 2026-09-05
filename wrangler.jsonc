@@ -18,6 +18,11 @@
     { "binding": "PWSOW_KV", "id": "f3d1dbabeb8542f9b53e7f6647b7135c" }
   ],
 
+  // Note: the admin app (gazette/app.html) is imported into worker.js as a
+  // text module — Wrangler treats .html as Text by default, so no rule is
+  // needed. It is bundled INTO the Worker and listed in .assetsignore, so it
+  // is never served as a static file and has no unprotected URL.
+
   // The Gazette Engine: roster, brain dumps, drafts, events, submissions.
   "d1_databases": [
     {

@@ -1,0 +1,12 @@
+{
+  "name": "popwhiskey",
+  "private": true,
+  "type": "module",
+  "description": "Pop Whiskey Society of Wisconsin — Cloudflare Worker, static site, and the Gazette Engine.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.105.0"
+  }
+}
